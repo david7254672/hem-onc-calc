@@ -11565,7 +11565,15 @@ const PROTOCOLS = [
     { name: "CISplatin",    dose: 20,   unit: "mg/m²", basis: "bsa",    max: null, weightCap: null, route: "IV",      days: "Days 1–5", reducible: true },
     { name: "Mesna",        dose: 400,  unit: "mg/m²", basis: "bsa",    max: null, weightCap: null, route: "IV",      days: "With ifosfamide", reducible: false }
   ],
-  labs: { baseline: [], cycle: [], conditional: [] }
+  labs: {
+      baseline: ["CBC & Diff", "platelets", "creatinine", "electrolytes", "magnesium", "total bilirubin", "albumin", "AFP", "beta-hCG", "random glucose"],
+      cycle: ["CBC & Diff", "platelets", "creatinine", "electrolytes", "magnesium", "total bilirubin", "albumin", "AFP", "beta-hCG", "random glucose"],
+      conditional: [
+        { label: "Day 5", tests: ["CBC & Diff", "platelets", "creatinine"] },
+        { label: "Days 10 and 14", tests: ["CBC & Diff", "platelets"] },
+        { label: "Pre-treatment and daily during chemotherapy", tests: ["urine dipstick for hematuria"] }
+      ]
+    }
 },
 
 {
@@ -11581,7 +11589,15 @@ const PROTOCOLS = [
     { name: "CISplatin",    dose: 25,   unit: "mg/m²", basis: "bsa", max: null, weightCap: null, route: "IV",          days: "Days 2–6", reducible: true },
     { name: "Mesna",        dose: 500,  unit: "mg/m²", basis: "bsa", max: null, weightCap: null, route: "IV",          days: "With ifosfamide", reducible: false }
   ],
-  labs: { baseline: [], cycle: [], conditional: [] }
+  labs: {
+      baseline: ["CBC & Diff", "platelets", "creatinine", "electrolytes", "magnesium", "total bilirubin", "ALT", "AFP", "beta-hCG", "LDH"],
+      cycle: ["CBC & Diff", "platelets", "creatinine", "electrolytes", "magnesium", "total bilirubin", "ALT", "AFP", "beta-hCG"],
+      conditional: [
+        { label: "Day 5", tests: ["CBC & Diff", "platelets", "creatinine"] },
+        { label: "Days 10 and 14", tests: ["CBC & Diff", "platelets"] },
+        { label: "Pre-treatment and daily during chemotherapy", tests: ["urine dipstick for hematuria"] }
+      ]
+    }
 },
 
 // GU — INTRAVESICAL (no PDF — keep existing)
@@ -11597,7 +11613,11 @@ const PROTOCOLS = [
     { name: "BCG (ONCOTICE)", dose: 50, unit: "mg", basis: "flat", max: null, weightCap: null, route: "Intravesical", days: "Weekly ×6 induction; weekly ×3 at intervals", reducible: false },
     { name: "BCG (VERITY — alt)", dose: 80, unit: "mg", basis: "flat", max: null, weightCap: null, route: "Intravesical", days: "Same schedule as ONCOTICE", reducible: false }
   ],
-  labs: { baseline: [], cycle: [], conditional: [] }
+  labs: {
+      baseline: ["CBC & Diff", "urinalysis and urine C&S"],
+      cycle: ["urinalysis"],
+      conditional: []
+    }
 },
 
 {
@@ -11610,7 +11630,11 @@ const PROTOCOLS = [
   drugs: [
     { name: "Gemcitabine", dose: 2000, unit: "mg", basis: "flat", max: null, weightCap: null, route: "Intravesical", days: "Weekly ×6 (induction); monthly ×10 (maintenance)", reducible: false }
   ],
-  labs: { baseline: [], cycle: [], conditional: [] }
+  labs: {
+      baseline: ["CBC & Diff", "urinalysis and urine C&S"],
+      cycle: ["urinalysis"],
+      conditional: []
+    }
 },
 
 {
@@ -11624,7 +11648,11 @@ const PROTOCOLS = [
     { name: "Gemcitabine", dose: 1000, unit: "mg", basis: "flat", max: null, weightCap: null, route: "Intravesical (first)", days: "Weekly ×6 (induction); monthly ×10 (maintenance)", reducible: false },
     { name: "Docetaxel",   dose: 37.5, unit: "mg", basis: "flat", max: null, weightCap: null, route: "Intravesical (after gemcitabine same session)", days: "Same session", reducible: false }
   ],
-  labs: { baseline: [], cycle: [], conditional: [] }
+  labs: {
+      baseline: ["CBC & Diff", "urinalysis and urine C&S"],
+      cycle: ["urinalysis"],
+      conditional: []
+    }
 },
 
 {
@@ -11637,7 +11665,11 @@ const PROTOCOLS = [
   drugs: [
     { name: "Mitomycin", dose: 40, unit: "mg", basis: "flat", max: null, weightCap: null, route: "Intravesical", days: "Weekly ×6 (induction); monthly ×10 (maintenance)", reducible: false }
   ],
-  labs: { baseline: [], cycle: [], conditional: [] }
+  labs: {
+      baseline: ["CBC & Diff", "urinalysis and urine C&S"],
+      cycle: ["urinalysis"],
+      conditional: []
+    }
 },
 
 // GU — RCC / OTHER TUMOURS
@@ -12720,13 +12752,11 @@ const PROTOCOLS = [
     }
   ],
   labs: {
-    baseline: [],
-    cycle: [],
-    conditional: [
-      { label: "If clinically indicated, at baseline and throughout", tests: ["PSA", "testosterone", "potassium", "sodium", "calcium", "magnesium", "ECG"] },
-      { label: "Every 3 months if taking flutamide", tests: ["total bilirubin", "ALT", "alkaline phosphatase"] }
-    ]
-  }
+      conditional: [
+        { label: "If clinically indicated (baseline and throughout treatment)", tests: ["PSA", "testosterone", "potassium", "sodium", "calcium", "magnesium", "ECG"] },
+        { label: "Every 3 months if taking flutamide", tests: ["total bilirubin", "ALT", "alkaline phosphatase"] }
+      ]
+    }
 },
 
 // PARP inhibitor — Olaparib monotherapy (mCRPC, HRR-mutated)
@@ -12774,7 +12804,13 @@ const PROTOCOLS = [
     { name: "Mitoxantrone", dose: 12,  unit: "mg/m²", basis: "bsa",  max: null, weightCap: null, route: "IV over 15–30 min", days: "Day 1",           reducible: true  },
     { name: "predniSONE",   dose: 10,  unit: "mg",    basis: "flat", max: null, weightCap: null, route: "PO daily",          days: "Daily (continuous)", reducible: false }
   ],
-  labs: { baseline: [], cycle: [], conditional: [] }
+  labs: {
+      baseline: ["CBC & Diff", "platelets", "creatinine", "total bilirubin", "ALT", "alkaline phosphatase", "PSA", "testosterone", "LVEF (MUGA or echocardiogram)"],
+      cycle: ["CBC & Diff", "platelets", "creatinine", "total bilirubin", "ALT", "PSA"],
+      conditional: [
+        { label: "At cumulative dose ≥100 mg/m² and every 50 mg/m² thereafter", tests: ["LVEF"] }
+      ]
+    }
 },
 
 {
@@ -12787,7 +12823,13 @@ const PROTOCOLS = [
   drugs: [
     { name: "DOXOrubicin", dose: 60, unit: "mg/m²", basis: "bsa", max: null, weightCap: null, route: "IV", days: "Day 1", reducible: true }
   ],
-  labs: { baseline: [], cycle: [], conditional: [] }
+  labs: {
+      baseline: ["CBC & Diff", "platelets", "creatinine", "total bilirubin", "ALT", "alkaline phosphatase", "cortisol", "DHEA-S", "LVEF (MUGA or echocardiogram)"],
+      cycle: ["CBC & Diff", "platelets", "total bilirubin", "ALT"],
+      conditional: [
+        { label: "At cumulative doxorubicin dose ≥450 mg/m²", tests: ["LVEF"] }
+      ]
+    }
 },
 
 {
@@ -12803,7 +12845,14 @@ const PROTOCOLS = [
     { name: "CISplatin",   dose: 40,   unit: "mg/m²", basis: "bsa",  max: null, weightCap: null, route: "IV",       days: "Days 1, 9",   reducible: true  },
     { name: "Mitotane",    dose: 4000, unit: "mg",    basis: "flat", max: null, weightCap: null, route: "PO daily", days: "Continuous",  reducible: true, note: "Target plasma level 14–20 mg/L; requires TDM" }
   ],
-  labs: { baseline: [], cycle: [], conditional: [] }
+  labs: {
+      baseline: ["CBC & Diff", "platelets", "creatinine", "electrolytes", "magnesium", "total bilirubin", "ALT", "alkaline phosphatase", "cortisol", "DHEA-S", "LVEF (MUGA or echocardiogram)", "mitotane level"],
+      cycle: ["CBC & Diff", "platelets", "creatinine", "electrolytes", "total bilirubin", "ALT", "mitotane level"],
+      conditional: [
+        { label: "Mitotane target level 14–20 mg/L; check every 4 weeks until stable", tests: ["mitotane level"] },
+        { label: "At cumulative doxorubicin dose ≥450 mg/m²", tests: ["LVEF"] }
+      ]
+    }
 },
 
 {
@@ -12817,7 +12866,13 @@ const PROTOCOLS = [
     { name: "CISplatin", dose: 75,  unit: "mg/m²", basis: "bsa", max: null, weightCap: null, route: "IV", days: "Day 1",    reducible: true },
     { name: "Etoposide", dose: 100, unit: "mg/m²", basis: "bsa", max: null, weightCap: null, route: "IV", days: "Days 1–3", reducible: true }
   ],
-  labs: { baseline: [], cycle: [], conditional: [] }
+  labs: {
+      baseline: ["CBC & Diff", "platelets", "creatinine", "electrolytes", "magnesium", "total bilirubin", "ALT", "chromogranin A", "neuron-specific enolase"],
+      cycle: ["CBC & Diff", "platelets", "creatinine", "electrolytes", "magnesium"],
+      conditional: [
+        { label: "Day 8", tests: ["CBC & Diff", "platelets"] }
+      ]
+    }
 },
 
   // =========================================================
