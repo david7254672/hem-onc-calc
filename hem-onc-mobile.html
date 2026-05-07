@@ -479,7 +479,15 @@ const PROTOCOLS = [
       { name:"DOXOrubicin",      dose:50,   unit:"mg/m²",     basis:"bsa",  max:null, route:"IV push",            days:"Day 1", reducible:true,  note:"Cumulative lifetime limit ~450–550 mg/m²" },
       { name:"vinCRIStine",      dose:1.4,  unit:"mg/m²",     basis:"bsa",  max:null, route:"IV over 15 min",    days:"Day 1", reducible:true,  nocap:true, note:"NO dose cap (BC Cancer protocol)" },
       { name:"predniSONE",       dose:45,   unit:"mg/m²/day", basis:"bsa",  max:null, route:"PO morning with food", days:"Days 1–5", reducible:false, note:"Round to nearest 25 mg" }
-    ]
+    ],
+    labs:{
+      baseline:["HBsAg","HBsAb","HBcoreAb"],
+      cycle:["CBC & Diff","creatinine","ALT","total bilirubin"],
+      conditional:[
+        { label:"Baseline if clinically indicated", tests:["alkaline phosphatase","sodium","potassium","magnesium","calcium"] },
+        { label:"If clinically indicated", tests:["alkaline phosphatase","sodium","potassium","magnesium","calcium","LDH","HBV viral load"] }
+      ]
+    }
   },
   {
     key:"CHOP", cat:"Lymphoma", bcc:true,
@@ -491,7 +499,15 @@ const PROTOCOLS = [
       { name:"DOXOrubicin",      dose:50,   unit:"mg/m²",     basis:"bsa",  max:null, route:"IV push",             days:"Day 1", reducible:true,  note:"Cumulative lifetime limit ~450–550 mg/m²" },
       { name:"vinCRIStine",      dose:1.4,  unit:"mg/m²",     basis:"bsa",  max:null, route:"IV over 15 min",     days:"Day 1", reducible:true,  nocap:true, note:"NO dose cap (BC Cancer protocol)" },
       { name:"predniSONE",       dose:45,   unit:"mg/m²/day", basis:"bsa",  max:null, route:"PO morning with food", days:"Days 1–5", reducible:false, note:"Round to nearest 25 mg" }
-    ]
+    ],
+    labs:{
+      baseline:["LDH","total bilirubin","ALT","HBsAg","HBsAb","HBcoreAb"],
+      cycle:["CBC & Diff"],
+      conditional:[
+        { label:"Before each cycle if total bilirubin elevated at baseline", tests:["total bilirubin"] },
+        { label:"If clinically indicated", tests:["ALT","HBV viral load"] }
+      ]
+    }
   },
   {
     key:"R-CVP", cat:"Lymphoma", bcc:true,
@@ -503,7 +519,14 @@ const PROTOCOLS = [
       { name:"vinCRIStine",      dose:1.4,  unit:"mg/m²", basis:"bsa",  max:null, route:"IV over 15 min",  days:"Day 1", reducible:true,  nocap:true, note:"NO dose cap (BC Cancer protocol)" },
       { name:"Cyclophosphamide", dose:1000, unit:"mg/m²", basis:"bsa",  max:null, route:"IV over 20 min–1h", days:"Day 1", reducible:true  },
       { name:"predniSONE",       dose:100,  unit:"mg",    basis:"flat", max:null, route:"PO morning",       days:"Days 1–5", reducible:false }
-    ]
+    ],
+    labs:{
+      baseline:["total bilirubin","ALT","LDH","HBsAg","HBsAb","HBcoreAb"],
+      cycle:["CBC & Diff"],
+      conditional:[
+        { label:"If clinically indicated", tests:["ALT","HBV viral load"] }
+      ]
+    }
   },
   {
     key:"CVP", cat:"Lymphoma", bcc:true,
@@ -514,7 +537,14 @@ const PROTOCOLS = [
       { name:"vinCRIStine",      dose:1.4,  unit:"mg/m²", basis:"bsa",  max:null, route:"IV over 15 min",  days:"Day 1", reducible:true,  nocap:true, note:"NO dose cap (BC Cancer protocol)" },
       { name:"Cyclophosphamide", dose:1000, unit:"mg/m²", basis:"bsa",  max:null, route:"IV over 20 min–1h", days:"Day 1", reducible:true  },
       { name:"predniSONE",       dose:100,  unit:"mg",    basis:"flat", max:null, route:"PO morning",       days:"Days 1–5", reducible:false }
-    ]
+    ],
+    labs:{
+      baseline:["total bilirubin","ALT","LDH","HBsAg","HBsAb","HBcoreAb"],
+      cycle:["CBC & Diff"],
+      conditional:[
+        { label:"If clinically indicated", tests:["ALT","HBV viral load"] }
+      ]
+    }
   },
   {
     key:"BR", cat:"Lymphoma", bcc:true,
@@ -524,7 +554,14 @@ const PROTOCOLS = [
     drugs:[
       { name:"Rituximab",               dose:375, unit:"mg/m²", basis:"bsa", max:null, route:"IV (Cycle 1); 1400mg SC (Cycle 2+)", days:"Day 1", reducible:false },
       { name:"Bendamustine (NHL dose)", dose:90,  unit:"mg/m²", basis:"bsa", max:null, route:"IV over 60 min", days:"Days 1–2", reducible:true  }
-    ]
+    ],
+    labs:{
+      baseline:["HBsAg","HBsAb","HBcoreAb"],
+      cycle:["CBC & Diff","creatinine","ALT","total bilirubin"],
+      conditional:[
+        { label:"If clinically indicated", tests:["HBV viral load"] }
+      ]
+    }
   },
   {
     key:"ABVD", cat:"Lymphoma", bcc:true,
@@ -536,7 +573,16 @@ const PROTOCOLS = [
       { name:"vinBLAStine",  dose:6,   unit:"mg/m²",    basis:"bsa", max:null, route:"IV over 15 min",  days:"Days 1, 15", reducible:true  },
       { name:"bleomycin",    dose:10,  unit:"units/m²", basis:"bsa", max:null, route:"IV over 15 min",  days:"Days 1, 15", reducible:true, note:"Omit if pulmonary toxicity develops. Consider omitting after Cycle 2 if PET negative." },
       { name:"dacarbazine",  dose:375, unit:"mg/m²",    basis:"bsa", max:null, route:"IV over 1–2h",    days:"Days 1, 15", reducible:true  }
-    ]
+    ],
+    labs:{
+      baseline:["total bilirubin","ALT","creatinine","HBsAg","HBsAb","HBcoreAb"],
+      cycle:["CBC & Diff","platelets"],
+      conditional:[
+        { label:"Before each cycle if clinically indicated", tests:["total bilirubin","ALT","creatinine"] },
+        { label:"After cycle 2", tests:["PET scan"] },
+        { label:"If clinically indicated", tests:["HBV viral load"] }
+      ]
+    }
   },
   {
     key:"BV-AVD", cat:"Lymphoma", bcc:true,
@@ -548,7 +594,16 @@ const PROTOCOLS = [
       { name:"vinBLAStine",          dose:6,   unit:"mg/m²", basis:"bsa",    max:null, route:"IV over 15 min",     days:"Days 1, 15", reducible:true  },
       { name:"dacarbazine",          dose:375, unit:"mg/m²", basis:"bsa",    max:null, route:"IV over 1–2h",       days:"Days 1, 15", reducible:true  },
       { name:"Brentuximab vedotin",  dose:1.2, unit:"mg/kg", basis:"weight", max:null, weightCap:100, route:"IV over 30 min", days:"Days 1, 15", reducible:true, note:"Weight capped at 100 kg for calculation" }
-    ]
+    ],
+    labs:{
+      baseline:["total bilirubin","ALT","creatinine","HBsAg","HBsAb","HBcoreAb"],
+      cycle:["CBC & Diff"],
+      conditional:[
+        { label:"Before each cycle if clinically indicated", tests:["total bilirubin","ALT","creatinine"] },
+        { label:"After cycle 2", tests:["PET scan"] },
+        { label:"If clinically indicated", tests:["HBV viral load"] }
+      ]
+    }
   },
   {
     key:"A+CHP", cat:"Lymphoma", bcc:true,
@@ -560,7 +615,15 @@ const PROTOCOLS = [
       { name:"DOXOrubicin",          dose:50,  unit:"mg/m²", basis:"bsa",    max:null, route:"IV push",          days:"Day 1", reducible:true, note:"Lifetime cumulative limit applies" },
       { name:"Cyclophosphamide",     dose:750, unit:"mg/m²", basis:"bsa",    max:null, route:"IV over 20 min–1h", days:"Day 1", reducible:true  },
       { name:"predniSONE",           dose:45,  unit:"mg/m²/day", basis:"bsa", max:null, route:"PO morning",      days:"Days 1–5", reducible:false, note:"Round to nearest 25 mg" }
-    ]
+    ],
+    labs:{
+      baseline:["total bilirubin","ALT","creatinine","LDH","HBsAg","HBcoreAb"],
+      cycle:["CBC & Diff"],
+      conditional:[
+        { label:"Before each cycle if total bilirubin elevated at baseline", tests:["total bilirubin"] },
+        { label:"If clinically indicated", tests:["creatinine","ALT","total bilirubin","LDH","HBV viral load"] }
+      ]
+    }
   },
   {
     key:"DA-R-EPOCH", cat:"Lymphoma", bcc:true,
@@ -574,7 +637,18 @@ const PROTOCOLS = [
       { name:"predniSONE",         dose:60,   unit:"mg/m²",      basis:"bsa", max:null, route:"PO BID with food",           days:"Days 1–5",                    reducible:false, note:"BID dosing = 120 mg/m²/day total; round to nearest 25 mg" },
       { name:"Rituximab",          dose:375,  unit:"mg/m²",      basis:"bsa", max:null, route:"IV (Cycle 1); 1400mg SC (Cycle 2+)", days:"Day 5 (after EPOCH)", reducible:false },
       { name:"Cyclophosphamide",   dose:750,  unit:"mg/m²",      basis:"bsa", max:null, route:"IV bolus over 1h",           days:"Day 5 (after EPOCH)",         reducible:true,  note:"Starting Level 1; only drug adjusted below Level 1" }
-    ]
+    ],
+    labs:{
+      baseline:["urea","creatinine","total bilirubin","ALT","LDH","uric acid","HBsAg","HBsAb","HBcoreAb","HCAb","HIV"],
+      cycle:["CBC & Diff"],
+      conditional:[
+        { label:"Baseline if clinically indicated", tests:["potassium","calcium","phosphate","urinalysis"] },
+        { label:"Days 8, 11, 15, 18 each cycle", tests:["CBC & Diff"] },
+        { label:"If receiving intrathecal methotrexate (Day 1)", tests:["INR","PTT"] },
+        { label:"If receiving intrathecal methotrexate (Day 4, within 24h of IT)", tests:["CBC & Diff","INR","PTT"] },
+        { label:"If clinically indicated each cycle", tests:["creatinine","total bilirubin","ALT","alkaline phosphatase","LDH","HBV viral load"] }
+      ]
+    }
   },
   {
     key:"R-DHAP", cat:"Lymphoma", bcc:true,
@@ -586,7 +660,15 @@ const PROTOCOLS = [
       { name:"Dexamethasone",      dose:40,   unit:"mg",    basis:"flat", max:null, route:"IV or PO",         days:"Days 1–4", reducible:false },
       { name:"CISplatin",          dose:100,  unit:"mg/m²", basis:"bsa",  max:null, route:"CIV over 24h",    days:"Day 1", reducible:true,  note:"Aggressive hydration required; highly nephrotoxic" },
       { name:"Cytarabine (Ara-C)", dose:2000, unit:"mg/m²", basis:"bsa",  max:null, route:"IV over 2h q12h ×2 doses", days:"Day 2", reducible:true, note:"Reduce to 1000–1500 mg/m² if age >60 or renal impairment" }
-    ]
+    ],
+    labs:{
+      baseline:["HBsAg","HBsAb","HBcoreAb"],
+      cycle:["CBC & Diff","creatinine","ALT","total bilirubin"],
+      conditional:[
+        { label:"Baseline (recommended)", tests:["alkaline phosphatase","sodium","potassium","magnesium","calcium"] },
+        { label:"If clinically indicated each cycle", tests:["alkaline phosphatase","sodium","potassium","magnesium","calcium","LDH","HBV viral load"] }
+      ]
+    }
   },
   {
     key:"R-GDP", cat:"Lymphoma", bcc:true,
@@ -598,7 +680,16 @@ const PROTOCOLS = [
       { name:"Gemcitabine",  dose:1000, unit:"mg/m²", basis:"bsa",  max:null, route:"IV over 30 min",  days:"Days 1, 8", reducible:true  },
       { name:"Dexamethasone",dose:40,   unit:"mg",    basis:"flat", max:null, route:"PO or IV",        days:"Days 1–4",  reducible:false },
       { name:"CISplatin",    dose:75,   unit:"mg/m²", basis:"bsa",  max:null, route:"IV over 1h",      days:"Day 1",     reducible:true,  note:"Hydration required" }
-    ]
+    ],
+    labs:{
+      baseline:["total bilirubin","ALT","HBsAg","HBsAb","HBcoreAb"],
+      cycle:["CBC & Diff","creatinine"],
+      conditional:[
+        { label:"Baseline if clinically indicated", tests:["alkaline phosphatase","magnesium","calcium"] },
+        { label:"Day 8 before treatment", tests:["CBC & Diff"] },
+        { label:"If clinically indicated", tests:["alkaline phosphatase","magnesium","calcium","ALT","HBV viral load"] }
+      ]
+    }
   },
   {
     key:"R-ICE", cat:"Lymphoma", bcc:true,
@@ -611,7 +702,16 @@ const PROTOCOLS = [
       { name:"Mesna (IV)",       dose:1667, unit:"mg/m²/day", basis:"bsa", max:null, route:"IV concurrent with ifosfamide", days:"Days 1–3", reducible:false, note:"Concurrent with ifosfamide via Y-site" },
       { name:"CARBOplatin",      dose:5,   unit:"AUC",  basis:"auc", max:800,  route:"IV over 1h",  days:"Day 1", reducible:false, note:"Calvert: AUC 5 × (GFR+25); maximum 800 mg" },
       { name:"Etoposide",        dose:100, unit:"mg/m²/day", basis:"bsa", max:null, route:"IV over 45–90 min (non-DEHP+0.2µm)", days:"Days 1–3 (total 300 mg/m²)", reducible:true  }
-    ]
+    ],
+    labs:{
+      baseline:["alkaline phosphatase","LDH","calcium","HBsAg","HBsAb","HBcoreAb","HepCAb","HIV","pregnancy test"],
+      cycle:["CBC & Diff","total bilirubin","LDH","creatinine"],
+      conditional:[
+        { label:"Before each ifosfamide dose (Days 1–3)", tests:["urine dipstick for blood"] },
+        { label:"If urine dipstick positive", tests:["urinalysis"] },
+        { label:"If clinically indicated", tests:["HBV viral load","ALT"] }
+      ]
+    }
   },
   {
     key:"SMILE", cat:"Lymphoma", bcc:true,
@@ -625,7 +725,21 @@ const PROTOCOLS = [
       { name:"Ifosfamide",         dose:1500, unit:"mg/m²/day", basis:"bsa",  max:null, route:"IV over 20h",                  days:"Days 2–4", reducible:true, note:"With mesna uroprotection" },
       { name:"Mesna (concurrent)", dose:1500, unit:"mg/m²/day", basis:"bsa",  max:null, route:"CIV concurrent with ifosfamide", days:"Days 2–4", reducible:false },
       { name:"Pegaspargase",       dose:2500, unit:"units/m²",  basis:"bsa",  max:null, route:"IV over 1h or IM",              days:"Day 8",    reducible:true, note:"Use 1500 units/m² for older/less fit patients" }
-    ]
+    ],
+    labs:{
+      baseline:["HBsAg","HBsAb","HBcoreAb"],
+      cycle:["CBC & Diff","creatinine","electrolytes panel","phosphate","albumin","total bilirubin","ALT","alkaline phosphatase","GGT","LDH","triglycerides","amylase","lipase","random glucose","uric acid","EBV DNA load"],
+      conditional:[
+        { label:"Daily during cycle", tests:["CBC & Diff","creatinine","electrolytes panel"] },
+        { label:"Before each ifosfamide dose (Days 2–4) and q8h", tests:["urine dipstick for blood"] },
+        { label:"If urine dipstick positive", tests:["urinalysis"] },
+        { label:"Methotrexate: before and q6h during infusion", tests:["urine pH"] },
+        { label:"Methotrexate level (hour 48, then daily until <0.1 µmol/L)", tests:["methotrexate level"] },
+        { label:"Before each pegaspargase dose", tests:["INR","PTT","fibrinogen"] },
+        { label:"Pegaspargase: every Monday and Thursday", tests:["GGT","ALT","alkaline phosphatase","total bilirubin","amylase","lipase","random glucose"] },
+        { label:"If clinically indicated", tests:["HBV viral load"] }
+      ]
+    }
   },
   {
     key:"GemOx-Peg", cat:"Lymphoma", bcc:true,
@@ -636,7 +750,18 @@ const PROTOCOLS = [
       { name:"Gemcitabine",  dose:1000, unit:"mg/m²",    basis:"bsa",  max:null, route:"IV over 30 min",  days:"Days 1, 8",  reducible:true, note:"Consider 75% dose for age >70" },
       { name:"Oxaliplatin",  dose:130,  unit:"mg/m²",    basis:"bsa",  max:null, route:"IV over 2h (D5W)", days:"Day 1",      reducible:true  },
       { name:"Pegaspargase", dose:2500, unit:"units/m²", basis:"bsa",  max:null, route:"IV over 1h or IM", days:"Day 1",      reducible:true, note:"Use 1500 units/m² for older/less fit" }
-    ]
+    ],
+    labs:{
+      baseline:["EBV DNA","HBsAg","HBsAb","HBcoreAb"],
+      cycle:["CBC & Diff","creatinine","sodium","potassium","magnesium","calcium","phosphate","albumin","total bilirubin","ALT","alkaline phosphatase","GGT","LDH","triglycerides","lipase","random glucose","uric acid","INR","PTT","fibrinogen"],
+      conditional:[
+        { label:"Day 8 before treatment", tests:["CBC & Diff"] },
+        { label:"Before each pegaspargase dose", tests:["INR","PTT","fibrinogen"] },
+        { label:"Pegaspargase: every Monday and Thursday", tests:["ALT","alkaline phosphatase","GGT","total bilirubin","lipase","random glucose"] },
+        { label:"If at risk of QT prolongation", tests:["ECG"] },
+        { label:"If clinically indicated", tests:["EBV DNA","HBV viral load"] }
+      ]
+    }
   },
   {
     key:"ASP-MEDEX", cat:"Lymphoma", bcc:true,
@@ -647,7 +772,19 @@ const PROTOCOLS = [
       { name:"Methotrexate",  dose:3000, unit:"mg/m²",    basis:"bsa",  max:null, route:"IV over 6h (alkalinize urine first)", days:"Day 1", reducible:true, note:"Inpatient required. Leucovorin rescue: 25mg q6h × 4 doses IV then PO until MTX <0.1 µmol/L" },
       { name:"Dexamethasone", dose:40,   unit:"mg",        basis:"flat", max:null, route:"PO",    days:"Days 1–4", reducible:false },
       { name:"Pegaspargase",  dose:2500, unit:"units/m²", basis:"bsa",  max:null, route:"IV over 1h or IM", days:"Day 2", reducible:true, note:"Use 1500 units/m² for older/less fit" }
-    ]
+    ],
+    labs:{
+      baseline:["EBV DNA load","HBsAg","HBsAb","HBcoreAb"],
+      cycle:["CBC & Diff","creatinine","electrolytes panel","phosphate","albumin","total bilirubin","ALT","alkaline phosphatase","GGT","LDH","triglycerides","amylase","lipase","random glucose","uric acid"],
+      conditional:[
+        { label:"Daily during cycle", tests:["CBC & Diff","creatinine","electrolytes panel"] },
+        { label:"Methotrexate: before and q6h during infusion", tests:["urine pH"] },
+        { label:"Methotrexate level (hour 48, then daily until <0.1 µmol/L)", tests:["methotrexate level"] },
+        { label:"Before each pegaspargase dose", tests:["INR","PTT","fibrinogen","antithrombin"] },
+        { label:"Pegaspargase: every Monday and Thursday", tests:["ALT","alkaline phosphatase","GGT","total bilirubin","amylase","lipase","random glucose"] },
+        { label:"If clinically indicated", tests:["HBV viral load"] }
+      ]
+    }
   },
   {
     key:"IVAC-R", cat:"Lymphoma", bcc:true,
@@ -661,7 +798,18 @@ const PROTOCOLS = [
       { name:"Etoposide",          dose:60,   unit:"mg/m²/day", basis:"bsa",  max:null, route:"IV over 45 min (non-DEHP+0.2µm)", days:"Days 1–5", reducible:true  },
       { name:"Rituximab",          dose:375,  unit:"mg/m²",     basis:"bsa",  max:null, route:"IV (Cycle 1); 1400mg SC (Cycle 2+)", days:"Day 4", reducible:false },
       { name:"MTX intrathecal",    dose:12,   unit:"mg",        basis:"flat", max:null, route:"IT (flat dose — not per m²)", days:"Day 6 and post-Day 18", reducible:false, note:"Flat 12 mg dose — NOT weight or BSA based. Physician administration only." }
-    ]
+    ],
+    labs:{
+      baseline:["urine pH","HIV","HBsAg","HBsAb","HBcoreAb","HCAb","CMV serology","HSV serology"],
+      cycle:["CBC & Diff","creatinine","sodium","potassium","ALT","total bilirubin","alkaline phosphatase","GGT","uric acid","LDH"],
+      conditional:[
+        { label:"Daily q am during treatment", tests:["CBC & Diff","creatinine","sodium","potassium"] },
+        { label:"Every Monday and Thursday during treatment", tests:["ALT"] },
+        { label:"Daily until 48h after ifosfamide completion", tests:["urine dipstick for blood"] },
+        { label:"Prior to each intrathecal MTX (Day 6 and after Day 18)", tests:["PTT","INR","platelets"] },
+        { label:"If clinically indicated", tests:["HBV viral load"] }
+      ]
+    }
   },
   {
     key:"VIPD", cat:"Lymphoma", bcc:true,
@@ -674,7 +822,16 @@ const PROTOCOLS = [
       { name:"Mesna (IV)",   dose:240, unit:"mg/m²/day", basis:"bsa",  max:null, route:"IV concurrent",  days:"Days 1–3", reducible:false },
       { name:"CISplatin",    dose:33,  unit:"mg/m²/day", basis:"bsa",  max:null, route:"IV over 1h + hydration", days:"Days 1–3", reducible:true, note:"KCl 20 mEq + MgSO4 1g + mannitol 30g per bag. Aggressive hydration." },
       { name:"Dexamethasone",dose:40,  unit:"mg",        basis:"flat", max:null, route:"PO",             days:"Days 1–4", reducible:false }
-    ]
+    ],
+    labs:{
+      baseline:["sodium","potassium","calcium","albumin","magnesium","total bilirubin","ALT","LDH","HBsAg","HBsAb","HBcoreAb"],
+      cycle:["CBC & Diff","creatinine"],
+      conditional:[
+        { label:"Cycle 1 Days 1, 8, 15, 22", tests:["CBC & Diff","creatinine"] },
+        { label:"Days 1–3 each cycle (with ifosfamide)", tests:["urine dipstick for blood"] },
+        { label:"If clinically indicated", tests:["HBV viral load","ALT"] }
+      ]
+    }
   },
   {
     key:"HD-MTX-R-Tem", cat:"Lymphoma", bcc:true,
@@ -685,7 +842,19 @@ const PROTOCOLS = [
       { name:"Methotrexate (HD)",  dose:8000, unit:"mg/m²",    basis:"bsa",  max:null, route:"IV over 4h (alkalinize urine prior)", days:"Day 1", reducible:true, note:"Prorate to GFR: 8000 mg/m² if GFR ≥100; 8000×(GFR/100) if GFR 60–99. Leucovorin rescue required." },
       { name:"Rituximab",          dose:375,  unit:"mg/m²",    basis:"bsa",  max:null, route:"IV (Cycle 1); 1400mg SC (Cycle 2+)", days:"Day 1 or 2", reducible:false },
       { name:"Temozolomide",       dose:150,  unit:"mg/m²/day",basis:"bsa",  max:null, route:"PO at bedtime", days:"Days 7–11 (ALTERNATE cycles only)", reducible:true, note:"Alternate cycles only (Cycles 2, 4). May increase to 200 mg/m² Cycle 2 if well tolerated." }
-    ]
+    ],
+    labs:{
+      baseline:["urine pH","HBsAg","HBsAb","HBcoreAb","chest radiograph","CT brain with contrast or MRI with contrast","ocular slit lamp exam","Folstein MMSE","ECOG performance status"],
+      cycle:["CBC & Diff","creatinine","electrolytes panel","total bilirubin","ALT","alkaline phosphatase","LDH"],
+      conditional:[
+        { label:"Immediately before and q6h during MTX infusion", tests:["urine pH"] },
+        { label:"Daily q am during MTX treatment", tests:["creatinine","electrolytes panel"] },
+        { label:"Methotrexate level (hour 48 from start, then daily until <0.1 µmol/L)", tests:["methotrexate level"] },
+        { label:"Prior to temozolomide (Days 4–7 of cycles with temozolomide)", tests:["CBC & Diff"] },
+        { label:"If clinically indicated post-methotrexate", tests:["ALT","total bilirubin","alkaline phosphatase","LDH","GGT"] },
+        { label:"If clinically indicated", tests:["HBV viral load"] }
+      ]
+    }
   },
   {
     key:"HD-MTX-CNS", cat:"Lymphoma", bcc:true,
@@ -694,7 +863,19 @@ const PROTOCOLS = [
     notes:"CNS lymphoma prophylaxis or treatment. q2 weeks × 4 cycles. Inpatient administration. Urine alkalinization 4–12h prior to MTX. Leucovorin 25 mg q6h starting exactly 24h after MTX start, continue PO until MTX <0.1 µmol/L. BC Cancer LYHDMTXPRO.",
     drugs:[
       { name:"Methotrexate (HD)", dose:3500, unit:"mg/m²", basis:"bsa", max:null, route:"IV over 4h (alkalinize urine prior)", days:"Day 1", reducible:true, note:"Leucovorin rescue: 25mg q6h × 4 doses IV then PO until MTX <0.1 µmol/L" }
-    ]
+    ],
+    labs:{
+      baseline:["urine pH","LDH","HBsAg","HBsAb","HBcoreAb","chest radiograph","Folstein MMSE","ECOG performance status"],
+      cycle:["CBC & Diff","creatinine","electrolytes panel","ALT","total bilirubin","alkaline phosphatase"],
+      conditional:[
+        { label:"Immediately before and q6h during MTX infusion", tests:["urine pH"] },
+        { label:"Daily q am during MTX treatment", tests:["creatinine","electrolytes panel"] },
+        { label:"Methotrexate level (hour 48 from start, then daily until <0.1 µmol/L)", tests:["methotrexate level"] },
+        { label:"At cycle 4", tests:["Folstein MMSE"] },
+        { label:"If clinically indicated post-methotrexate", tests:["ALT","total bilirubin","alkaline phosphatase","LDH","GGT"] },
+        { label:"If clinically indicated", tests:["HBV viral load"] }
+      ]
+    }
   },
   {
     key:"Fludarabine", cat:"Lymphoma", bcc:true,
@@ -704,7 +885,14 @@ const PROTOCOLS = [
     drugs:[
       { name:"Fludarabine (IV)",  dose:25, unit:"mg/m²/day", basis:"bsa", max:null, route:"IV over 30 min", days:"Days 1–5 (working days)", reducible:true },
       { name:"Fludarabine (PO) — alternative", dose:40, unit:"mg/m²/day", basis:"bsa", max:null, route:"PO", days:"Days 1–5", reducible:true, note:"Round to nearest 10 mg" }
-    ]
+    ],
+    labs:{
+      baseline:["total bilirubin","ALT","HBsAg","HBsAb","HBcoreAb"],
+      cycle:["CBC & Diff","creatinine"],
+      conditional:[
+        { label:"If clinically indicated", tests:["ALT","HBV viral load"] }
+      ]
+    }
   },
   {
     key:"Nivolumab-q2w", cat:"Lymphoma", bcc:true,
@@ -713,7 +901,15 @@ const PROTOCOLS = [
     notes:"Relapsed/refractory classical Hodgkin lymphoma or other lymphomas. 14-day cycles. Maximum 240 mg per dose. BC Cancer LYNIV.",
     drugs:[
       { name:"Nivolumab", dose:3, unit:"mg/kg", basis:"weight", max:240, route:"IV over 30 min (0.2µm filter)", days:"Day 1 every 14 days", reducible:false, note:"Maximum 240 mg per dose" }
-    ]
+    ],
+    labs:{
+      baseline:["morning serum cortisol","chest x-ray","HBsAg","HBsAb","HBcoreAb"],
+      cycle:["CBC & Diff","creatinine","alkaline phosphatase","ALT","total bilirubin","LDH","sodium","potassium","TSH"],
+      conditional:[
+        { label:"If clinically indicated (irAE workup)", tests:["chest x-ray","morning serum cortisol","lipase","serum or urine HCG","free T3","free T4","serum ACTH","testosterone","estradiol","FSH","LH","ECG","CRP","CK","troponin"] },
+        { label:"If clinically indicated (hepatitis B)", tests:["HBV viral load"] }
+      ]
+    }
   },
   {
     key:"Pembrolizumab-q3w", cat:"Lymphoma", bcc:true,
@@ -722,7 +918,15 @@ const PROTOCOLS = [
     notes:"Relapsed/refractory classical Hodgkin lymphoma or primary mediastinal B-cell lymphoma. Maximum 35 cycles (counting q6w doses). Maximum 200 mg per dose. BC Cancer LYPEM.",
     drugs:[
       { name:"Pembrolizumab", dose:2, unit:"mg/kg", basis:"weight", max:200, route:"IV over 30 min (0.2µm filter)", days:"Day 1 every 21 days", reducible:false, note:"Maximum 200 mg per dose" }
-    ]
+    ],
+    labs:{
+      baseline:["morning serum cortisol","chest x-ray","HBsAg","HBsAb","HBcoreAb"],
+      cycle:["CBC & Diff","creatinine","alkaline phosphatase","ALT","total bilirubin","LDH","sodium","potassium","TSH"],
+      conditional:[
+        { label:"If clinically indicated (irAE workup)", tests:["chest x-ray","morning serum cortisol","lipase","serum or urine HCG","free T3","free T4","random glucose","serum ACTH","testosterone","estradiol","FSH","LH","ECG","CRP","CK","troponin"] },
+        { label:"If clinically indicated (hepatitis B)", tests:["HBV viral load"] }
+      ]
+    }
   },
   {
     key:"CVPP-ABO", cat:"Lymphoma", bcc:true,
@@ -737,7 +941,15 @@ const PROTOCOLS = [
       { name:"DOXOrubicin",   dose:35,  unit:"mg/m²",     basis:"bsa",  max:null, route:"IV push",          days:"Day 8",   reducible:true, note:"Lifetime cumulative limit" },
       { name:"vinCRIStine",   dose:1.4, unit:"mg/m²",     basis:"bsa",  max:null, route:"IV over 15 min",   days:"Day 8",   reducible:true,  nocap:true, note:"NO dose cap (BC Cancer protocol)" },
       { name:"bleomycin",     dose:10,  unit:"units/m²",  basis:"bsa",  max:null, route:"IV over 15 min",   days:"Day 8",   reducible:true, note:"Monitor PFTs" }
-    ]
+    ],
+    labs:{
+      baseline:["ALT","creatinine","HBsAg","HBsAb","HBcoreAb"],
+      cycle:["CBC & Diff"],
+      conditional:[
+        { label:"Before each cycle if total bilirubin elevated at baseline", tests:["total bilirubin"] },
+        { label:"If clinically indicated", tests:["HBV viral load","ALT"] }
+      ]
+    }
   },
 
   {
@@ -10630,7 +10842,12 @@ const PROTOCOLS = [
     drugs:[
       { name:"Paclitaxel",  dose:175, unit:"mg/m²", basis:"bsa", max:null, route:"IV over 3h",     days:"Day 1", reducible:true, note:"Premedications required — see notes" },
       { name:"CARBOplatin", dose:5,   unit:"AUC",   basis:"auc", max:null, route:"IV over 30–60 min", days:"Day 1", reducible:false, note:"Calvert: AUC 5 × (CrCl+25). CrCl capped at 125 mL/min." }
-    ]
+    ],
+    labs: {
+      baseline: ["CBC & Diff", "platelets", "creatinine", "alkaline phosphatase", "ALT", "total bilirubin"],
+      cycle: ["CBC & Diff", "platelets", "creatinine", "ALT", "alkaline phosphatase", "total bilirubin"],
+      conditional: [{ label:"Day 8", tests:["CBC & Diff", "platelets", "creatinine"] }],
+    }
   },
 
   // =========================================================
@@ -12615,7 +12832,16 @@ const PROTOCOLS = [
     drugs:[
       { name:"Paclitaxel",  dose:175, unit:"mg/m²", basis:"bsa", max:null, route:"IV over 3h",     days:"Day 1", reducible:true, note:"Premedications required" },
       { name:"CARBOplatin", dose:5,   unit:"AUC",   basis:"auc", max:null, route:"IV over 30–60 min", days:"Day 1", reducible:false, note:"Calvert: AUC 5 × (CrCl+25). CrCl capped at 125 mL/min." }
-    ]
+    ],
+    labs:{
+      baseline:["CBC & differential", "Creatinine", "ALT, alkaline phosphatase, total bilirubin, albumin", "Sodium, potassium", "DPYD test (not required if previously tested or tolerated fluorouracil/capecitabine)"],
+      cycle:["CBC & differential", "Creatinine", "Total bilirubin, ALT"],
+      conditional:[
+        { label:"Baseline if clinically indicated", tests:["CEA, CA 19-9", "GGT", "ECG"] },
+        { label:"If clinically indicated", tests:["CEA, CA 19-9", "Alkaline phosphatase, albumin, GGT", "Sodium, potassium", "ECG"] },
+        { label:"Patients on warfarin", tests:["Weekly INR until stable warfarin dose established, then INR prior to each cycle"] }
+      ]
+    }
   },
   {
     key:"Carbo-Pacli-AUC6-Gyne", cat:"Gyne",
@@ -12625,7 +12851,16 @@ const PROTOCOLS = [
     drugs:[
       { name:"Paclitaxel",  dose:175, unit:"mg/m²", basis:"bsa", max:null, route:"IV over 3h",       days:"Day 1", reducible:true  },
       { name:"CARBOplatin", dose:6,   unit:"AUC",   basis:"auc", max:null, route:"IV over 30–60 min", days:"Day 1", reducible:false, note:"Calvert: AUC 6 × (CrCl+25). CrCl capped at 125 mL/min." }
-    ]
+    ],
+    labs:{
+      baseline:["CBC & differential", "Creatinine", "ALT, alkaline phosphatase, total bilirubin, albumin", "Sodium, potassium", "DPYD test (not required if previously tested or tolerated fluorouracil/capecitabine)"],
+      cycle:["CBC & differential", "Creatinine", "Total bilirubin, ALT"],
+      conditional:[
+        { label:"Baseline if clinically indicated", tests:["CEA, CA 19-9", "GGT", "ECG"] },
+        { label:"If clinically indicated", tests:["CEA, CA 19-9", "Alkaline phosphatase, albumin, GGT", "Sodium, potassium", "ECG"] },
+        { label:"Patients on warfarin", tests:["Weekly INR until stable warfarin dose established, then INR prior to each cycle"] }
+      ]
+    }
   },
 
   // ── GI ──────────────────────────────────────────────────────────
