@@ -138,6 +138,21 @@ header h1 { font-size: 16px; font-weight: 600; letter-spacing: -.3px; }
 .proto-selectors { display: flex; flex-direction: column; gap: 10px; margin-bottom: 14px; }
 .proto-selectors select { width: 100%; padding: 10px 12px; border: 1px solid var(--border); border-radius: 8px; font-size: 16px; background: white; color: var(--txt); min-height: 44px; }
 
+/* PROTOCOL SEARCH */
+.search-wrap { position: relative; width: 100%; }
+.search-input { width: 100%; padding: 10px 12px; border: 1px solid var(--border); border-radius: 8px; font-size: 16px; background: white; color: var(--txt); font-family: inherit; min-height: 44px; transition: border-color .15s; }
+.search-input:focus { outline: none; border-color: var(--accent); }
+.search-results { position: absolute; top: calc(100% + 4px); left: 0; right: 0; background: #fff; border: 1px solid var(--border); border-radius: 8px; box-shadow: 0 4px 18px rgba(0,0,0,.12); max-height: 60vh; overflow-y: auto; z-index: 100; -webkit-overflow-scrolling: touch; }
+.search-results[hidden] { display: none; }
+.search-result { display: flex; flex-direction: column; gap: 2px; padding: 12px 14px; cursor: pointer; border-bottom: 1px solid #F0EBE3; font-size: 14px; color: var(--txt); }
+.search-result:last-child { border-bottom: none; }
+.search-result.active, .search-result:active, .search-result:hover { background: var(--acL); }
+.search-result-row { display: flex; align-items: center; gap: 8px; }
+.search-result .sr-code { font-weight: 700; color: var(--accent); font-family: 'SF Mono', Consolas, monospace; font-size: 13px; flex-shrink: 0; }
+.search-result .sr-cat { font-size: 9px; font-weight: 700; padding: 2px 7px; border-radius: 10px; letter-spacing: .06em; background: var(--bg2); color: var(--txt2); text-transform: uppercase; margin-left: auto; flex-shrink: 0; }
+.search-result .sr-name { font-size: 13px; color: var(--txt2); line-height: 1.35; }
+.search-empty { padding: 16px; color: var(--txt3); font-size: 14px; text-align: center; }
+
 .proto-info { display: flex; overflow-x: auto; gap: 14px; background: var(--bg2); border-radius: 8px; padding: 10px 12px; margin-bottom: 12px; -webkit-overflow-scrolling: touch; }
 .proto-info::-webkit-scrollbar { display: none; }
 .pi-item { flex-shrink: 0; }
@@ -402,6 +417,13 @@ header h1 { font-size: 16px; font-weight: 600; letter-spacing: -.3px; }
     <div class="card">
       <h3>Select Protocol</h3>
       <div class="proto-selectors">
+        <div class="fg">
+          <label>Search</label>
+          <div class="search-wrap">
+            <input type="text" id="protoSearch" class="search-input" placeholder="🔍 Code or name (e.g. FOLFOX)" autocomplete="off" autocapitalize="off" autocorrect="off">
+            <div id="searchResults" class="search-results" hidden></div>
+          </div>
+        </div>
         <div class="fg">
           <label>Category</label>
           <select id="protoCat" onchange="filterProtocols()">
@@ -18592,6 +18614,125 @@ function showCustomRdx(protoKey, idx){
   const el = document.getElementById(`cust-${protoKey}-${idx}`);
   if(el){ el.style.display='flex'; el.querySelector('input').focus(); }
 }
+
+// ============================================================
+// PROTOCOL SEARCH (typeahead — matches code, name, key)
+// ============================================================
+(function initProtoSearch(){
+  const input = document.getElementById('protoSearch');
+  const popup = document.getElementById('searchResults');
+  let matches = [];
+  let activeIdx = -1;
+
+  function getCode(p){
+    if(p.bcc && p.notes){
+      const m = p.notes.match(/BC Cancer ([A-Z0-9]+)/);
+      if(m) return m[1];
+    }
+    return null;
+  }
+
+  function rank(p, q){
+    const code = (getCode(p) || '').toLowerCase();
+    const name = p.name.toLowerCase();
+    const key  = p.key.toLowerCase();
+    if(code && code.startsWith(q)) return 0;
+    if(name.startsWith(q)) return 0;
+    if(key.startsWith(q)) return 1;
+    const tokens = (key + ' ' + name).split(/[\s\-/(),\[\]+]+/);
+    if(tokens.some(t => t && t.startsWith(q))) return 1;
+    if(code && code.includes(q)) return 2;
+    if(name.includes(q) || key.includes(q)) return 3;
+    return -1;
+  }
+
+  function search(query){
+    const q = query.trim().toLowerCase();
+    if(!q) return [];
+    return PROTOCOLS
+      .map(p => ({ p, r: rank(p, q) }))
+      .filter(x => x.r >= 0)
+      .sort((a, b) => a.r - b.r || a.p.name.localeCompare(b.p.name))
+      .slice(0, 15)
+      .map(x => x.p);
+  }
+
+  function render(){
+    popup.replaceChildren();
+    if(!matches.length){
+      const empty = document.createElement('div');
+      empty.className = 'search-empty';
+      empty.textContent = 'No matches';
+      popup.appendChild(empty);
+      popup.hidden = false;
+      return;
+    }
+    matches.forEach((p, i) => {
+      const row = document.createElement('div');
+      row.className = 'search-result' + (i === activeIdx ? ' active' : '');
+      const topRow = document.createElement('div');
+      topRow.className = 'search-result-row';
+      const code = getCode(p);
+      const codeEl = document.createElement('span');
+      codeEl.className = 'sr-code';
+      codeEl.textContent = code || '—';
+      topRow.appendChild(codeEl);
+      const cat = document.createElement('span');
+      cat.className = 'sr-cat';
+      cat.textContent = p.cat;
+      topRow.appendChild(cat);
+      row.appendChild(topRow);
+      const name = document.createElement('div');
+      name.className = 'sr-name';
+      name.textContent = p.name;
+      row.appendChild(name);
+      row.addEventListener('mousedown', e => { e.preventDefault(); pick(p); });
+      row.addEventListener('touchstart', () => { activeIdx = i; }, { passive: true });
+      popup.appendChild(row);
+    });
+    popup.hidden = false;
+  }
+
+  function pick(p){
+    document.getElementById('protoCat').value = p.cat;
+    filterProtocols();
+    document.getElementById('protoName').value = p.key;
+    selectProtocol();
+    input.value = '';
+    popup.hidden = true;
+    matches = [];
+    activeIdx = -1;
+    input.blur();
+  }
+
+  input.addEventListener('input', () => {
+    matches = search(input.value);
+    activeIdx = matches.length ? 0 : -1;
+    render();
+  });
+
+  input.addEventListener('focus', () => {
+    if(matches.length) popup.hidden = false;
+  });
+
+  input.addEventListener('keydown', e => {
+    if(popup.hidden || !matches.length){
+      if(e.key === 'Escape') input.blur();
+      return;
+    }
+    if(e.key === 'Enter'){
+      e.preventDefault();
+      if(activeIdx >= 0) pick(matches[activeIdx]);
+    } else if(e.key === 'Escape'){
+      popup.hidden = true;
+      input.blur();
+    }
+  });
+
+  document.addEventListener('click', e => {
+    if(!e.target.closest('.search-wrap')) popup.hidden = true;
+  });
+})();
 
 // ============================================================
 // INIT
