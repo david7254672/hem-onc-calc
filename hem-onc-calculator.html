@@ -18241,8 +18241,22 @@ function getEffectiveCrCl(){
   if(S.gfrMethod==='manual') return S.manualGFR;
   return null;
 }
-function getCappedCrCl(){
+// CKD-EPI 2021 and MDRD report indexed eGFR (mL/min/1.73m²). Calvert
+// expects absolute GFR, so de-index by BSA/1.73 for those methods.
+// CG and manual entry are already absolute. Returns null if a
+// de-index is needed but BSA is unavailable.
+function getAbsoluteCrCl(){
   const v = getEffectiveCrCl();
+  if(v===null||v===undefined) return null;
+  if(S.gfrMethod==='ckdepi' || S.gfrMethod==='mdrd'){
+    const bsa = selectedBSA();
+    if(!bsa) return null;
+    return v * bsa / 1.73;
+  }
+  return v;
+}
+function getCappedCrCl(){
+  const v = getAbsoluteCrCl();
   if(v===null||v===undefined) return null;
   return { raw:v, capped:Math.min(v,125), wasCapped:v>125 };
 }
@@ -18359,13 +18373,25 @@ function renderBSA(){
 function renderCrClBox(){
   const cc = getCappedCrCl();
   const el = document.getElementById('crclBox');
-  if(!cc){ el.innerHTML='<div class="crcl-box" style="color:var(--txt3)">Enter patient data (age, sex, weight, SCr) above to calculate CrCl</div>'; return; }
+  if(!cc){
+    if((S.gfrMethod==='ckdepi'||S.gfrMethod==='mdrd') && getEffectiveCrCl()!==null && !selectedBSA()){
+      el.innerHTML='<div class="crcl-box" style="color:var(--amber)">Enter height (for BSA) — CKD-EPI 2021 and MDRD return indexed eGFR (mL/min/1.73m²); Calvert needs absolute GFR, so the value is de-indexed by BSA/1.73.</div>';
+      return;
+    }
+    el.innerHTML='<div class="crcl-box" style="color:var(--txt3)">Enter patient data (age, sex, weight, SCr) above to calculate CrCl</div>';
+    return;
+  }
   const methodLabels = {cg:'Cockcroft-Gault',ckdepi:'CKD-EPI 2021',mdrd:'MDRD',manual:'Manual entry'};
   const capHtml = cc.wasCapped?`<span class="cap-badge">⚠ RAW: ${fmt(cc.raw,1)} → CAPPED AT 125</span>`:'<span style="color:var(--green);font-size:11px;font-weight:600;">✓ No cap applied</span>';
   const scr = getSCrMgdl();
   let detail='';
-  if(S.gfrMethod==='cg'&&S.age&&S.wtKg&&scr)
+  if(S.gfrMethod==='cg'&&S.age&&S.wtKg&&scr){
     detail=`CG = ((140 − ${S.age}) × ${fmt(S.wtKg,1)}) ÷ (72 × ${fmt(scr,3)})${S.sex==='F'?' × 0.85':''} = ${fmt(cc.raw,1)} mL/min`;
+  } else if((S.gfrMethod==='ckdepi'||S.gfrMethod==='mdrd') && selectedBSA()){
+    const indexed = getEffectiveCrCl();
+    const bsa = selectedBSA();
+    detail=`eGFR ${fmt(indexed,1)} mL/min/1.73m² × (BSA ${fmt(bsa,2)} / 1.73) = ${fmt(cc.raw,1)} mL/min absolute`;
+  }
   el.innerHTML=`<div class="crcl-box">
     <div class="crcl-detail">${methodLabels[S.gfrMethod]}</div>
     <div class="crcl-main">${fmt(cc.capped,1)} mL/min <span style="font-size:13px;font-weight:400;color:var(--txt2)">used in Calvert</span> ${capHtml}</div>
