@@ -16035,7 +16035,7 @@ const PROTOCOLS = [
     cycle: 21,
     notes: "First-line treatment for advanced or metastatic urothelial carcinoma. CISplatin may be replaced with CARBOplatin AUC 5 for patients with CrCl 45–59 mL/min or other CISplatin contraindications (reduce gemcitabine to 1000 mg/m²).",
     drugs: [
-      { name:"Gemcitabine", dose:1250, unit:"mg/m²", basis:"bsa", max:null, weightCap:null, route:"IV in 250 mL NS over 30 min", days:"Days 1, 8", reducible:true, note:null },
+      { name:"Gemcitabine", dose:1250, unit:"mg/m²", basis:"bsa", max:null, weightCap:null, route:"IV in 250 mL NS over 30 min", days:"Days 1, 8", reducible:true, note:"Heme reduction tier: 75% (937.5 mg/m²) for ANC 0.5–1.0 or platelets 75–100; omit below.", levels:[937.5] },
       { name:"CISplatin", dose:70, unit:"mg/m²", basis:"bsa", max:null, weightCap:null, route:"IV in 500 mL NS over 1 h (with prehydration)", days:"Day 1", reducible:true, note:"Split-dose option: 35 mg/m² Days 1+2 or Days 1+8 if CrCl 45–59 mL/min" },
     ],
     labs: {
@@ -16052,7 +16052,7 @@ const PROTOCOLS = [
     cycle: 21,
     notes: "Neoadjuvant chemotherapy for muscle-invasive urothelial cancer prior to cystectomy. Plan 4 cycles maximum prior to surgery. Preferred regimen is GUBDDMVAC; GUNAJPG used when dd-MVAC is contraindicated.",
     drugs: [
-      { name:"Gemcitabine", dose:1250, unit:"mg/m²", basis:"bsa", max:null, weightCap:null, route:"IV in 250 mL NS over 30 min", days:"Days 1, 8", reducible:true, note:null },
+      { name:"Gemcitabine", dose:1250, unit:"mg/m²", basis:"bsa", max:null, weightCap:null, route:"IV in 250 mL NS over 30 min", days:"Days 1, 8", reducible:true, note:"Heme reduction tier: 75% (937.5 mg/m²) for ANC 0.5–1.0 or platelets 75–100; omit below.", levels:[937.5] },
       { name:"CISplatin", dose:70, unit:"mg/m²", basis:"bsa", max:null, weightCap:null, route:"IV in 500 mL NS over 1 h (with prehydration)", days:"Day 1", reducible:true, note:"Split-dose option: 35 mg/m² Days 1+8 if CrCl 45–59 mL/min" },
     ],
     labs: {
@@ -16069,7 +16069,7 @@ const PROTOCOLS = [
     cycle: 21,
     notes: "Adjuvant chemotherapy (4 cycles) for high-risk muscle-invasive urothelial carcinoma after radical cystectomy. CARBOplatin AUC 5 + gemcitabine 1000 mg/m² may substitute if CISplatin contraindicated.",
     drugs: [
-      { name:"Gemcitabine", dose:1250, unit:"mg/m²", basis:"bsa", max:null, weightCap:null, route:"IV in 250 mL NS over 30 min", days:"Days 1, 8", reducible:true, note:null },
+      { name:"Gemcitabine", dose:1250, unit:"mg/m²", basis:"bsa", max:null, weightCap:null, route:"IV in 250 mL NS over 30 min", days:"Days 1, 8", reducible:true, note:"Heme reduction tier: 75% (937.5 mg/m²) for ANC 0.5–1.0 or platelets 75–100; omit below.", levels:[937.5] },
       { name:"CISplatin", dose:70, unit:"mg/m²", basis:"bsa", max:null, weightCap:null, route:"IV in 500 mL NS over 1 h (with prehydration)", days:"Day 1", reducible:true, note:"Split-dose: 35 mg/m² Days 1+8 if CrCl 45–59; CARBOplatin AUC 5 option if CISplatin contraindicated" },
     ],
     labs: {
