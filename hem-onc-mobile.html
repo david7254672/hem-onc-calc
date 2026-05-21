@@ -393,6 +393,16 @@ header h1 { font-size: 16px; font-weight: 600; letter-spacing: -.3px; }
         <button class="gfr-btn" id="gfr-mdrd" onclick="setGFR('mdrd')">MDRD</button>
         <button class="gfr-btn" id="gfr-manual" onclick="setGFR('manual')">Manual Entry</button>
       </div>
+      <div id="cgWeightGroup" style="margin-bottom:14px">
+        <div class="fg">
+          <label>Weight for CG</label>
+          <div class="toggle-group">
+            <button id="cgw-actual" class="on" onclick="setCGWeight('actual')">Actual</button>
+            <button id="cgw-ibw" onclick="setCGWeight('ibw')">IBW</button>
+            <button id="cgw-adjusted" onclick="setCGWeight('adjusted')">Adjusted</button>
+          </div>
+        </div>
+      </div>
       <div id="manualGFRGroup" style="display:none;margin-bottom:14px">
         <div class="fg">
           <label>Enter GFR (mL/min)</label>
@@ -18102,6 +18112,7 @@ const S = {
   htCm: null, wtKg: null, scr: null,
   bsaFormula: 'mosteller',
   gfrMethod: 'cg',
+  cgWeight: 'actual',  // 'actual' | 'ibw' | 'adjusted' — only used when gfrMethod='cg'
   manualGFR: null,
   selectedAUC: 5,
   protoKey: null,
@@ -18156,10 +18167,26 @@ function calcABW(){
 // ============================================================
 // GFR / CRCL CALCULATIONS
 // ============================================================
+// Returns the body weight to use in Cockcroft-Gault, per S.cgWeight.
+// Default is actual weight (institutional convention). Returns null
+// if the chosen variant can't be computed (e.g. IBW or adjusted
+// selected but height missing).
+function getCGWeight(){
+  if(S.cgWeight === 'ibw'){
+    return calcIBW();
+  }
+  if(S.cgWeight === 'adjusted'){
+    const ibw = calcIBW();
+    if(!ibw || !S.wtKg) return null;
+    return ibw + 0.4 * (S.wtKg - ibw);
+  }
+  return S.wtKg; // 'actual'
+}
 function calcCG(){
   const scr = getSCrMgdl();
-  if(!S.age||!S.wtKg||!scr) return null;
-  let v = ((140-S.age)*S.wtKg)/(72*scr);
+  const wt = getCGWeight();
+  if(!S.age||!wt||!scr) return null;
+  let v = ((140-S.age)*wt)/(72*scr);
   if(S.sex==='F') v*=0.85;
   return Math.max(v,0);
 }
@@ -18325,6 +18352,10 @@ function renderCrClBox(){
   const cc = getCappedCrCl();
   const el = document.getElementById('crclBox');
   if(!cc){
+    if(S.gfrMethod==='cg' && (S.cgWeight==='ibw'||S.cgWeight==='adjusted') && !calcIBW() && S.wtKg && S.age && getSCrMgdl()){
+      el.innerHTML='<div class="crcl-box" style="color:var(--amber)">Enter height — needed to compute IBW for Cockcroft-Gault.</div>';
+      return;
+    }
     if((S.gfrMethod==='ckdepi'||S.gfrMethod==='mdrd') && getEffectiveCrCl()!==null && !selectedBSA()){
       el.innerHTML='<div class="crcl-box" style="color:var(--amber)">Enter height (for BSA) — CKD-EPI 2021 and MDRD return indexed eGFR (mL/min/1.73m²); Calvert needs absolute GFR, so the value is de-indexed by BSA/1.73.</div>';
       return;
@@ -18336,8 +18367,12 @@ function renderCrClBox(){
   const capHtml = cc.wasCapped?`<span class="cap-badge">⚠ RAW: ${fmt(cc.raw,1)} → CAPPED AT 125</span>`:'<span style="color:var(--green);font-size:11px;font-weight:600;">✓ No cap applied</span>';
   const scr = getSCrMgdl();
   let detail='';
-  if(S.gfrMethod==='cg'&&S.age&&S.wtKg&&scr){
-    detail=`CG = ((140 − ${S.age}) × ${fmt(S.wtKg,1)}) ÷ (72 × ${fmt(scr,3)})${S.sex==='F'?' × 0.85':''} = ${fmt(cc.raw,1)} mL/min`;
+  if(S.gfrMethod==='cg' && S.age && scr){
+    const wt = getCGWeight();
+    if(wt){
+      const wtLabel = S.cgWeight==='actual'?'actual':S.cgWeight==='ibw'?'IBW':'adjusted';
+      detail=`CG (${wtLabel}) = ((140 − ${S.age}) × ${fmt(wt,1)}) ÷ (72 × ${fmt(scr,3)})${S.sex==='F'?' × 0.85':''} = ${fmt(cc.raw,1)} mL/min`;
+    }
   } else if((S.gfrMethod==='ckdepi'||S.gfrMethod==='mdrd') && selectedBSA()){
     const indexed = getEffectiveCrCl();
     const bsa = selectedBSA();
@@ -18574,6 +18609,12 @@ function setGFR(method){
   S.gfrMethod=method;
   ['cg','ckdepi','mdrd','manual'].forEach(m=>document.getElementById('gfr-'+m).classList.toggle('on',m===method));
   document.getElementById('manualGFRGroup').style.display = method==='manual'?'block':'none';
+  document.getElementById('cgWeightGroup').style.display = method==='cg'?'block':'none';
+  update();
+}
+function setCGWeight(w){
+  S.cgWeight=w;
+  ['actual','ibw','adjusted'].forEach(x=>document.getElementById('cgw-'+x).classList.toggle('on',x===w));
   update();
 }
 
