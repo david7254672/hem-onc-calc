@@ -1,0 +1,9 @@
+# macOS
+.DS_Store
+
+# Claude Code internal state (worktrees, logs, etc.)
+.claude/
+
+# Source PDFs used for protocol extraction — not part of deliverable
+Chemo protocols/
+LYPOLARCHP_Protocol.pdf
