@@ -113,11 +113,15 @@ Populated categories include Lymphoma (LY series), CLL, Myeloid, Multiple Myelom
 BC Cancer protocol PDFs are at:
 `/Users/david/Documents/BC Cancer Protocols Mar 2025/`
 
-Individual protocol PDFs (used for extraction) are organized by tumour site:
-`/Users/david/Desktop/Claude Code/Chemo protocols/LU protocols/` — Lung (LUXXX_Protocol.pdf)
-`/Users/david/Desktop/Claude Code/Chemo protocols/BR protocols/` — Breast (BRXXX_Protocol.pdf) *(next)*
-`/Users/david/Desktop/Claude Code/Chemo protocols/GI protocols/` — GI
-`/Users/david/Desktop/Claude Code/Chemo protocols/GO protocols/` — Gyne (GOXXX_Protocol.pdf / UGOXXX_Protocol.pdf)
+Individual protocol PDFs (used for extraction) are organized by tumour site inside the app folder:
+`./Chemo protocols/LU protocols/` — Lung (LUXXX_Protocol.pdf)
+`./Chemo protocols/BR protocols/` — Breast (BRXXX_Protocol.pdf) *(next)*
+`./Chemo protocols/GI protocols/` — GI
+`./Chemo protocols/GO protocols/` — Gyne (GOXXX_Protocol.pdf / UGOXXX_Protocol.pdf)
+`./Chemo protocols/GU protocols/` — GU
+`./Chemo protocols/LY Protocols/` — Lymphoma
+`./Chemo protocols/LK protocols/` — Leukemia
+`./Chemo protocols/MY protocols/` — Myeloid
 
 GU protocols extracted text (pdfplumber output, all 239 pages) is cached at:
 `/Users/david/Desktop/GU_protocols_extracted.txt`
@@ -139,7 +143,7 @@ The protocol `key` in the JS should reflect the actual BC Cancer code (e.g., `"L
 
 ## Pending / Known Issues
 - **GI, Breast protocols**: Categories exist in the dropdown but few or no protocols added.
-- **GU `levels` data**: GU protocols added before the `levels` field was implemented; dose reduction levels should be backfilled.
+- **GU `levels` data**: substantially backfilled — all oral targeted agents (TKIs, AR-axis) and the gem/cis + small-cell chemo backbones now carry protocol-specific tiers. Still no levels by design for curative germ-cell regimens (GUBEP/GUEP/GUVEIP — protocol forbids reduction), AUC-only carboplatin (GUSCARB — delay only), MVAC variants (renal-trigger schemes don't map cleanly to discrete levels), and axitinib (continuous 2–10 mg BID range, not numbered tiers).
 
 ## Adding a New Protocol
 Add a new object to the `PROTOCOLS` array in `protocols.js` (before `]; // end PROTOCOLS`). Set `cat` to one of the existing category strings. Set `bcc: true` if sourced from BC Cancer. No other registration needed — both apps load `protocols.js` and `filterProtocols()` dynamically builds the dropdown from the array.

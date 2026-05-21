@@ -16035,7 +16035,7 @@ const PROTOCOLS = [
     cycle: 21,
     notes: "First-line treatment for advanced or metastatic urothelial carcinoma. CISplatin may be replaced with CARBOplatin AUC 5 for patients with CrCl 45–59 mL/min or other CISplatin contraindications (reduce gemcitabine to 1000 mg/m²).",
     drugs: [
-      { name:"Gemcitabine", dose:1250, unit:"mg/m²", basis:"bsa", max:null, weightCap:null, route:"IV in 250 mL NS over 30 min", days:"Days 1, 8", reducible:true, note:null },
+      { name:"Gemcitabine", dose:1250, unit:"mg/m²", basis:"bsa", max:null, weightCap:null, route:"IV in 250 mL NS over 30 min", days:"Days 1, 8", reducible:true, note:"Heme reduction tier: 75% (937.5 mg/m²) for ANC 0.5–1.0 or platelets 75–100; omit below.", levels:[937.5] },
       { name:"CISplatin", dose:70, unit:"mg/m²", basis:"bsa", max:null, weightCap:null, route:"IV in 500 mL NS over 1 h (with prehydration)", days:"Day 1", reducible:true, note:"Split-dose option: 35 mg/m² Days 1+2 or Days 1+8 if CrCl 45–59 mL/min" },
     ],
     labs: {
@@ -16052,7 +16052,7 @@ const PROTOCOLS = [
     cycle: 21,
     notes: "Neoadjuvant chemotherapy for muscle-invasive urothelial cancer prior to cystectomy. Plan 4 cycles maximum prior to surgery. Preferred regimen is GUBDDMVAC; GUNAJPG used when dd-MVAC is contraindicated.",
     drugs: [
-      { name:"Gemcitabine", dose:1250, unit:"mg/m²", basis:"bsa", max:null, weightCap:null, route:"IV in 250 mL NS over 30 min", days:"Days 1, 8", reducible:true, note:null },
+      { name:"Gemcitabine", dose:1250, unit:"mg/m²", basis:"bsa", max:null, weightCap:null, route:"IV in 250 mL NS over 30 min", days:"Days 1, 8", reducible:true, note:"Heme reduction tier: 75% (937.5 mg/m²) for ANC 0.5–1.0 or platelets 75–100; omit below.", levels:[937.5] },
       { name:"CISplatin", dose:70, unit:"mg/m²", basis:"bsa", max:null, weightCap:null, route:"IV in 500 mL NS over 1 h (with prehydration)", days:"Day 1", reducible:true, note:"Split-dose option: 35 mg/m² Days 1+8 if CrCl 45–59 mL/min" },
     ],
     labs: {
@@ -16069,7 +16069,7 @@ const PROTOCOLS = [
     cycle: 21,
     notes: "Adjuvant chemotherapy (4 cycles) for high-risk muscle-invasive urothelial carcinoma after radical cystectomy. CARBOplatin AUC 5 + gemcitabine 1000 mg/m² may substitute if CISplatin contraindicated.",
     drugs: [
-      { name:"Gemcitabine", dose:1250, unit:"mg/m²", basis:"bsa", max:null, weightCap:null, route:"IV in 250 mL NS over 30 min", days:"Days 1, 8", reducible:true, note:null },
+      { name:"Gemcitabine", dose:1250, unit:"mg/m²", basis:"bsa", max:null, weightCap:null, route:"IV in 250 mL NS over 30 min", days:"Days 1, 8", reducible:true, note:"Heme reduction tier: 75% (937.5 mg/m²) for ANC 0.5–1.0 or platelets 75–100; omit below.", levels:[937.5] },
       { name:"CISplatin", dose:70, unit:"mg/m²", basis:"bsa", max:null, weightCap:null, route:"IV in 500 mL NS over 1 h (with prehydration)", days:"Day 1", reducible:true, note:"Split-dose: 35 mg/m² Days 1+8 if CrCl 45–59; CARBOplatin AUC 5 option if CISplatin contraindicated" },
     ],
     labs: {
@@ -16125,8 +16125,8 @@ const PROTOCOLS = [
     cycle: 21,
     notes: "Small cell carcinoma of the bladder or prostate, or high-grade neuroendocrine GU tumours. CARBOplatin AUC 5 may substitute for CISplatin in cases of CISplatin toxicity or poor PS.",
     drugs: [
-      { name:"CISplatin", dose:25, unit:"mg/m²", basis:"bsa", max:null, weightCap:null, route:"IV in 100–250 mL NS over 30 min", days:"Days 1–3", reducible:true, note:null },
-      { name:"Etoposide", dose:100, unit:"mg/m²", basis:"bsa", max:null, weightCap:null, route:"IV in 250–1000 mL NS over 45–90 min", days:"Days 1–3", reducible:true, note:null },
+      { name:"CISplatin", dose:25, unit:"mg/m²", basis:"bsa", max:null, weightCap:null, route:"IV in 100–250 mL NS over 30 min", days:"Days 1–3", reducible:true, note:"Renal reduction: 15 mg/m²/day for CrCl 45–<60 mL/min; delay if CrCl <45.", levels:[15] },
+      { name:"Etoposide", dose:100, unit:"mg/m²", basis:"bsa", max:null, weightCap:null, route:"IV in 250–1000 mL NS over 45–90 min", days:"Days 1–3", reducible:true, note:"Heme reduction tier: 75% (75 mg/m²/day) for ANC 0.5–1.0 or platelets 75–100. Hepatic adjustment: bilirubin 25–50 µmol/L → 50%; 51–85 → 25%; >85 → delay.", levels:[75] },
     ],
     labs: {
       baseline: ["CBC & Diff", "platelets", "creatinine", "total bilirubin", "ALT", "alkaline phosphatase", "albumin", "INR"],
@@ -16142,8 +16142,8 @@ const PROTOCOLS = [
     cycle: 21,
     notes: "Concurrent chemoradiation for limited-stage small cell carcinoma of the bladder or prostate and high-grade GU neuroendocrine tumours. RT given concurrently; cycles concurrent with pelvic RT may be spaced every 4 weeks. CARBOplatin AUC 5 may substitute.",
     drugs: [
-      { name:"CISplatin", dose:25, unit:"mg/m²", basis:"bsa", max:null, weightCap:null, route:"IV in 100–250 mL NS over 30 min", days:"Days 1–3", reducible:true, note:null },
-      { name:"Etoposide", dose:100, unit:"mg/m²", basis:"bsa", max:null, weightCap:null, route:"IV in 250–1000 mL NS over 45–90 min", days:"Days 1–3", reducible:true, note:null },
+      { name:"CISplatin", dose:25, unit:"mg/m²", basis:"bsa", max:null, weightCap:null, route:"IV in 100–250 mL NS over 30 min", days:"Days 1–3", reducible:true, note:"Renal reduction: 15 mg/m²/day for CrCl 45–<60 mL/min; delay if CrCl <45.", levels:[15] },
+      { name:"Etoposide", dose:100, unit:"mg/m²", basis:"bsa", max:null, weightCap:null, route:"IV in 250–1000 mL NS over 45–90 min", days:"Days 1–3", reducible:true, note:"Heme reduction tier: 75% (75 mg/m²/day) for ANC 0.5–1.0 or platelets 75–100. Hepatic adjustment: bilirubin 25–50 µmol/L → 50%; 51–85 → 25%; >85 → delay.", levels:[75] },
     ],
     labs: {
       baseline: ["CBC & Diff", "creatinine", "total bilirubin", "ALT", "alkaline phosphatase", "albumin", "INR"],
@@ -17252,7 +17252,8 @@ const PROTOCOLS = [
       route: "PO once daily (fasting)",
       days: "Daily (continuous)",
       reducible: true,
-      note: "Hold and reduce by 250 mg for bilirubin >3x ULN or ALT >5x ULN; resume only after recovery to Grade 1."
+      note: "Hold and reduce by 250 mg for bilirubin >3x ULN or ALT >5x ULN; resume only after recovery to Grade 1.",
+      levels: [750, 500]
     },
     {
       name: "predniSONE",
@@ -17295,7 +17296,8 @@ const PROTOCOLS = [
       route: "PO once daily (fasting)",
       days: "Daily (continuous)",
       reducible: true,
-      note: "Hold and reduce by 250 mg for bilirubin >3x ULN or ALT >5x ULN; resume only after recovery to Grade 1."
+      note: "Hold and reduce by 250 mg for bilirubin >3x ULN or ALT >5x ULN; resume only after recovery to Grade 1.",
+      levels: [750, 500]
     },
     {
       name: "predniSONE",
@@ -17338,7 +17340,8 @@ const PROTOCOLS = [
       route: "PO once daily (fasting)",
       days: "Daily (continuous)",
       reducible: true,
-      note: "Hold and reduce by 250 mg for bilirubin >3x ULN or ALT >5x ULN; resume only after recovery to Grade 1."
+      note: "Hold and reduce by 250 mg for bilirubin >3x ULN or ALT >5x ULN; resume only after recovery to Grade 1.",
+      levels: [750, 500]
     },
     {
       name: "predniSONE",
@@ -17440,7 +17443,8 @@ const PROTOCOLS = [
       route: "PO once daily (fasting)",
       days: "Daily (continuous)",
       reducible: true,
-      note: "Hold and reduce by 250 mg for bilirubin >3x ULN or ALT >5x ULN."
+      note: "Hold and reduce by 250 mg for bilirubin >3x ULN or ALT >5x ULN.",
+      levels: [750, 500]
     },
     {
       name: "predniSONE",
