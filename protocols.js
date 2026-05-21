@@ -17252,7 +17252,8 @@ const PROTOCOLS = [
       route: "PO once daily (fasting)",
       days: "Daily (continuous)",
       reducible: true,
-      note: "Hold and reduce by 250 mg for bilirubin >3x ULN or ALT >5x ULN; resume only after recovery to Grade 1."
+      note: "Hold and reduce by 250 mg for bilirubin >3x ULN or ALT >5x ULN; resume only after recovery to Grade 1.",
+      levels: [750, 500]
     },
     {
       name: "predniSONE",
@@ -17295,7 +17296,8 @@ const PROTOCOLS = [
       route: "PO once daily (fasting)",
       days: "Daily (continuous)",
       reducible: true,
-      note: "Hold and reduce by 250 mg for bilirubin >3x ULN or ALT >5x ULN; resume only after recovery to Grade 1."
+      note: "Hold and reduce by 250 mg for bilirubin >3x ULN or ALT >5x ULN; resume only after recovery to Grade 1.",
+      levels: [750, 500]
     },
     {
       name: "predniSONE",
@@ -17338,7 +17340,8 @@ const PROTOCOLS = [
       route: "PO once daily (fasting)",
       days: "Daily (continuous)",
       reducible: true,
-      note: "Hold and reduce by 250 mg for bilirubin >3x ULN or ALT >5x ULN; resume only after recovery to Grade 1."
+      note: "Hold and reduce by 250 mg for bilirubin >3x ULN or ALT >5x ULN; resume only after recovery to Grade 1.",
+      levels: [750, 500]
     },
     {
       name: "predniSONE",
@@ -17440,7 +17443,8 @@ const PROTOCOLS = [
       route: "PO once daily (fasting)",
       days: "Daily (continuous)",
       reducible: true,
-      note: "Hold and reduce by 250 mg for bilirubin >3x ULN or ALT >5x ULN."
+      note: "Hold and reduce by 250 mg for bilirubin >3x ULN or ALT >5x ULN.",
+      levels: [750, 500]
     },
     {
       name: "predniSONE",
