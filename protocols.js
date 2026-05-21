@@ -16125,8 +16125,8 @@ const PROTOCOLS = [
     cycle: 21,
     notes: "Small cell carcinoma of the bladder or prostate, or high-grade neuroendocrine GU tumours. CARBOplatin AUC 5 may substitute for CISplatin in cases of CISplatin toxicity or poor PS.",
     drugs: [
-      { name:"CISplatin", dose:25, unit:"mg/m²", basis:"bsa", max:null, weightCap:null, route:"IV in 100–250 mL NS over 30 min", days:"Days 1–3", reducible:true, note:null },
-      { name:"Etoposide", dose:100, unit:"mg/m²", basis:"bsa", max:null, weightCap:null, route:"IV in 250–1000 mL NS over 45–90 min", days:"Days 1–3", reducible:true, note:null },
+      { name:"CISplatin", dose:25, unit:"mg/m²", basis:"bsa", max:null, weightCap:null, route:"IV in 100–250 mL NS over 30 min", days:"Days 1–3", reducible:true, note:"Renal reduction: 15 mg/m²/day for CrCl 45–<60 mL/min; delay if CrCl <45.", levels:[15] },
+      { name:"Etoposide", dose:100, unit:"mg/m²", basis:"bsa", max:null, weightCap:null, route:"IV in 250–1000 mL NS over 45–90 min", days:"Days 1–3", reducible:true, note:"Heme reduction tier: 75% (75 mg/m²/day) for ANC 0.5–1.0 or platelets 75–100. Hepatic adjustment: bilirubin 25–50 µmol/L → 50%; 51–85 → 25%; >85 → delay.", levels:[75] },
     ],
     labs: {
       baseline: ["CBC & Diff", "platelets", "creatinine", "total bilirubin", "ALT", "alkaline phosphatase", "albumin", "INR"],
@@ -16142,8 +16142,8 @@ const PROTOCOLS = [
     cycle: 21,
     notes: "Concurrent chemoradiation for limited-stage small cell carcinoma of the bladder or prostate and high-grade GU neuroendocrine tumours. RT given concurrently; cycles concurrent with pelvic RT may be spaced every 4 weeks. CARBOplatin AUC 5 may substitute.",
     drugs: [
-      { name:"CISplatin", dose:25, unit:"mg/m²", basis:"bsa", max:null, weightCap:null, route:"IV in 100–250 mL NS over 30 min", days:"Days 1–3", reducible:true, note:null },
-      { name:"Etoposide", dose:100, unit:"mg/m²", basis:"bsa", max:null, weightCap:null, route:"IV in 250–1000 mL NS over 45–90 min", days:"Days 1–3", reducible:true, note:null },
+      { name:"CISplatin", dose:25, unit:"mg/m²", basis:"bsa", max:null, weightCap:null, route:"IV in 100–250 mL NS over 30 min", days:"Days 1–3", reducible:true, note:"Renal reduction: 15 mg/m²/day for CrCl 45–<60 mL/min; delay if CrCl <45.", levels:[15] },
+      { name:"Etoposide", dose:100, unit:"mg/m²", basis:"bsa", max:null, weightCap:null, route:"IV in 250–1000 mL NS over 45–90 min", days:"Days 1–3", reducible:true, note:"Heme reduction tier: 75% (75 mg/m²/day) for ANC 0.5–1.0 or platelets 75–100. Hepatic adjustment: bilirubin 25–50 µmol/L → 50%; 51–85 → 25%; >85 → delay.", levels:[75] },
     ],
     labs: {
       baseline: ["CBC & Diff", "creatinine", "total bilirubin", "ALT", "alkaline phosphatase", "albumin", "INR"],
