@@ -10791,7 +10791,12 @@ const PROTOCOLS = [
     drugs:[
       { name:"Paclitaxel",  dose:175, unit:"mg/m²", basis:"bsa", max:null, route:"IV over 3h",     days:"Day 1", reducible:true, note:"Premedications required — see notes" },
       { name:"CARBOplatin", dose:5,   unit:"AUC",   basis:"auc", max:null, route:"IV over 30–60 min", days:"Day 1", reducible:false, note:"Calvert: AUC 5 × (CrCl+25). CrCl capped at 125 mL/min." }
-    ]
+    ],
+    labs: {
+      baseline: ["CBC & Diff", "platelets", "creatinine", "alkaline phosphatase", "ALT", "total bilirubin"],
+      cycle: ["CBC & Diff", "platelets", "creatinine", "ALT", "alkaline phosphatase", "total bilirubin"],
+      conditional: [{ label:"Day 8", tests:["CBC & Diff", "platelets", "creatinine"] }]
+    }
   },
 
   // =========================================================
