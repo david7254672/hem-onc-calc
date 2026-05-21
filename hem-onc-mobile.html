@@ -18553,13 +18553,6 @@ function setGFR(method){
 
 function setAUC(v){ S.selectedAUC=v; renderAUCGrid(); }
 
-function switchTab(t, btn){
-  document.querySelectorAll('.tab-pane').forEach(el=>el.classList.remove('on'));
-  document.querySelectorAll('.tab-btn').forEach(el=>el.classList.remove('on'));
-  document.getElementById('tab-'+t).classList.add('on');
-  if(btn) btn.classList.add('on');
-}
-
 function filterProtocols(){
   const cat = document.getElementById('protoCat').value;
   const sel = document.getElementById('protoName');
