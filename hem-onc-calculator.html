@@ -6224,7 +6224,14 @@ const PROTOCOLS = [
       { name:"Lenalidomide (Revlimid)", dose:25,  unit:"mg",    basis:"flat", max:null, route:"PO",             days:"Days 1–14",         reducible:false, note:"Renal dose-adjust: CrCl 30–59→10mg; CrCl<30→7.5mg" },
       { name:"Dexamethasone",           dose:20,  unit:"mg",    basis:"flat", max:null, route:"PO or IV",       days:"Days 1,2,4,5,8,9,11,12", reducible:false }
     ],
-    labs:{ baseline:[], cycle:[], conditional:[] }
+    labs:{
+      baseline:["CBC & Diff", "creatinine", "sodium", "potassium", "calcium", "ALT", "total bilirubin", "alkaline phosphatase", "albumin", "LDH", "serum protein electrophoresis", "serum free light chains", "HBsAg", "HBsAb", "HBcoreAb"],
+      cycle:["CBC & Diff", "creatinine", "calcium", "ALT", "total bilirubin"],
+      conditional:[
+        { label:"Every 4 weeks", tests:["serum protein electrophoresis", "serum free light chains"] },
+        { label:"If clinically indicated", tests:["HBV viral load", "quantitative beta-hCG (if FCBP)"] }
+      ]
+    }
   },
   {
     key:"CyBorD", cat:"Multiple Myeloma",
@@ -6236,7 +6243,14 @@ const PROTOCOLS = [
       { name:"Bortezomib (Velcade)", dose:1.3, unit:"mg/m²",  basis:"bsa",  max:null, route:"SubQ",           days:"Days 1, 8, 15", reducible:true, note:"Weekly schedule; SubQ preferred" },
       { name:"Dexamethasone",        dose:20,  unit:"mg",     basis:"flat", max:null, route:"PO or IV",       days:"Days 1,2,8,9,15,16", reducible:false }
     ],
-    labs:{ baseline:[], cycle:[], conditional:[] }
+    labs:{
+      baseline:["CBC & Diff", "creatinine", "sodium", "potassium", "calcium", "ALT", "total bilirubin", "alkaline phosphatase", "albumin", "LDH", "serum protein electrophoresis", "serum free light chains", "HBsAg", "HBsAb", "HBcoreAb"],
+      cycle:["CBC & Diff", "creatinine", "calcium", "ALT", "total bilirubin"],
+      conditional:[
+        { label:"Every 4 weeks", tests:["serum protein electrophoresis", "serum free light chains"] },
+        { label:"If clinically indicated", tests:["HBV viral load"] }
+      ]
+    }
   },
   {
     key:"Rd", cat:"Multiple Myeloma",
@@ -6247,7 +6261,15 @@ const PROTOCOLS = [
       { name:"Lenalidomide (Revlimid)", dose:25, unit:"mg", basis:"flat", max:null, route:"PO", days:"Days 1–21", reducible:false, note:"Renal dose-adjust required" },
       { name:"Dexamethasone",           dose:40, unit:"mg", basis:"flat", max:null, route:"PO", days:"Days 1, 8, 15, 22", reducible:false, note:"Reduce to 20 mg/week if age >75" }
     ],
-    labs:{ baseline:[], cycle:[], conditional:[] }
+    labs:{
+      baseline:["CBC & Diff", "creatinine", "sodium", "potassium", "calcium", "ALT", "total bilirubin", "alkaline phosphatase", "albumin", "LDH", "TSH", "serum protein electrophoresis", "serum free light chains", "HBsAg", "HBsAb", "HBcoreAb"],
+      cycle:["CBC & Diff", "creatinine", "calcium", "ALT", "total bilirubin"],
+      conditional:[
+        { label:"Every 4 weeks", tests:["serum protein electrophoresis", "serum free light chains"] },
+        { label:"Every 3 months", tests:["TSH"] },
+        { label:"If clinically indicated", tests:["HBV viral load", "quantitative beta-hCG (if FCBP)"] }
+      ]
+    }
   },
 
   // BC Cancer MY / UMY protocols
