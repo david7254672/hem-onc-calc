@@ -4,29 +4,28 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Running the Project
 
-Two self-contained HTML files (desktop + mobile) — no build step, no dependencies.
+Two parallel HTML apps that load a shared `protocols.js` — no build step, no dependencies. **Must be served over HTTP** (file:// fails because browsers block `<script src>` cross-origin under file URLs).
 
 ```bash
-# Serve locally (required for some browser features)
+# Serve locally
 python3 -m http.server 3000
 # Then open one of:
 #   http://localhost:3000/hem-onc-calculator.html  (desktop)
 #   http://localhost:3000/hem-onc-mobile.html      (mobile)
 ```
 
-Open directly in any browser: `open hem-onc-calculator.html` or `open hem-onc-mobile.html`.
-
 ## Architecture
 
-Two parallel single-file apps that share the same `PROTOCOLS` array (currently maintained by hand in each — consolidating into a shared data file is a planned improvement):
+Two HTML apps that load the same `protocols.js` for the protocol catalogue:
 - **`hem-onc-calculator.html`** — desktop layout
 - **`hem-onc-mobile.html`** — mobile layout: bottom nav, long-press dose reduction, bottom-sheet UI
+- **`protocols.js`** — single source of truth for the ~437-entry `PROTOCOLS` array; loaded via `<script src="protocols.js">` before each file's inline script
 
-Each is self-contained (CSS, HTML, JavaScript in one file), no external dependencies, fully offline-capable.
+Each HTML file is otherwise self-contained (CSS, HTML, app JavaScript all inline). The split means edits to protocol data happen in one place; edits to UI/layout/calculation logic stay scoped to the HTML file for the affected platform.
 
-### Navigating within either file
-Line numbers drift fast in a single-file app — use `grep` for these landmarks:
-- `const PROTOCOLS = [` — top of protocol data
+### Navigating
+- `protocols.js` — top of the `PROTOCOLS` array (search `key: "..."` to jump to a specific protocol)
+- Within each HTML, use `grep` for these landmarks (line numbers drift fast):
 - `const S = {` — global state object
 - `function calcCG`, `calcCKDEPI`, `calcMDRD` — CrCl/GFR
 - `function bsa_mosteller` (etc.) — BSA formulas
@@ -106,7 +105,7 @@ Anthropic-inspired color scheme via CSS variables:
 Current categories in the category dropdown (match exactly with `cat` strings in protocol entries):
 `Lymphoma` | `CLL` | `Myeloid` | `Multiple Myeloma` | `Breast` | `Lung` | `GI` | `GU` | `Gyne`
 
-BC Cancer protocols (Mar 2025) are tagged `bcc: true` and show the BC Cancer badge. Total protocol count: ~196. For exact per-category counts, grep the PROTOCOLS array (e.g. `grep -c 'cat:"Lymphoma"' hem-onc-mobile.html`).
+BC Cancer protocols (Mar 2025) are tagged `bcc: true` and show the BC Cancer badge. Total protocol count: 437. For exact per-category counts, grep `protocols.js` (e.g. `grep -c 'cat: "Lymphoma"' protocols.js`).
 
 Populated categories include Lymphoma (LY series), CLL, Myeloid, Multiple Myeloma, GU, Lung, Gyne. GI and Breast are present as dropdown categories but have few or no protocols yet — confirm by grep before claiming a count.
 
@@ -139,16 +138,15 @@ BC Cancer protocol codes follow a site prefix pattern, but some protocols have a
 The protocol `key` in the JS should reflect the actual BC Cancer code (e.g., `"LU-LUAVPC"`, `"LU-ULUAJATZ"`), and the `name` field should lead with the code for easy scanning in the dropdown (e.g., `"LUAVPC - CARBOplatin + PACLitaxel [NSCLC]"`).
 
 ## Pending / Known Issues
-- **CKD-EPI 2021 / MDRD return indexed eGFR (mL/min/1.73m²)** but are fed directly into the Calvert formula, which expects absolute GFR. De-index by `× BSA / 1.73` before Calvert, or label the output to surface the caveat.
-- **Cockcroft-Gault always uses actual body weight.** IBW/ABW are calculated and displayed but not selectable as the input to CG. Many institutions use IBW when ABW < IBW, and ABW for obesity.
-- **No protocol data validator.** Recent regressions (missing labs, missing commas) would be caught by a small validation pass on load.
 - **GI, Breast protocols**: Categories exist in the dropdown but few or no protocols added.
 - **GU `levels` data**: GU protocols added before the `levels` field was implemented; dose reduction levels should be backfilled.
 
 ## Adding a New Protocol
-Add a new object to the `PROTOCOLS` array (before `]; // end PROTOCOLS`). Set `cat` to one of the existing category strings. Set `bcc: true` if sourced from BC Cancer. No other registration needed — `filterProtocols()` dynamically builds the dropdown from the array.
+Add a new object to the `PROTOCOLS` array in `protocols.js` (before `]; // end PROTOCOLS`). Set `cat` to one of the existing category strings. Set `bcc: true` if sourced from BC Cancer. No other registration needed — both apps load `protocols.js` and `filterProtocols()` dynamically builds the dropdown from the array.
 
-⚠️ **Critical:** Every protocol entry in the array must be followed by a comma (`,`) **except** the very last one before `]; // end PROTOCOLS`. When inserting a new block of protocols just before the closing `]`, ensure the last existing protocol entry has a trailing comma added. A missing comma causes a silent JS parse error that breaks the entire calculator (no BSA calculation, no tab switching).
+The load-time validator in each HTML file (search `function validateProtocols`) will surface broken entries on next page load: missing required fields, dup keys, bad `basis`, unit/basis mismatch, cycled regimens with no labs, or malformed `labs.conditional`. Failures show a red dismissible banner and log to `console.error`. `dose:null` is allowed for variable doses; `meta:true` on a drug row skips drug-shape checks (used for cross-reference rows like "See LYCHOPR protocol").
+
+⚠️ **Critical:** Every protocol entry in `protocols.js` must be followed by a comma (`,`) **except** the very last one before `]; // end PROTOCOLS`. When inserting a new block just before the closing `]`, ensure the last existing protocol entry has a trailing comma added. A missing comma causes a silent JS parse error in `protocols.js` that breaks **both** apps (no BSA, no tab switching, no validator banner — the inline script never reaches the validator call because PROTOCOLS never gets defined).
 
 ## Bulk Protocol Extraction Workflow
 
@@ -178,7 +176,7 @@ Add a new object to the `PROTOCOLS` array (before `]; // end PROTOCOLS`). Set `c
    - The TESTS section (source of `labs`) is near the start and often gets dropped in combined extracts
    - Individual PDFs always contain the complete protocol text
 
-5. **Insert JS entries** just before `]; // end PROTOCOLS`, wrapped in a `// SITE PROTOCOLS` comment block. Ensure the preceding protocol entry has a trailing comma.
+5. **Insert JS entries** into `protocols.js`, just before `]; // end PROTOCOLS`, wrapped in a `// SITE PROTOCOLS` comment block. Ensure the preceding protocol entry has a trailing comma.
 
 ### JSON schema for extraction
 ```json
