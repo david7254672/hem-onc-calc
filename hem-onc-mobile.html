@@ -18795,6 +18795,104 @@ function showCustomRdx(protoKey, idx){
 })();
 
 // ============================================================
+// PROTOCOL DATA VALIDATOR (load-time integrity check)
+// ============================================================
+// Catches hand-edit regressions (missing labs, bad basis, dup keys,
+// unit/basis mismatches, etc.) before they reach a clinical user.
+// Logs to console.error and shows a dismissible red banner.
+// Never blocks app load — even if validation fails the app still serves.
+function validateProtocols(protocols, validCats) {
+  const errors = [];
+  const ALLOWED_BASIS = new Set(['bsa','flat','weight','auc']);
+  const seenKeys = new Map();
+  protocols.forEach((p, i) => {
+    const tag = `[${i}] ${(p && (p.key || p.name)) || '(no key/name)'}`;
+    if (!p || typeof p !== 'object') { errors.push(`${tag}: not an object`); return; }
+    if (!p.key)  errors.push(`${tag}: missing key`);
+    if (!p.cat)  errors.push(`${tag}: missing cat`);
+    if (!p.name) errors.push(`${tag}: missing name`);
+    if (p.cat && validCats && validCats.size && !validCats.has(p.cat)) {
+      errors.push(`${tag}: cat "${p.cat}" not in dropdown categories`);
+    }
+    if (p.key) {
+      if (seenKeys.has(p.key)) errors.push(`${tag}: duplicate key "${p.key}" (also at index ${seenKeys.get(p.key)})`);
+      else seenKeys.set(p.key, i);
+    }
+    if (!Array.isArray(p.drugs) || p.drugs.length === 0) {
+      errors.push(`${tag}: drugs missing or empty`);
+    } else {
+      p.drugs.forEach((d, di) => {
+        const dtag = `${tag} drug[${di}]${d && d.name ? ' '+d.name : ''}`;
+        if (!d || typeof d !== 'object') { errors.push(`${dtag}: not an object`); return; }
+        // meta:true marks a documentation-only row (cross-references like
+        // "See LYCHOPR protocol"). Skip drug-shape validation for those.
+        if (d.meta === true) return;
+        if (!d.name) errors.push(`${dtag}: missing name`);
+        if (!ALLOWED_BASIS.has(d.basis)) errors.push(`${dtag}: invalid basis "${d.basis}"`);
+        // dose:null is allowed — signals variable/discretionary dose (e.g.
+        // weight-banded filgrastim, activity-based radioisotopes, dose ranges).
+        if (d.dose !== null && (typeof d.dose !== 'number' || !isFinite(d.dose)))
+          errors.push(`${dtag}: dose must be a finite number or null`);
+        if (!d.unit) errors.push(`${dtag}: missing unit`);
+        if (d.unit && d.basis) {
+          const u = String(d.unit);
+          if (d.basis === 'bsa' && !/\/m²/.test(u))      errors.push(`${dtag}: basis 'bsa' but unit "${u}" missing /m²`);
+          if (d.basis === 'weight' && !/\/kg/.test(u))   errors.push(`${dtag}: basis 'weight' but unit "${u}" missing /kg`);
+          if (d.basis === 'flat' && /\/m²|\/kg/.test(u)) errors.push(`${dtag}: basis 'flat' but unit "${u}" has /m² or /kg`);
+          if (d.basis === 'auc' && !/AUC/i.test(u))      errors.push(`${dtag}: basis 'auc' but unit "${u}" missing AUC`);
+        }
+      });
+    }
+    if (!p.labs || typeof p.labs !== 'object') {
+      errors.push(`${tag}: missing labs`);
+    } else {
+      ['baseline','cycle','conditional'].forEach(k => {
+        if (p.labs[k] !== undefined && !Array.isArray(p.labs[k]))
+          errors.push(`${tag}: labs.${k} must be an array`);
+      });
+      // For cycled regimens (cycle = positive number), require *some* lab
+      // monitoring. Continuous/topical/single-course protocols (cycle:null)
+      // legitimately may have all-empty labs.
+      const isCycled = typeof p.cycle === 'number' && p.cycle > 0;
+      if (isCycled) {
+        const baseN = Array.isArray(p.labs.baseline) ? p.labs.baseline.length : 0;
+        const cycN  = Array.isArray(p.labs.cycle)    ? p.labs.cycle.length    : 0;
+        const condN = Array.isArray(p.labs.conditional) ? p.labs.conditional.length : 0;
+        if (baseN + cycN + condN === 0)
+          errors.push(`${tag}: cycled protocol (cycle:${p.cycle}) has no lab monitoring (baseline/cycle/conditional all empty)`);
+      }
+      if (Array.isArray(p.labs.conditional)) {
+        p.labs.conditional.forEach((c, ci) => {
+          if (!c || !c.label) errors.push(`${tag}: labs.conditional[${ci}] missing label`);
+          if (!c || !Array.isArray(c.tests) || c.tests.length === 0)
+            errors.push(`${tag}: labs.conditional[${ci}] missing tests`);
+        });
+      }
+    }
+  });
+  return errors;
+}
+
+function reportProtocolValidation(errors) {
+  if (!errors.length) return;
+  console.error(`[Hem-Onc Calc] Protocol validation found ${errors.length} issue(s):`);
+  errors.forEach(e => console.error('  • ' + e));
+  const banner = document.createElement('div');
+  banner.id = 'protoValidatorBanner';
+  banner.style.cssText = 'background:#b91c1c;color:#fff;padding:10px 14px;font:600 14px/1.4 system-ui,sans-serif;display:flex;justify-content:space-between;align-items:center;gap:12px;position:sticky;top:0;z-index:9999;box-shadow:0 1px 4px rgba(0,0,0,.2)';
+  banner.innerHTML = `<span>⚠ Protocol data validation found ${errors.length} issue(s). See browser console for details.</span><button type="button" style="background:rgba(255,255,255,.18);color:#fff;border:1px solid rgba(255,255,255,.4);border-radius:4px;padding:4px 10px;font:inherit;cursor:pointer">Dismiss</button>`;
+  banner.querySelector('button').addEventListener('click', () => banner.remove());
+  document.body.insertBefore(banner, document.body.firstChild);
+}
+
+try {
+  const validCats = new Set(Array.from(document.querySelectorAll('#protoCat option')).map(o => o.value).filter(Boolean));
+  reportProtocolValidation(validateProtocols(PROTOCOLS, validCats));
+} catch (e) {
+  console.error('[Hem-Onc Calc] Validator crashed:', e);
+}
+
+// ============================================================
 // INIT
 // ============================================================
 filterProtocols();
