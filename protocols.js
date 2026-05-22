@@ -19635,5 +19635,318 @@ const PROTOCOLS = [
         { label: "Warfarin patients", tests: ["INR weekly until stable, then prior to each cycle"] }
       ]
     }
+  },
+
+  // GI PROTOCOLS (sub-batch 8: GIFIRINOX, GIFOLFIRI, GIFOLFOX, GIFUART, GIFUC)
+  {
+    key: "GI-GIFIRINOX",
+    cat: "GI",
+    bcc: true,
+    name: "GIFIRINOX - Irinotecan + Oxaliplatin + Fluorouracil + Leucovorin [Pancreatic Adenocarcinoma]",
+    cycle: 14,
+    notes: "First-line for locally advanced or metastatic pancreatic adenocarcinoma. ECOG ≤1 required. Cannot receive both GIFIRINOX and GIPGEMABR sequentially without CAP approval. Fluorouracil IV push is optional in advanced setting. Avoid cold drinks/cold air exposure for 3–5 days post-oxaliplatin. Oxaliplatin not compatible with NS.",
+    drugs: [
+      {
+        name: "oxaliplatin",
+        dose: 85,
+        unit: "mg/m²",
+        basis: "bsa",
+        max: null,
+        weightCap: null,
+        route: "IV",
+        days: "Day 1",
+        reducible: true,
+        note: "IV in 250–500 mL D5W over 2 hours. Not compatible with NS. Dose Level −1: 65 mg/m²; Level −2: 50 mg/m².",
+        levels: [65, 50]
+      },
+      {
+        name: "leucovorin",
+        dose: 400,
+        unit: "mg/m²",
+        basis: "bsa",
+        max: null,
+        weightCap: null,
+        route: "IV",
+        days: "Day 1",
+        reducible: false,
+        note: "IV in 250 mL D5W over 1 h 30 min concurrently with irinotecan via Y-connector. No dose modifications; may omit if fluorouracil push omitted or irinotecan omitted."
+      },
+      {
+        name: "irinotecan",
+        dose: 180,
+        unit: "mg/m²",
+        basis: "bsa",
+        max: null,
+        weightCap: null,
+        route: "IV",
+        days: "Day 1",
+        reducible: true,
+        note: "IV in 500 mL D5W over 1 h 30 min concurrently with leucovorin via Y-connector. Dose Level −1: 150 mg/m²; Level −2: 120 mg/m².",
+        levels: [150, 120]
+      },
+      {
+        name: "fluorouracil (IV push)",
+        dose: 400,
+        unit: "mg/m²",
+        basis: "bsa",
+        max: null,
+        weightCap: null,
+        route: "IV push",
+        days: "Day 1",
+        reducible: true,
+        note: "Optional in advanced setting. Dose Level −1: 320 mg/m²; Level −2: 200 mg/m².",
+        levels: [320, 200]
+      },
+      {
+        name: "fluorouracil (infusion)",
+        dose: 2400,
+        unit: "mg/m²",
+        basis: "bsa",
+        max: null,
+        weightCap: null,
+        route: "IV",
+        days: "Day 1–2 (46-hour infusion)",
+        reducible: true,
+        note: "Continuous IV over 46 h in D5W, 230 mL total at 5 mL/h via Baxter LV5 INFUSOR. Dose Level −1: 2000 mg/m²; Level −2: 1600 mg/m².",
+        levels: [2000, 1600]
+      }
+    ],
+    labs: {
+      baseline: ["CBC & Diff", "creatinine", "total bilirubin", "ALT", "alkaline phosphatase", "albumin", "sodium", "potassium", "random glucose", "HbA1c", "DPYD test"],
+      cycle: ["CBC & Diff", "creatinine", "total bilirubin", "ALT"],
+      conditional: [
+        { label: "Baseline if clinically indicated", tests: ["GGT", "CEA", "CA 19-9", "ECG"] },
+        { label: "If clinically indicated", tests: ["CEA", "CA 19-9", "alkaline phosphatase", "albumin", "GGT", "sodium", "potassium", "random glucose", "HbA1c", "ECG"] },
+        { label: "Warfarin patients", tests: ["INR weekly until stable, then prior to each cycle"] }
+      ]
+    }
+  },
+  {
+    key: "GI-GIFOLFIRI",
+    cat: "GI",
+    bcc: true,
+    name: "GIFOLFIRI - Irinotecan + Fluorouracil + Leucovorin [Metastatic Colorectal Cancer]",
+    cycle: 14,
+    notes: "Palliative combination chemotherapy for locally advanced, locally recurrent or metastatic colorectal adenocarcinoma, or adenocarcinoma of appendix/small bowel. ECOG ≤2. Fluorouracil IV push is optional in the advanced setting. Irinotecan and leucovorin may be infused simultaneously via Y-connector.",
+    drugs: [
+      {
+        name: "irinotecan",
+        dose: 180,
+        unit: "mg/m²",
+        basis: "bsa",
+        max: null,
+        weightCap: null,
+        route: "IV",
+        days: "Day 1",
+        reducible: true,
+        note: "IV in 500 mL D5W over 1 h 30 min via Y-connector with leucovorin. Dose Level −1: 150 mg/m²; Level −2: 120 mg/m².",
+        levels: [150, 120]
+      },
+      {
+        name: "leucovorin",
+        dose: 400,
+        unit: "mg/m²",
+        basis: "bsa",
+        max: null,
+        weightCap: null,
+        route: "IV",
+        days: "Day 1",
+        reducible: false,
+        note: "IV in 250 mL D5W over 1 h 30 min via Y-connector with irinotecan. No dose modifications."
+      },
+      {
+        name: "fluorouracil (IV push)",
+        dose: 400,
+        unit: "mg/m²",
+        basis: "bsa",
+        max: null,
+        weightCap: null,
+        route: "IV push",
+        days: "Day 1",
+        reducible: true,
+        note: "Optional in advanced setting. Dose Level −1: 320 mg/m²; Level −2: 240 mg/m².",
+        levels: [320, 240]
+      },
+      {
+        name: "fluorouracil (infusion)",
+        dose: 2400,
+        unit: "mg/m²",
+        basis: "bsa",
+        max: null,
+        weightCap: null,
+        route: "IV",
+        days: "Day 1–2 (46-hour infusion)",
+        reducible: true,
+        note: "Continuous IV over 46 h in D5W, 230 mL total at 5 mL/h via Baxter LV5 INFUSOR. Dose Level −1: 2000 mg/m²; Level −2: 1600 mg/m².",
+        levels: [2000, 1600]
+      }
+    ],
+    labs: {
+      baseline: ["CBC & Diff", "creatinine", "ALT", "alkaline phosphatase", "total bilirubin", "albumin", "sodium", "potassium", "DPYD test"],
+      cycle: ["CBC & Diff", "creatinine", "total bilirubin", "ALT"],
+      conditional: [
+        { label: "Baseline if clinically indicated", tests: ["CEA", "CA 19-9", "GGT", "ECG"] },
+        { label: "If clinically indicated", tests: ["CEA", "CA 19-9", "alkaline phosphatase", "albumin", "GGT", "sodium", "potassium", "ECG"] },
+        { label: "Warfarin patients", tests: ["INR weekly until stable, then prior to each cycle"] }
+      ]
+    }
+  },
+  {
+    key: "GI-GIFOLFOX",
+    cat: "GI",
+    bcc: true,
+    name: "GIFOLFOX - Oxaliplatin + Fluorouracil + Leucovorin [Metastatic Colorectal Cancer]",
+    cycle: 14,
+    notes: "Palliative combination chemotherapy for locally advanced, locally recurrent or metastatic colorectal adenocarcinoma. Based on modified FOLFOX6 regimen (oxaliplatin 85 mg/m²); physicians may use 100 mg/m² per original FOLFOX6. ECOG ≤2. Fluorouracil IV push is optional in the advanced setting. Oxaliplatin not compatible with NS. Avoid cold drinks/cold air for 3–5 days post-oxaliplatin.",
+    drugs: [
+      {
+        name: "oxaliplatin",
+        dose: 85,
+        unit: "mg/m²",
+        basis: "bsa",
+        max: null,
+        weightCap: null,
+        route: "IV",
+        days: "Day 1",
+        reducible: true,
+        note: "IV in 250–500 mL D5W over 2 hours via Y-site with leucovorin. Not compatible with NS. Dose Level −1: 65 mg/m²; Level −2: 50 mg/m².",
+        levels: [65, 50]
+      },
+      {
+        name: "leucovorin",
+        dose: 400,
+        unit: "mg/m²",
+        basis: "bsa",
+        max: null,
+        weightCap: null,
+        route: "IV",
+        days: "Day 1",
+        reducible: false,
+        note: "IV in 250 mL D5W over 2 hours via Y-site with oxaliplatin. No dose modifications."
+      },
+      {
+        name: "fluorouracil (IV push)",
+        dose: 400,
+        unit: "mg/m²",
+        basis: "bsa",
+        max: null,
+        weightCap: null,
+        route: "IV push",
+        days: "Day 1",
+        reducible: true,
+        note: "Optional in advanced setting. Dose Level −1: 320 mg/m²; Level −2: 200 mg/m².",
+        levels: [320, 200]
+      },
+      {
+        name: "fluorouracil (infusion)",
+        dose: 2400,
+        unit: "mg/m²",
+        basis: "bsa",
+        max: null,
+        weightCap: null,
+        route: "IV",
+        days: "Day 1–2 (46-hour infusion)",
+        reducible: true,
+        note: "Continuous IV over 46 h in D5W, 230 mL total at 5 mL/h via Baxter LV5 INFUSOR. Dose Level −1: 2000 mg/m²; Level −2: 1600 mg/m².",
+        levels: [2000, 1600]
+      }
+    ],
+    labs: {
+      baseline: ["CBC & Diff", "creatinine", "ALT", "alkaline phosphatase", "total bilirubin", "albumin", "sodium", "potassium", "DPYD test"],
+      cycle: ["CBC & Diff", "creatinine", "total bilirubin", "ALT"],
+      conditional: [
+        { label: "Baseline if clinically indicated", tests: ["CEA", "CA 19-9", "GGT", "ECG"] },
+        { label: "If clinically indicated", tests: ["CEA", "CA 19-9", "alkaline phosphatase", "albumin", "GGT", "sodium", "potassium", "ECG"] },
+        { label: "Warfarin patients", tests: ["INR weekly until stable, then prior to each cycle"] }
+      ]
+    }
+  },
+  {
+    key: "GI-GIFUART",
+    cat: "GI",
+    bcc: true,
+    name: "GIFUART - Mitomycin + Fluorouracil + RT [Anal Canal — Curative Chemo-RT]",
+    cycle: null,
+    notes: "Curative combined modality therapy for squamous cell or cloacogenic carcinoma of the anal canal (T any, N any, M0). Mitomycin Day 1 Week 1 and optionally Week 5 (max 20 mg). Fluorouracil infusion Days 1–4 Weeks 1 and 5. Radiation therapy 50.4 Gy in 28 fractions over 5.5 weeks (no gap). Max mitomycin single dose 20 mg.",
+    drugs: [
+      {
+        name: "mitomycin",
+        dose: 10,
+        unit: "mg/m²",
+        basis: "bsa",
+        max: 20,
+        weightCap: null,
+        route: "IV push",
+        days: "Day 1, Week 1 (and optional Week 5)",
+        reducible: true,
+        note: "Maximum dose 20 mg. Week 5 dose is optional."
+      },
+      {
+        name: "fluorouracil",
+        dose: 1000,
+        unit: "mg/m²",
+        basis: "bsa",
+        max: null,
+        weightCap: null,
+        route: "IV",
+        days: "Days 1–4, Weeks 1 and 5 (96-hour infusion)",
+        reducible: true,
+        note: "Continuous IV over 96 h in D5W to total volume 480 mL at 5 mL/h via infusor. Total dose 4000 mg/m² per course. Inpatient: 1000 mg/m²/day in 1000 mL D5W over 24 h × 4 days."
+      }
+    ],
+    labs: {
+      baseline: ["CBC & Diff", "creatinine", "ALT", "alkaline phosphatase", "total bilirubin", "albumin", "sodium", "potassium", "DPYD test"],
+      cycle: ["CBC & Diff"],
+      conditional: [
+        { label: "Weekly before chemotherapy and during RT", tests: ["CBC & Diff"] },
+        { label: "Weekly if clinically indicated", tests: ["total bilirubin", "ALT"] },
+        { label: "Baseline if clinically indicated", tests: ["CEA", "CA19-9", "SCC", "GGT", "ECG"] },
+        { label: "If clinically indicated", tests: ["CEA", "CA19-9", "SCC", "alkaline phosphatase", "albumin", "GGT", "creatinine", "sodium", "potassium", "ECG"] },
+        { label: "Warfarin patients", tests: ["INR weekly until stable, then prior to each cycle"] }
+      ]
+    }
+  },
+  {
+    key: "GI-GIFUC",
+    cat: "GI",
+    bcc: true,
+    name: "GIFUC - CISplatin + Fluorouracil [Upper GI / Metastatic Anal — Palliative]",
+    cycle: 28,
+    notes: "Palliative chemotherapy for metastatic/unresectable upper GI adenocarcinoma (gastric, esophageal, gall bladder, pancreas, bile ducts), metastatic squamous cell/cloacogenic carcinoma of the anal canal, or metastatic esophageal squamous cell carcinoma. CISplatin 25 mg/m² and fluorouracil 1000 mg/m²/day × 2 days given weekly on Days 1, 8, 15, and 22. Adequate renal function required (CrCl ≥45 mL/min by Cockcroft-Gault).",
+    drugs: [
+      {
+        name: "CISplatin",
+        dose: 25,
+        unit: "mg/m²",
+        basis: "bsa",
+        max: null,
+        weightCap: null,
+        route: "IV",
+        days: "Days 1, 8, 15, 22",
+        reducible: true,
+        note: "IV in 100–250 mL NS over 30 minutes weekly × 4. Reduce to 50% if CrCl 45–59 mL/min; delay if CrCl <45 mL/min."
+      },
+      {
+        name: "fluorouracil",
+        dose: 1000,
+        unit: "mg/m²",
+        basis: "bsa",
+        max: 5000,
+        weightCap: null,
+        route: "IV",
+        days: "Days 1, 8, 15, 22 (48-hour infusion each week)",
+        reducible: true,
+        note: "Continuous IV over 48 h in D5W to 240 mL total at 5 mL/h via infusor; 1000 mg/m²/day × 2 days each week. Maximum dose 5000 mg/48 hours. Inpatient: 1000 mg/m²/day in 1000 mL D5W over 24 h × 2 days."
+      }
+    ],
+    labs: {
+      baseline: ["CBC & Diff", "creatinine", "ALT", "alkaline phosphatase", "total bilirubin", "albumin", "sodium", "potassium", "DPYD test"],
+      cycle: ["CBC & Diff", "creatinine", "total bilirubin", "ALT"],
+      conditional: [
+        { label: "Baseline if clinically indicated", tests: ["CEA", "CA19-9", "GGT", "ECG"] },
+        { label: "If clinically indicated", tests: ["CEA", "CA19-9", "alkaline phosphatase", "albumin", "GGT", "sodium", "potassium", "ECG"] },
+        { label: "Warfarin patients", tests: ["INR weekly until stable, then prior to each cycle"] }
+      ]
+    }
   }
 ]; // end PROTOCOLS
