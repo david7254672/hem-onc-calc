@@ -18800,5 +18800,207 @@ const PROTOCOLS = [
         { label: "If clinically indicated", tests: ["CEA", "CA 19-9", "alkaline phosphatase", "albumin", "GGT", "sodium", "potassium", "ECG"] }
       ]
     }
+  },
+
+  // GI PROTOCOLS SUB-BATCH 5
+  {
+    key: "GI-GIAVRALOX",
+    cat: "GI",
+    bcc: true,
+    name: "GIAVRALOX - Oxaliplatin + Raltitrexed [mCRC, FU-intolerant]",
+    cycle: 21,
+    notes: "Palliative therapy for metastatic colorectal cancer in patients intolerant to fluorouracil or capecitabine, or with known/suspected DPD deficiency. Avoid cold drinks and cold air exposure for 3-5 days after oxaliplatin. Do NOT use ice chips (cryotherapy). Oxaliplatin incompatible with NS — flush with D5W. Raltitrexed dose adjusted based on CrCl. Leucovorin/folic acid must NOT be given concurrently with raltitrexed.",
+    drugs: [
+      {
+        name: "Raltitrexed",
+        dose: 3,
+        unit: "mg/m²",
+        basis: "bsa",
+        max: null,
+        weightCap: null,
+        route: "IV",
+        days: "Day 1",
+        reducible: true,
+        note: "IV in 100 mL NS over 15 min. Dose reduce for renal dysfunction (CrCl 55–65: 75%; CrCl 25–54: % equivalent to CrCl; CrCl <25: discontinue)."
+      },
+      {
+        name: "Oxaliplatin",
+        dose: 130,
+        unit: "mg/m²",
+        basis: "bsa",
+        max: null,
+        weightCap: null,
+        route: "IV",
+        days: "Day 1",
+        reducible: true,
+        note: "IV in 250–500 mL D5W over 2 hours. Neurologic dose levels: −1N 100 mg/m², −2N 65 mg/m². Non-neurologic levels: −1 100, −2 85 mg/m²."
+      }
+    ],
+    labs: {
+      baseline: ["CBC & Diff", "creatinine", "ALT", "alkaline phosphatase", "total bilirubin", "albumin", "sodium", "potassium"],
+      cycle: ["CBC & Diff", "creatinine", "total bilirubin", "ALT"],
+      conditional: [
+        { label: "Baseline if clinically indicated", tests: ["CEA", "CA 19-9", "GGT", "ECG"] },
+        { label: "If clinically indicated", tests: ["CEA", "CA 19-9", "alkaline phosphatase", "albumin", "GGT", "sodium", "potassium", "ECG"] },
+        { label: "Patients on warfarin", tests: ["INR weekly until stable, then each cycle"] }
+      ]
+    }
+  },
+  {
+    key: "GI-GIAVTTB",
+    cat: "GI",
+    bcc: true,
+    name: "GIAVTTB - Trifluridine-Tipiracil + Bevacizumab [mCRC, refractory]",
+    cycle: 28,
+    notes: "Therapy for unresectable/metastatic colorectal cancer (or appendix/small bowel adenocarcinoma) after prior fluoropyrimidine, irinotecan, oxaliplatin, and anti-VEGF/anti-EGFR therapy. Bevacizumab 5 mg/kg IV on Days 1 and 15. Trifluridine-tipiracil max 80 mg/dose (based on trifluridine component); round to nearest 5 mg. Dose levels: −1 30 mg/m², −2 25 mg/m², −3 20 mg/m². If bevacizumab discontinued, trifluridine-tipiracil monotherapy may continue.",
+    drugs: [
+      {
+        name: "Bevacizumab",
+        dose: 5,
+        unit: "mg/kg",
+        basis: "weight",
+        max: null,
+        weightCap: null,
+        route: "IV",
+        days: "Days 1 and 15",
+        reducible: false,
+        note: "IV in 100 mL NS over 10 min. Monitor BP pre/post dose for first 3 doses. Recalculate dose if >10% body weight change."
+      },
+      {
+        name: "Trifluridine-Tipiracil",
+        dose: 35,
+        unit: "mg/m²",
+        basis: "bsa",
+        max: null,
+        weightCap: null,
+        route: "PO",
+        days: "Days 1–5 and 8–12, BID",
+        reducible: true,
+        note: "BID dosing (based on trifluridine component); max 80 mg/dose. Round to nearest 5 mg. CBC Day 15 of Cycle 1 and when dose modified."
+      }
+    ],
+    labs: {
+      baseline: ["CBC & Diff", "creatinine", "ALT", "alkaline phosphatase", "total bilirubin", "albumin", "urinalysis for protein", "blood pressure"],
+      cycle: ["CBC & Diff", "creatinine", "total bilirubin", "ALT", "urinalysis for protein", "blood pressure"],
+      conditional: [
+        { label: "Day 15 Cycle 1 (and when trifluridine-tipiracil dose modified)", tests: ["CBC & Diff"] },
+        { label: "Baseline if clinically indicated", tests: ["CEA", "CA 19-9", "GGT", "ECG"] },
+        { label: "If clinically indicated", tests: ["CEA", "CA 19-9", "alkaline phosphatase", "albumin", "GGT", "sodium", "potassium", "ECG", "24-hour urine protein (if dipstick 2+ or 3+)"] }
+      ]
+    }
+  },
+  {
+    key: "GI-GIAVTZCAP",
+    cat: "GI",
+    bcc: true,
+    name: "GIAVTZCAP - Temozolomide + Capecitabine [Pancreatic NET]",
+    cycle: 28,
+    notes: "Palliative therapy for metastatic well-differentiated Grade 1–3 pancreatic neuroendocrine tumours. Capecitabine 750 mg/m² BID Days 1–14; temozolomide 200 mg/m² once daily Days 10–14. DPYD testing required before starting. Ondansetron 8 mg PO 30 min before each temozolomide dose.",
+    drugs: [
+      {
+        name: "Capecitabine",
+        dose: 750,
+        unit: "mg/m²",
+        basis: "bsa",
+        max: null,
+        weightCap: null,
+        route: "PO",
+        days: "Days 1–14, BID",
+        reducible: true,
+        note: "BID dosing (total daily 1500 mg/m²). Days 1–14. DPYD test required. Renal dose adjust: CrCl 30–50 = 75%; <30 = discontinue."
+      },
+      {
+        name: "Temozolomide",
+        dose: 200,
+        unit: "mg/m²",
+        basis: "bsa",
+        max: null,
+        weightCap: null,
+        route: "PO",
+        days: "Days 10–14",
+        reducible: true,
+        note: "Once daily Days 10–14. Hepatic adjust: bili 25–50 µmol/L or ALT 2.6–5× ULN = 100 mg/m²; >50 µmol/L or >5× ULN = delay."
+      }
+    ],
+    labs: {
+      baseline: ["CBC & Diff", "creatinine", "ALT", "alkaline phosphatase", "total bilirubin", "albumin", "sodium", "potassium", "random glucose", "DPYD test"],
+      cycle: ["CBC & Diff", "creatinine", "total bilirubin", "ALT"],
+      conditional: [
+        { label: "Baseline if clinically indicated", tests: ["24-hour urine 5-HIAA", "GGT", "ECG"] },
+        { label: "If clinically indicated", tests: ["alkaline phosphatase", "albumin", "GGT", "sodium", "potassium", "random glucose", "24-hour urine 5-HIAA", "ECG"] }
+      ]
+    }
+  },
+  {
+    key: "GI-GIBAJCAP",
+    cat: "GI",
+    bcc: true,
+    name: "GIBAJCAP - Capecitabine Adjuvant [Biliary Cancer]",
+    cycle: 21,
+    notes: "Adjuvant therapy for resected biliary cancer (intrahepatic, hilar, lower common bile duct cholangiocarcinoma) or muscle-invasive gallbladder cancer. 8 cycles total. Starting dose 1000 mg/m² BID (may escalate to 1250 mg/m² based on tolerance). DPYD testing required. Not for pancreatic or ampullary cancer, or mucosal (T1a) gallbladder cancer.",
+    drugs: [
+      {
+        name: "Capecitabine",
+        dose: 1000,
+        unit: "mg/m²",
+        basis: "bsa",
+        max: null,
+        weightCap: null,
+        route: "PO",
+        days: "Days 1–14, BID",
+        reducible: true,
+        note: "BID (total daily 2000 mg/m²). 8 cycles. Starting dose 1000 mg/m² BID; may escalate to 1250 mg/m² BID if tolerated. DPYD test required. Renal: CrCl 30–50 = 75%; <30 = discontinue."
+      }
+    ],
+    labs: {
+      baseline: ["CBC & Diff", "creatinine", "ALT", "alkaline phosphatase", "total bilirubin", "albumin", "sodium", "potassium", "random glucose", "DPYD test"],
+      cycle: ["CBC & Diff", "creatinine", "total bilirubin", "ALT"],
+      conditional: [
+        { label: "Baseline if clinically indicated", tests: ["ECG", "GGT", "CEA", "CA 19-9"] },
+        { label: "If clinically indicated", tests: ["alkaline phosphatase", "albumin", "GGT", "sodium", "potassium", "random glucose", "ECG", "CEA", "CA 19-9"] }
+      ]
+    }
+  },
+  {
+    key: "GI-GICAPIRI",
+    cat: "GI",
+    bcc: true,
+    name: "GICAPIRI - Irinotecan + Capecitabine [mCRC/Biliary, unsuitable for GIFOLFIRI]",
+    cycle: 21,
+    notes: "Palliative combination chemotherapy for metastatic colorectal or biliary tract cancer in patients unsuitable for GIFOLFIRI. Irinotecan 200 mg/m² IV Day 1; capecitabine 800 mg/m² BID Days 1–14. DPYD testing required. Patients must have loperamide on hand. Atropine for early cholinergic diarrhea. Gilbert's syndrome increases irinotecan toxicity risk.",
+    drugs: [
+      {
+        name: "Irinotecan",
+        dose: 200,
+        unit: "mg/m²",
+        basis: "bsa",
+        max: null,
+        weightCap: null,
+        route: "IV",
+        days: "Day 1",
+        reducible: true,
+        note: "IV in 500 mL D5W over 90 min. Dose level −1: 150 mg/m²; −2: discontinue. Avoid prochlorperazine same day."
+      },
+      {
+        name: "Capecitabine",
+        dose: 800,
+        unit: "mg/m²",
+        basis: "bsa",
+        max: null,
+        weightCap: null,
+        route: "PO",
+        days: "Days 1–14, BID",
+        reducible: true,
+        note: "BID dosing. Dose level −1: 500 mg/m²; −2: discontinue. Renal: CrCl 30–50 = 75%; <30 = discontinue. DPYD test required."
+      }
+    ],
+    labs: {
+      baseline: ["CBC & Diff", "creatinine", "ALT", "alkaline phosphatase", "total bilirubin", "albumin", "sodium", "potassium", "DPYD test"],
+      cycle: ["CBC & Diff", "creatinine", "total bilirubin", "ALT"],
+      conditional: [
+        { label: "Baseline if clinically indicated", tests: ["CEA", "CA 19-9", "GGT", "ECG"] },
+        { label: "If clinically indicated", tests: ["CEA", "CA 19-9", "alkaline phosphatase", "albumin", "GGT", "sodium", "potassium", "ECG"] }
+      ]
+    }
   }
 ]; // end PROTOCOLS
