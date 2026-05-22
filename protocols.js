@@ -18218,7 +18218,7 @@ const PROTOCOLS = [
     }
   },
 
-  // GI PROTOCOLS SUB-BATCH 2
+  // GI PROTOCOLS SUB-BATCHES 2–3
   {
     key: "GI-GIAVCAP",
     cat: "GI",
@@ -18397,6 +18397,233 @@ const PROTOCOLS = [
         { label: "Baseline if clinically indicated", tests: ["CEA", "CA 19-9", "GGT", "ECG"] },
         { label: "If clinically indicated", tests: ["CEA", "CA 19-9", "alkaline phosphatase", "albumin", "GGT", "sodium", "potassium", "ECG"] },
         { label: "If on warfarin: weekly until stable, then prior to each cycle", tests: ["INR"] }
+      ]
+    }
+  },
+  // GI PROTOCOLS SUB-BATCH 3
+  {
+    key: "GI-GIAVDUR4",
+    cat: "GI",
+    bcc: true,
+    name: "GIAVDUR4 - Durvalumab Maintenance [Biliary Tract]",
+    cycle: 28,
+    notes: "Durvalumab maintenance monotherapy following completion of GIAVDURPG (durvalumab + gemcitabine + cisplatin). Continue until disease progression or unacceptable toxicity. Maximum dose 1500 mg (use 1500 mg flat for patients ≥75 kg).",
+    drugs: [
+      {
+        name: "durvalumab",
+        dose: 20,
+        unit: "mg/kg",
+        basis: "weight",
+        max: 1500,
+        weightCap: null,
+        route: "IV",
+        days: "Day 1",
+        reducible: false,
+        note: "IV over 60 min. Do not dose reduce durvalumab — delay or discontinue for immune-mediated toxicity."
+      }
+    ],
+    labs: {
+      baseline: ["CBC & Diff", "creatinine", "ALT", "AST", "alkaline phosphatase", "total bilirubin", "albumin", "TSH", "random cortisol", "lipase"],
+      cycle: ["CBC & Diff", "creatinine", "ALT", "total bilirubin", "TSH"],
+      conditional: [
+        { label: "If clinically indicated", tests: ["lipase", "cortisol", "LDH"] }
+      ]
+    }
+  },
+  {
+    key: "GI-GIAVDURPG",
+    cat: "GI",
+    bcc: true,
+    name: "GIAVDURPG - Durvalumab + Gemcitabine + CISplatin [Biliary Tract]",
+    cycle: 21,
+    notes: "First-line treatment of unresectable, locally advanced, or metastatic biliary tract cancer (intrahepatic cholangiocarcinoma, extrahepatic cholangiocarcinoma, gallbladder carcinoma). Up to 8 cycles (24 weeks), then GIAVDUR4 maintenance. Carboplatin AUC 5 Day 1 may be substituted for cisplatin in patients with poor renal function or cisplatin intolerance.",
+    drugs: [
+      {
+        name: "durvalumab",
+        dose: 20,
+        unit: "mg/kg",
+        basis: "weight",
+        max: 1500,
+        weightCap: null,
+        route: "IV",
+        days: "Day 1",
+        reducible: false,
+        note: "IV over 60 min. Do not dose reduce — delay or discontinue for immune-mediated toxicity. Give before gemcitabine."
+      },
+      {
+        name: "gemcitabine",
+        dose: 1000,
+        unit: "mg/m²",
+        basis: "bsa",
+        max: null,
+        weightCap: null,
+        route: "IV",
+        days: "Days 1, 8",
+        reducible: true,
+        note: "IV over 30 min."
+      },
+      {
+        name: "cisplatin",
+        dose: 25,
+        unit: "mg/m²",
+        basis: "bsa",
+        max: null,
+        weightCap: null,
+        route: "IV",
+        days: "Days 1, 8",
+        reducible: true,
+        note: "IV over 1–2 h. Ensure adequate pre/post-hydration. Carboplatin AUC 5 Day 1 may be substituted."
+      }
+    ],
+    labs: {
+      baseline: ["CBC & Diff", "creatinine", "ALT", "AST", "alkaline phosphatase", "total bilirubin", "albumin", "TSH", "random cortisol", "lipase", "uric acid"],
+      cycle: ["CBC & Diff", "creatinine", "ALT", "total bilirubin"],
+      conditional: [
+        { label: "Before Day 8", tests: ["CBC & Diff", "creatinine"] },
+        { label: "If clinically indicated", tests: ["lipase", "cortisol", "LDH", "magnesium"] }
+      ]
+    }
+  },
+  {
+    key: "GI-GIAVFIROXB",
+    cat: "GI",
+    bcc: true,
+    name: "GIAVFIROXB - FOLFOXIRI + Bevacizumab [mCRC]",
+    cycle: 14,
+    notes: "First-line treatment of metastatic colorectal cancer (mCRC) in patients with good performance status (ECOG 0–1), age ≤70, adequate organ function. RAS and BRAF testing recommended. Bevacizumab held 4–6 weeks perioperatively.",
+    drugs: [
+      {
+        name: "bevacizumab",
+        dose: 5,
+        unit: "mg/kg",
+        basis: "weight",
+        max: null,
+        weightCap: null,
+        route: "IV",
+        days: "Day 1",
+        reducible: false,
+        note: "IV over 30–90 min (first infusion 90 min). Do not dose reduce — hold or discontinue per toxicity criteria."
+      },
+      {
+        name: "oxaliplatin",
+        dose: 85,
+        unit: "mg/m²",
+        basis: "bsa",
+        max: null,
+        weightCap: null,
+        route: "IV",
+        days: "Day 1",
+        reducible: true,
+        note: "IV over 2 h concurrently with leucovorin."
+      },
+      {
+        name: "leucovorin",
+        dose: 400,
+        unit: "mg/m²",
+        basis: "bsa",
+        max: null,
+        weightCap: null,
+        route: "IV",
+        days: "Day 1",
+        reducible: false,
+        note: "IV over 2 h concurrently with oxaliplatin."
+      },
+      {
+        name: "irinotecan",
+        dose: 180,
+        unit: "mg/m²",
+        basis: "bsa",
+        max: null,
+        weightCap: null,
+        route: "IV",
+        days: "Day 1",
+        reducible: true,
+        note: "IV over 90 min, starting 30 min after start of oxaliplatin/leucovorin. Reduce to 150 mg/m² if UGT1A1*28 homozygous."
+      },
+      {
+        name: "fluorouracil",
+        dose: 400,
+        unit: "mg/m²",
+        basis: "bsa",
+        max: null,
+        weightCap: null,
+        route: "IV",
+        days: "Day 1 (bolus)",
+        reducible: true,
+        note: "IV bolus immediately after leucovorin infusion."
+      },
+      {
+        name: "fluorouracil",
+        dose: 2400,
+        unit: "mg/m²",
+        basis: "bsa",
+        max: null,
+        weightCap: null,
+        route: "IV",
+        days: "Days 1–2 (CI 46 h)",
+        reducible: true,
+        note: "Continuous IV infusion over 46 h via ambulatory pump."
+      }
+    ],
+    labs: {
+      baseline: ["CBC & Diff", "creatinine", "ALT", "alkaline phosphatase", "total bilirubin", "albumin", "CEA", "urine protein (dipstick)", "UGT1A1 genotyping if available"],
+      cycle: ["CBC & Diff", "creatinine", "ALT", "total bilirubin", "urine protein (dipstick)"],
+      conditional: [
+        { label: "If urine protein ≥2+", tests: ["24 h urine protein"] },
+        { label: "If clinically indicated", tests: ["CEA", "magnesium"] }
+      ]
+    }
+  },
+  {
+    key: "GI-GIAVFL",
+    cat: "GI",
+    bcc: true,
+    name: "GIAVFL - Leucovorin + Fluorouracil (LV5FU2) [Advanced GI]",
+    cycle: 14,
+    notes: "Palliative chemotherapy for advanced colorectal cancer (first or later line), advanced gastric/esophagogastric cancer, advanced biliary tract cancer (2nd line), and advanced pancreatic cancer. Also used as the 5-FU backbone component in FOLFOX and FOLFIRI combinations.",
+    drugs: [
+      {
+        name: "leucovorin",
+        dose: 400,
+        unit: "mg/m²",
+        basis: "bsa",
+        max: null,
+        weightCap: null,
+        route: "IV",
+        days: "Day 1",
+        reducible: false,
+        note: "IV over 2 h."
+      },
+      {
+        name: "fluorouracil",
+        dose: 400,
+        unit: "mg/m²",
+        basis: "bsa",
+        max: null,
+        weightCap: null,
+        route: "IV",
+        days: "Day 1 (bolus)",
+        reducible: true,
+        note: "IV bolus immediately after leucovorin infusion."
+      },
+      {
+        name: "fluorouracil",
+        dose: 2400,
+        unit: "mg/m²",
+        basis: "bsa",
+        max: null,
+        weightCap: null,
+        route: "IV",
+        days: "Days 1–2 (CI 46 h)",
+        reducible: true,
+        note: "Continuous IV infusion over 46 h via ambulatory pump."
+      }
+    ],
+    labs: {
+      baseline: ["CBC & Diff", "creatinine", "ALT", "alkaline phosphatase", "total bilirubin", "albumin", "DPYD test"],
+      cycle: ["CBC & Diff", "creatinine", "ALT", "total bilirubin"],
+      conditional: [
+        { label: "If clinically indicated", tests: ["CEA", "CA 19-9"] }
       ]
     }
   }
