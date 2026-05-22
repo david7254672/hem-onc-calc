@@ -10391,6 +10391,108 @@ const PROTOCOLS = [
     }
   },
 
+  {
+    key: "BR-UBRAVCAFLV",
+    cat: "Breast",
+    bcc: true,
+    name: "UBRAVCAFLV - Capivasertib + Fulvestrant ± LHRH Agonist [Advanced HR+ HER2- PIK3CA/AKT1/PTEN-altered]",
+    cycle: 28,
+    notes: "HR+/HER2- locally advanced or metastatic breast cancer with PIK3CA/AKT1/PTEN alteration, progressed on ≥1 hormone therapy (or within 12 months of adjuvant HT). Post-menopausal women or men; pre-menopausal women require LHRH agonist. Compassionate Access Program approval required. Capivasertib 4 days on / 3 days off weekly schedule. Key risks: hyperglycemia (monitor fasting glucose weekly cycles 1–2, HbA1C every 12 weeks), diarrhea, cutaneous reactions. CYP3A4 substrate — avoid strong inducers.",
+    drugs: [
+      {
+        name: "Capivasertib",
+        dose: 400,
+        unit: "mg",
+        basis: "flat",
+        max: null,
+        weightCap: null,
+        route: "PO",
+        days: "Twice daily, Days 1–4 of each week (4 days on / 3 days off), every 28-day cycle",
+        reducible: true,
+        note: "AKT inhibitor. 4 on / 3 off weekly schedule. Monitor fasting glucose weekly (cycles 1–2). CYP3A4 substrate.",
+        levels: [320, 200]
+      },
+      {
+        name: "Fulvestrant",
+        dose: 500,
+        unit: "mg",
+        basis: "flat",
+        max: null,
+        weightCap: null,
+        route: "IM",
+        days: "Day 1 and Day 15 (Cycle 1); Day 1 only (Cycles 2+). Administer as two 250 mg injections.",
+        reducible: false,
+        note: "Continue fulvestrant even if capivasertib is held/reduced."
+      }
+    ],
+    labs: {
+      baseline: ["CBC & Diff", "creatinine", "ALT", "alkaline phosphatase", "total bilirubin", "GGT", "fasting glucose", "HbA1C"],
+      cycle: ["CBC & Diff", "fasting glucose"],
+      conditional: [
+        { label: "Baseline if indicated", tests: ["CA15-3", "ECG", "LDH"] },
+        { label: "Cycles 1 and 2 (weekly)", tests: ["fasting glucose"] },
+        { label: "Every 12 weeks (prior to cycles 4, 7, 10, 13, 16, etc.)", tests: ["HbA1C"] },
+        { label: "If clinically indicated", tests: ["HbA1C", "fasting glucose", "creatinine", "sodium", "potassium", "calcium", "magnesium", "lactate", "serum ketones", "albumin", "ALT", "alkaline phosphatase", "total bilirubin", "GGT", "LDH", "CA15-3", "ECG", "triglycerides"] }
+      ]
+    }
+  },
+  {
+    key: "BR-UBRAVTTCAP",
+    cat: "Breast",
+    bcc: true,
+    name: "UBRAVTTCAP - Trastuzumab + Tucatinib + Capecitabine [HER2+ Metastatic Breast]",
+    cycle: 21,
+    notes: "HER2+ unresectable locally advanced or metastatic breast cancer; prior trastuzumab, pertuzumab, and ADC (T-DM1 or T-DXd). Eligible with or without brain metastases. Trastuzumab loading dose (8 mg/kg) in Cycle 1 if ≥6 weeks since last trastuzumab (or ≥3 weeks since T-DM1/T-DXd); maintenance 6 mg/kg. Tucatinib CYP3A4 strong inhibitor — check drug interactions. DPYD testing required before capecitabine. Key risks: diarrhea, hand-foot syndrome, hepatotoxicity. Capecitabine reduce to 75% if CrCl 30–50 mL/min; discontinue if <30. Compassionate Access Program approval required.",
+    drugs: [
+      {
+        name: "Trastuzumab",
+        dose: 6,
+        unit: "mg/kg",
+        basis: "weight",
+        max: null,
+        weightCap: null,
+        route: "IV",
+        days: "Day 1 (loading dose 8 mg/kg Cycle 1 only if indicated; 6 mg/kg maintenance)",
+        reducible: false,
+        note: "Loading dose 8 mg/kg Cycle 1 if prior trastuzumab gap ≥6 weeks (or ≥3 weeks post T-DM1/T-DXd). Maintenance 6 mg/kg. Dose band per appendix table."
+      },
+      {
+        name: "Tucatinib",
+        dose: 300,
+        unit: "mg",
+        basis: "flat",
+        max: null,
+        weightCap: null,
+        route: "PO",
+        days: "Twice daily, continuously",
+        reducible: true,
+        note: "HER2-targeted TKI. Strong CYP3A4 inhibitor. Reduces dose for Grade ≥3 toxicity. Creatinine elevation is pharmacologic (OCT2/MATE1 inhibition), not true renal injury.",
+        levels: [250, 200, 150]
+      },
+      {
+        name: "Capecitabine",
+        dose: 1000,
+        unit: "mg/m²",
+        basis: "bsa",
+        max: null,
+        weightCap: null,
+        route: "PO",
+        days: "Twice daily, Days 1–14",
+        reducible: true,
+        note: "DPYD testing required. Reduce to 75% if CrCl 30–50 mL/min; discontinue if <30. Dose band per appendix table."
+      }
+    ],
+    labs: {
+      baseline: ["CBC & Diff", "creatinine", "total bilirubin", "ALT", "alkaline phosphatase", "DPYD test"],
+      cycle: ["CBC & Diff", "creatinine", "total bilirubin", "ALT"],
+      conditional: [
+        { label: "Baseline if clinically indicated", tests: ["ECG", "echocardiogram or MUGA scan"] },
+        { label: "If on warfarin: weekly until stable, then prior to each cycle", tests: ["INR"] },
+        { label: "If clinically indicated", tests: ["ECG", "echocardiogram", "MUGA scan", "total protein", "albumin", "GGT", "alkaline phosphatase", "LDH", "urea", "CA15-3"] }
+      ]
+    }
+  },
+
   // =========================================================
   // LUNG
   // =========================================================
@@ -17796,5 +17898,907 @@ const PROTOCOLS = [
         { label: "Every 3 months if taking flutamide", tests: ["total bilirubin", "ALT", "alkaline phosphatase"] }
       ]
     }
-}
+},
+
+  // =========================================================
+  // GI PROTOCOLS (BC Cancer GI series)
+  // =========================================================
+
+  {
+    key: "GI-GIAJCAP",
+    cat: "GI",
+    bcc: true,
+    name: "GIAJCAP - Capecitabine [Adjuvant Colon Cancer]",
+    cycle: 21,
+    notes: "Adjuvant capecitabine for resected Stage III or high-risk Stage II colon cancer. 8 cycles total. Starting dose 1000 mg/m² BID recommended for elderly or ECOG 2. DPYD testing required. Reduce to 75% if CrCl 30–50 mL/min; discontinue if <30 mL/min. Monitor INR weekly for patients on warfarin.",
+    drugs: [
+      {
+        name: "Capecitabine",
+        dose: 1250,
+        unit: "mg/m²",
+        basis: "bsa",
+        max: null,
+        weightCap: null,
+        route: "PO",
+        days: "Twice daily, Days 1–14",
+        reducible: true,
+        note: "Starting dose 1000 mg/m² BID for elderly or ECOG 2. DPYD testing required. Reduce to 75% if CrCl 30–50 mL/min."
+      }
+    ],
+    labs: {
+      baseline: ["CBC & Diff", "creatinine", "ALT", "alkaline phosphatase", "total bilirubin", "albumin", "sodium", "potassium", "DPYD test"],
+      cycle: ["CBC & Diff", "creatinine", "total bilirubin", "ALT"],
+      conditional: [
+        { label: "Baseline if clinically indicated", tests: ["CEA", "CA19-9", "GGT", "ECG"] },
+        { label: "If clinically indicated", tests: ["CEA", "CA19-9", "alkaline phosphatase", "albumin", "GGT", "sodium", "potassium", "ECG"] },
+        { label: "If on warfarin: weekly until stable, then prior to each cycle", tests: ["INR"] }
+      ]
+    }
+  },
+  {
+    key: "GI-GIAJCAPOX",
+    cat: "GI",
+    bcc: true,
+    name: "GIAJCAPOX - Oxaliplatin + Capecitabine [Adjuvant Stage III/IIB Colon]",
+    cycle: 21,
+    notes: "Adjuvant XELOX/CAPOX for Stage III or Stage IIB (T4N0) colon cancer. 4 cycles for low-risk Stage III (T1-3/N1); 8 cycles for high-risk (T4 or N2). Oxaliplatin in D5W (not NS). Counsel to avoid cold. DPYD testing required. Capecitabine reduce to 75% if CrCl 30–50 mL/min; discontinue if <30. Avoid in congenital long QT.",
+    drugs: [
+      {
+        name: "Oxaliplatin",
+        dose: 130,
+        unit: "mg/m²",
+        basis: "bsa",
+        max: null,
+        weightCap: null,
+        route: "IV",
+        days: "Day 1, over 2 hours in D5W",
+        reducible: true,
+        note: "Not compatible with NS. Avoid cold. Dose levels: −1 = 100 mg/m², −2 = 85 mg/m² (non-neurologic); separate neurologic reduction scheme."
+      },
+      {
+        name: "Capecitabine",
+        dose: 1000,
+        unit: "mg/m²",
+        basis: "bsa",
+        max: null,
+        weightCap: null,
+        route: "PO",
+        days: "Twice daily, Days 1–14",
+        reducible: true,
+        note: "DPYD testing required. Reduce to 75% if CrCl 30–50 mL/min; discontinue if <30."
+      }
+    ],
+    labs: {
+      baseline: ["CBC & Diff", "creatinine", "ALT", "alkaline phosphatase", "total bilirubin", "albumin", "sodium", "potassium", "DPYD test"],
+      cycle: ["CBC & Diff", "creatinine", "total bilirubin", "ALT"],
+      conditional: [
+        { label: "Baseline if clinically indicated", tests: ["CEA", "CA19-9", "GGT", "ECG"] },
+        { label: "If clinically indicated", tests: ["CEA", "CA19-9", "alkaline phosphatase", "albumin", "GGT", "sodium", "potassium", "ECG"] },
+        { label: "If on warfarin: weekly until stable, then prior to each cycle", tests: ["INR"] }
+      ]
+    }
+  },
+  {
+    key: "GI-GIAJFFOX",
+    cat: "GI",
+    bcc: true,
+    name: "GIAJFFOX - mFOLFOX6 [Adjuvant Stage III/IIB Colon]",
+    cycle: 14,
+    notes: "Adjuvant mFOLFOX6 (oxaliplatin + leucovorin + 5-FU) for Stage III or Stage IIB (T4N0) colon cancer. 12 cycles for high-risk Stage III (T4/N2); 6 cycles for low-risk (T1-3/N1); 3-month option for low-risk due to lower neurotoxicity. Oxaliplatin in D5W only. Counsel to avoid cold. DPYD testing required. Patient pump for 46-h 5-FU infusion. Avoid congenital long QT.",
+    drugs: [
+      {
+        name: "Oxaliplatin",
+        dose: 85,
+        unit: "mg/m²",
+        basis: "bsa",
+        max: null,
+        weightCap: null,
+        route: "IV",
+        days: "Day 1, over 2 hours in D5W (concurrent with leucovorin via Y-site)",
+        reducible: true,
+        note: "Not compatible with NS. Neurologic dose levels: −1N=65, −2N=50 mg/m². Non-neurologic: −1=65, −2=50 mg/m²."
+      },
+      {
+        name: "Leucovorin",
+        dose: 400,
+        unit: "mg/m²",
+        basis: "bsa",
+        max: null,
+        weightCap: null,
+        route: "IV",
+        days: "Day 1, over 2 hours in D5W (Y-site with oxaliplatin)",
+        reducible: false,
+        note: "No dose modification. If 5-FU push omitted, leucovorin may be omitted or given as 20 mg/m² IV push."
+      },
+      {
+        name: "Fluorouracil (push)",
+        dose: 400,
+        unit: "mg/m²",
+        basis: "bsa",
+        max: null,
+        weightCap: null,
+        route: "IV push",
+        days: "Day 1",
+        reducible: true,
+        note: "Bolus dose. Dose levels: −1=320, −2=200 mg/m². DPYD testing required."
+      },
+      {
+        name: "Fluorouracil (infusion)",
+        dose: 2400,
+        unit: "mg/m²",
+        basis: "bsa",
+        max: null,
+        weightCap: null,
+        route: "IV",
+        days: "Days 1–2, over 46 hours (continuous infusion via Baxter LV5 INFUSOR)",
+        reducible: true,
+        note: "Continuous infusion 46 h. Dose levels: −1=1900, −2=1500 mg/m²."
+      }
+    ],
+    labs: {
+      baseline: ["CBC & Diff", "creatinine", "ALT", "alkaline phosphatase", "total bilirubin", "albumin", "sodium", "potassium", "DPYD test"],
+      cycle: ["CBC & Diff", "creatinine", "total bilirubin", "ALT"],
+      conditional: [
+        { label: "Baseline if clinically indicated", tests: ["CEA", "CA19-9", "GGT", "ECG"] },
+        { label: "If clinically indicated", tests: ["CEA", "CA19-9", "alkaline phosphatase", "albumin", "GGT", "sodium", "potassium", "ECG"] },
+        { label: "If on warfarin: weekly until stable, then prior to each cycle", tests: ["INR"] }
+      ]
+    }
+  },
+  {
+    key: "GI-GIAJFL",
+    cat: "GI",
+    bcc: true,
+    name: "GIAJFL - Fluorouracil + Leucovorin [Adjuvant Colon Cancer]",
+    cycle: 14,
+    notes: "Adjuvant fluorouracil/leucovorin (sLV5FU2) for resected Stage III or high-risk Stage II colon cancer. 12 cycles total. For patients unable to tolerate oxaliplatin-based regimens. DPYD testing required. Monitor INR weekly for patients on warfarin.",
+    drugs: [
+      {
+        name: "Leucovorin",
+        dose: 400,
+        unit: "mg/m²",
+        basis: "bsa",
+        max: null,
+        weightCap: null,
+        route: "IV",
+        days: "Day 1, over 2 hours in D5W",
+        reducible: false,
+        note: "No dose modification. If 5-FU push omitted, may be omitted or given as 20 mg/m² IV push."
+      },
+      {
+        name: "Fluorouracil (push)",
+        dose: 400,
+        unit: "mg/m²",
+        basis: "bsa",
+        max: null,
+        weightCap: null,
+        route: "IV push",
+        days: "Day 1",
+        reducible: true,
+        note: "Bolus dose. Dose levels: −1=320, −2=240 mg/m². DPYD testing required."
+      },
+      {
+        name: "Fluorouracil (infusion)",
+        dose: 2400,
+        unit: "mg/m²",
+        basis: "bsa",
+        max: null,
+        weightCap: null,
+        route: "IV",
+        days: "Days 1–2, over 46 hours (continuous infusion via Baxter LV5 INFUSOR)",
+        reducible: true,
+        note: "Continuous infusion 46 h. Dose levels: −1=2000, −2=1600 mg/m²."
+      }
+    ],
+    labs: {
+      baseline: ["CBC & Diff", "creatinine", "ALT", "alkaline phosphatase", "total bilirubin", "albumin", "sodium", "potassium", "DPYD test"],
+      cycle: ["CBC & Diff", "creatinine", "total bilirubin", "ALT"],
+      conditional: [
+        { label: "Baseline if clinically indicated", tests: ["CEA", "CA19-9", "GGT", "ECG"] },
+        { label: "If clinically indicated", tests: ["CEA", "CA19-9", "alkaline phosphatase", "albumin", "GGT", "sodium", "potassium", "ECG"] },
+        { label: "If on warfarin: weekly until stable, then prior to each cycle", tests: ["INR"] }
+      ]
+    }
+  },
+  {
+    key: "GI-GIAJNIV",
+    cat: "GI",
+    bcc: true,
+    name: "GIAJNIV - Nivolumab [Adjuvant Esophageal/GEJ Cancer]",
+    cycle: 28,
+    notes: "Adjuvant nivolumab for resected esophageal or gastroesophageal junction (adenocarcinoma or SCC) with residual pathologic disease after neoadjuvant chemoradiation. Maximum 13 cycles (1 year). Start within 16 weeks of surgery. PD-L1/CPS not required. No specific dose reductions — toxicity managed by delay (see SCIMMUNE). Caution with autoimmune disease or systemic immunosuppression.",
+    drugs: [
+      {
+        name: "Nivolumab",
+        dose: 6,
+        unit: "mg/kg",
+        basis: "weight",
+        max: 480,
+        weightCap: null,
+        route: "IV",
+        days: "Day 1, over 30 minutes",
+        reducible: false,
+        note: "Maximum 480 mg per dose. No dose reductions — delay for toxicity per SCIMMUNE. Max 13 cycles."
+      }
+    ],
+    labs: {
+      baseline: ["CBC & Diff", "creatinine", "alkaline phosphatase", "ALT", "total bilirubin", "albumin", "sodium", "potassium", "TSH", "morning serum cortisol", "chest x-ray or CT chest"],
+      cycle: ["CBC & Diff", "creatinine", "ALT", "total bilirubin", "sodium", "potassium", "TSH"],
+      conditional: [
+        { label: "Baseline if clinically indicated", tests: ["CEA", "CA19-9", "creatine kinase", "troponin", "free T3", "free T4", "GGT", "lipase", "random glucose", "serum ACTH", "testosterone", "estradiol", "FSH", "LH", "ECG"] },
+        { label: "If clinically indicated", tests: ["CEA", "CA19-9", "morning serum cortisol", "lipase", "random glucose", "free T3", "free T4", "serum ACTH", "testosterone", "estradiol", "FSH", "LH", "alkaline phosphatase", "albumin", "GGT", "creatine kinase", "troponin", "ECG", "chest x-ray"] }
+      ]
+    }
+  },
+  {
+    key: "GI-GIAJRALOX",
+    cat: "GI",
+    bcc: true,
+    name: "GIAJRALOX - Raltitrexed + Oxaliplatin [Adjuvant Colon — 5-FU/Capecitabine Intolerant]",
+    cycle: 21,
+    notes: "Adjuvant raltitrexed + oxaliplatin for Stage III colon cancer with documented intolerance to fluorouracil or capecitabine. Maximum 8 cycles. Not supported by high-level evidence — use under BC Cancer/CON medical oncologist supervision only. Oxaliplatin in D5W (not NS). Raltitrexed dose adjusted for renal function (CrCl). Avoid leucovorin/folic acid concurrent with raltitrexed.",
+    drugs: [
+      {
+        name: "Raltitrexed",
+        dose: 3,
+        unit: "mg/m²",
+        basis: "bsa",
+        max: null,
+        weightCap: null,
+        route: "IV",
+        days: "Day 1, over 15 minutes in NS",
+        reducible: true,
+        note: "Thymidylate synthase inhibitor. Reduce for renal impairment: 75% at CrCl 55-65 mL/min (q4w); dose = CrCl% at CrCl 25-54 (q4w); discontinue if <25. Avoid concurrent leucovorin/folic acid."
+      },
+      {
+        name: "Oxaliplatin",
+        dose: 130,
+        unit: "mg/m²",
+        basis: "bsa",
+        max: null,
+        weightCap: null,
+        route: "IV",
+        days: "Day 1, over 2 hours in D5W",
+        reducible: true,
+        note: "Not compatible with NS. Neurologic levels: −1N=100, −2N=65 mg/m². Non-neurologic: −1=100, −2=85 mg/m²."
+      }
+    ],
+    labs: {
+      baseline: ["CBC & Diff", "creatinine", "ALT", "alkaline phosphatase", "total bilirubin", "albumin", "sodium", "potassium"],
+      cycle: ["CBC & Diff", "creatinine", "total bilirubin", "ALT"],
+      conditional: [
+        { label: "Baseline if clinically indicated", tests: ["CEA", "CA19-9", "GGT", "ECG"] },
+        { label: "If clinically indicated", tests: ["CEA", "CA19-9", "alkaline phosphatase", "albumin", "GGT", "sodium", "potassium", "ECG"] },
+        { label: "If on warfarin: weekly until stable, then prior to each cycle", tests: ["INR"] }
+      ]
+    }
+  },
+  {
+    key: "GI-GIATZB",
+    cat: "GI",
+    bcc: true,
+    name: "GIATZB - Atezolizumab + Bevacizumab [First-Line Advanced HCC]",
+    cycle: 21,
+    notes: "First-line atezolizumab + bevacizumab for previously untreated unresectable/metastatic hepatocellular carcinoma (Child-Pugh A). Atezolizumab given as 1875 mg SC or 1200 mg IV. Only biosimilar bevacizumab funded. Continue with single agent if one drug stopped for intolerance. Caution: esophageal/gastric varices — assess/treat before starting. Monitor BP and proteinuria. Retreatment allowed if stopped for toxicity and progression ≥6 months after stopping.",
+    drugs: [
+      {
+        name: "Atezolizumab",
+        dose: 1200,
+        unit: "mg",
+        basis: "flat",
+        max: null,
+        weightCap: null,
+        route: "IV (or 1875 mg SC)",
+        days: "Day 1",
+        reducible: false,
+        note: "PD-L1 inhibitor. No dose reductions — delay for immune-mediated toxicity per SCIMMUNE. SC option: 1875 mg over 7 minutes into thigh."
+      },
+      {
+        name: "Bevacizumab",
+        dose: 15,
+        unit: "mg/kg",
+        basis: "weight",
+        max: null,
+        weightCap: null,
+        route: "IV",
+        days: "Day 1, over 30 minutes",
+        reducible: false,
+        note: "Anti-VEGF. Recalculate dose if >10% weight change. Only biosimilar funded. Hold for proteinuria >2 g/24h; discontinue if >4 g/24h. Hold for hypertensive crisis."
+      }
+    ],
+    labs: {
+      baseline: ["CBC & Diff", "creatinine", "ALT", "alkaline phosphatase", "total bilirubin", "INR", "albumin", "sodium", "potassium", "TSH", "morning serum cortisol", "blood pressure", "chest x-ray or CT chest"],
+      cycle: ["CBC & Diff", "creatinine", "ALT", "total bilirubin", "INR", "albumin", "sodium", "potassium", "TSH", "blood pressure", "urinalysis for protein (even cycles)"],
+      conditional: [
+        { label: "Baseline if clinically indicated", tests: ["AFP", "GGT", "free T3", "free T4", "random glucose", "lipase", "creatine kinase", "troponin", "ECG"] },
+        { label: "If proteinuria 2+ or ≥1 g/L: within 3 days before next cycle", tests: ["24-hour urine protein"] },
+        { label: "If clinically indicated", tests: ["AFP", "alkaline phosphatase", "GGT", "free T3", "free T4", "random glucose", "morning serum cortisol", "lipase", "creatine kinase", "troponin", "serum ACTH", "testosterone", "estradiol", "FSH", "LH", "ECG", "chest x-ray"] },
+        { label: "If on warfarin: weekly until stable, then prior to each cycle", tests: ["INR"] }
+      ]
+    }
+  },
+
+  // GI PROTOCOLS SUB-BATCHES 2–3
+  {
+    key: "GI-GIAVCAP",
+    cat: "GI",
+    bcc: true,
+    name: "GIAVCAP - Capecitabine [Advanced GI]",
+    cycle: 21,
+    notes: "Palliative therapy for advanced GI cancers (colorectal, pancreatic post-gemcitabine, biliary tract 2nd line, gastric not fit for combination chemo). Starting dose of 1000 mg/m² BID recommended for elderly, poor PS, or extensively pretreated patients.",
+    drugs: [
+      {
+        name: "capecitabine",
+        dose: 1250,
+        unit: "mg/m²",
+        basis: "bsa",
+        max: null,
+        weightCap: null,
+        route: "PO",
+        days: "Days 1–14 BID (starting dose 1000 mg/m² BID for elderly/poor PS)",
+        reducible: true,
+        note: "Total daily dose 2000–2500 mg/m²/day. Use 1000 mg/m² BID as starting dose for elderly or poor PS patients."
+      }
+    ],
+    labs: {
+      baseline: ["CBC & Diff", "creatinine", "total bilirubin", "ALT", "alkaline phosphatase", "random glucose", "DPYD test"],
+      cycle: ["CBC & Diff", "creatinine", "total bilirubin", "ALT"],
+      conditional: [
+        { label: "Baseline if clinically indicated", tests: ["ECG", "GGT", "CEA", "CA 19-9"] },
+        { label: "If clinically indicated", tests: ["alkaline phosphatase", "albumin", "GGT", "sodium", "potassium", "random glucose", "ECG", "CEA", "CA 19-9"] },
+        { label: "If on warfarin: weekly until stable, then prior to each cycle", tests: ["INR"] }
+      ]
+    }
+  },
+  {
+    key: "GI-GIAVCAPB",
+    cat: "GI",
+    bcc: true,
+    name: "GIAVCAPB - Capecitabine + Bevacizumab [mCRC]",
+    cycle: 21,
+    notes: "Palliative therapy for metastatic colorectal adenocarcinoma. Patients without left-sided primary may receive bevacizumab OR panitumumab but not sequential use.",
+    drugs: [
+      {
+        name: "bevacizumab",
+        dose: 7.5,
+        unit: "mg/kg",
+        basis: "weight",
+        max: null,
+        weightCap: null,
+        route: "IV",
+        days: "Day 1",
+        reducible: false,
+        note: "IV in 100 mL NS over 15 min. Recalculate if >10% body weight change."
+      },
+      {
+        name: "capecitabine",
+        dose: 1000,
+        unit: "mg/m²",
+        basis: "bsa",
+        max: null,
+        weightCap: null,
+        route: "PO",
+        days: "Days 1–14 BID",
+        reducible: true,
+        note: "Total daily dose 2000 mg/m²/day."
+      }
+    ],
+    labs: {
+      baseline: ["CBC & Diff", "creatinine", "ALT", "alkaline phosphatase", "total bilirubin", "albumin", "sodium", "potassium", "DPYD test", "urinalysis for protein", "blood pressure"],
+      cycle: ["CBC & Diff", "creatinine", "total bilirubin", "ALT", "blood pressure"],
+      conditional: [
+        { label: "Baseline if clinically indicated", tests: ["CEA", "CA 19-9", "GGT", "ECG"] },
+        { label: "Prior to each even-numbered cycle", tests: ["urinalysis for protein"] },
+        { label: "If proteinuria 2+ or ≥1 g/L: within 3 days before next cycle", tests: ["24-hour urine protein"] },
+        { label: "If clinically indicated", tests: ["CEA", "CA 19-9", "alkaline phosphatase", "albumin", "GGT", "sodium", "potassium", "ECG"] },
+        { label: "If on warfarin: weekly until stable, then prior to each cycle", tests: ["INR"] }
+      ]
+    }
+  },
+  {
+    key: "GI-GIAVCETIR",
+    cat: "GI",
+    bcc: true,
+    name: "GIAVCETIR - Cetuximab + Irinotecan [mCRC 3rd line]",
+    cycle: 14,
+    notes: "Third-line therapy for metastatic colorectal adenocarcinoma. Requires wild-type RAS and wild-type BRAF. Patients may receive GIAVPANI or GIAVCETIR but not both.",
+    drugs: [
+      {
+        name: "cetuximab",
+        dose: 500,
+        unit: "mg/m²",
+        basis: "bsa",
+        max: null,
+        weightCap: null,
+        route: "IV",
+        days: "Day 1",
+        reducible: true,
+        note: "Cycle 1: infuse over 2 h, observe 1 h post-infusion. Subsequent: infuse over 1 h. No dilution required; flush with NS."
+      },
+      {
+        name: "irinotecan",
+        dose: 180,
+        unit: "mg/m²",
+        basis: "bsa",
+        max: null,
+        weightCap: null,
+        route: "IV",
+        days: "Day 1",
+        reducible: true,
+        note: "IV in 500 mL D5W over 90 min. Monitor for cholinergic symptoms; treat with atropine 0.3 mg SC."
+      }
+    ],
+    labs: {
+      baseline: ["CBC & Diff", "sodium", "potassium", "creatinine", "total bilirubin", "ALT", "alkaline phosphatase", "albumin"],
+      cycle: ["CBC & Diff", "creatinine", "total bilirubin", "ALT", "magnesium"],
+      conditional: [
+        { label: "Baseline if clinically indicated", tests: ["CEA", "CA19-9", "GGT", "magnesium", "calcium", "ECG"] },
+        { label: "If clinically indicated", tests: ["CEA", "CA19-9", "alkaline phosphatase", "albumin", "calcium", "GGT", "sodium", "potassium", "ECG"] }
+      ]
+    }
+  },
+  {
+    key: "GI-GIAVCRT",
+    cat: "GI",
+    bcc: true,
+    name: "GIAVCRT - Capecitabine + Radiation [Stage IV Rectal]",
+    cycle: null,
+    notes: "Combined modality therapy for Stage IV rectal carcinoma (palliative, symptomatic local disease). Capecitabine given on RT days only (25 fractions over 5–6 weeks). Radiation: 4500 cGy in 25 fractions ± boost.",
+    drugs: [
+      {
+        name: "capecitabine",
+        dose: 825,
+        unit: "mg/m²",
+        basis: "bsa",
+        max: null,
+        weightCap: null,
+        route: "PO",
+        days: "BID on each RT day (Days 1–5 each week for 5 weeks)",
+        reducible: true,
+        note: "Total daily dose 1650 mg/m²/day. Given only on radiation therapy days. Second dose 10–12 h after first."
+      }
+    ],
+    labs: {
+      baseline: ["CBC & Diff", "creatinine", "ALT", "alkaline phosphatase", "total bilirubin", "albumin", "sodium", "potassium", "DPYD test"],
+      cycle: ["CBC & Diff", "creatinine"],
+      conditional: [
+        { label: "Baseline if clinically indicated", tests: ["CEA", "CA19-9", "GGT", "ECG"] },
+        { label: "Weekly during radiation if clinically indicated", tests: ["total bilirubin", "ALT"] },
+        { label: "If clinically indicated", tests: ["CEA", "CA19-9", "total bilirubin", "ALT", "alkaline phosphatase", "albumin", "GGT", "sodium", "potassium", "ECG"] },
+        { label: "If on warfarin: weekly during capecitabine therapy", tests: ["INR"] }
+      ]
+    }
+  },
+  {
+    key: "GI-GIAVDOC",
+    cat: "GI",
+    bcc: true,
+    name: "GIAVDOC - DOCEtaxel [Esophagogastric]",
+    cycle: 21,
+    notes: "Palliative treatment of metastatic esophagogastric adenocarcinoma unsuitable for, or progressed on, platinum-based chemotherapy. Taxane-naive only.",
+    drugs: [
+      {
+        name: "docetaxel",
+        dose: 75,
+        unit: "mg/m²",
+        basis: "bsa",
+        max: null,
+        weightCap: null,
+        route: "IV",
+        days: "Day 1",
+        reducible: true,
+        note: "IV in 250–500 mL NS over 1 h (use non-DEHP equipment). Premedicate with dexamethasone 8 mg PO BID × 3 days starting 1 day prior."
+      }
+    ],
+    labs: {
+      baseline: ["CBC & Diff", "creatinine", "ALT", "alkaline phosphatase", "total bilirubin", "albumin", "sodium", "potassium"],
+      cycle: ["CBC & Diff", "creatinine", "total bilirubin", "ALT"],
+      conditional: [
+        { label: "Baseline if clinically indicated", tests: ["CEA", "CA 19-9", "GGT", "ECG"] },
+        { label: "If clinically indicated", tests: ["CEA", "CA 19-9", "alkaline phosphatase", "albumin", "GGT", "sodium", "potassium", "ECG"] },
+        { label: "If on warfarin: weekly until stable, then prior to each cycle", tests: ["INR"] }
+      ]
+    }
+  },
+  // GI PROTOCOLS SUB-BATCH 3
+  {
+    key: "GI-GIAVDUR4",
+    cat: "GI",
+    bcc: true,
+    name: "GIAVDUR4 - Durvalumab Maintenance [Biliary Tract]",
+    cycle: 28,
+    notes: "Durvalumab maintenance monotherapy following completion of GIAVDURPG (durvalumab + gemcitabine + cisplatin). Continue until disease progression or unacceptable toxicity. Maximum dose 1500 mg (use 1500 mg flat for patients ≥75 kg).",
+    drugs: [
+      {
+        name: "durvalumab",
+        dose: 20,
+        unit: "mg/kg",
+        basis: "weight",
+        max: 1500,
+        weightCap: null,
+        route: "IV",
+        days: "Day 1",
+        reducible: false,
+        note: "IV over 60 min. Do not dose reduce durvalumab — delay or discontinue for immune-mediated toxicity."
+      }
+    ],
+    labs: {
+      baseline: ["CBC & Diff", "creatinine", "ALT", "AST", "alkaline phosphatase", "total bilirubin", "albumin", "TSH", "random cortisol", "lipase"],
+      cycle: ["CBC & Diff", "creatinine", "ALT", "total bilirubin", "TSH"],
+      conditional: [
+        { label: "If clinically indicated", tests: ["lipase", "cortisol", "LDH"] }
+      ]
+    }
+  },
+  {
+    key: "GI-GIAVDURPG",
+    cat: "GI",
+    bcc: true,
+    name: "GIAVDURPG - Durvalumab + Gemcitabine + CISplatin [Biliary Tract]",
+    cycle: 21,
+    notes: "First-line treatment of unresectable, locally advanced, or metastatic biliary tract cancer (intrahepatic cholangiocarcinoma, extrahepatic cholangiocarcinoma, gallbladder carcinoma). Up to 8 cycles (24 weeks), then GIAVDUR4 maintenance. Carboplatin AUC 5 Day 1 may be substituted for cisplatin in patients with poor renal function or cisplatin intolerance.",
+    drugs: [
+      {
+        name: "durvalumab",
+        dose: 20,
+        unit: "mg/kg",
+        basis: "weight",
+        max: 1500,
+        weightCap: null,
+        route: "IV",
+        days: "Day 1",
+        reducible: false,
+        note: "IV over 60 min. Do not dose reduce — delay or discontinue for immune-mediated toxicity. Give before gemcitabine."
+      },
+      {
+        name: "gemcitabine",
+        dose: 1000,
+        unit: "mg/m²",
+        basis: "bsa",
+        max: null,
+        weightCap: null,
+        route: "IV",
+        days: "Days 1, 8",
+        reducible: true,
+        note: "IV over 30 min."
+      },
+      {
+        name: "cisplatin",
+        dose: 25,
+        unit: "mg/m²",
+        basis: "bsa",
+        max: null,
+        weightCap: null,
+        route: "IV",
+        days: "Days 1, 8",
+        reducible: true,
+        note: "IV over 1–2 h. Ensure adequate pre/post-hydration. Carboplatin AUC 5 Day 1 may be substituted."
+      }
+    ],
+    labs: {
+      baseline: ["CBC & Diff", "creatinine", "ALT", "AST", "alkaline phosphatase", "total bilirubin", "albumin", "TSH", "random cortisol", "lipase", "uric acid"],
+      cycle: ["CBC & Diff", "creatinine", "ALT", "total bilirubin"],
+      conditional: [
+        { label: "Before Day 8", tests: ["CBC & Diff", "creatinine"] },
+        { label: "If clinically indicated", tests: ["lipase", "cortisol", "LDH", "magnesium"] }
+      ]
+    }
+  },
+  {
+    key: "GI-GIAVFIROXB",
+    cat: "GI",
+    bcc: true,
+    name: "GIAVFIROXB - FOLFOXIRI + Bevacizumab [mCRC]",
+    cycle: 14,
+    notes: "First-line treatment of metastatic colorectal cancer (mCRC) in patients with good performance status (ECOG 0–1), age ≤70, adequate organ function. RAS and BRAF testing recommended. Bevacizumab held 4–6 weeks perioperatively.",
+    drugs: [
+      {
+        name: "bevacizumab",
+        dose: 5,
+        unit: "mg/kg",
+        basis: "weight",
+        max: null,
+        weightCap: null,
+        route: "IV",
+        days: "Day 1",
+        reducible: false,
+        note: "IV over 30–90 min (first infusion 90 min). Do not dose reduce — hold or discontinue per toxicity criteria."
+      },
+      {
+        name: "oxaliplatin",
+        dose: 85,
+        unit: "mg/m²",
+        basis: "bsa",
+        max: null,
+        weightCap: null,
+        route: "IV",
+        days: "Day 1",
+        reducible: true,
+        note: "IV over 2 h concurrently with leucovorin."
+      },
+      {
+        name: "leucovorin",
+        dose: 400,
+        unit: "mg/m²",
+        basis: "bsa",
+        max: null,
+        weightCap: null,
+        route: "IV",
+        days: "Day 1",
+        reducible: false,
+        note: "IV over 2 h concurrently with oxaliplatin."
+      },
+      {
+        name: "irinotecan",
+        dose: 180,
+        unit: "mg/m²",
+        basis: "bsa",
+        max: null,
+        weightCap: null,
+        route: "IV",
+        days: "Day 1",
+        reducible: true,
+        note: "IV over 90 min, starting 30 min after start of oxaliplatin/leucovorin. Reduce to 150 mg/m² if UGT1A1*28 homozygous."
+      },
+      {
+        name: "fluorouracil",
+        dose: 400,
+        unit: "mg/m²",
+        basis: "bsa",
+        max: null,
+        weightCap: null,
+        route: "IV",
+        days: "Day 1 (bolus)",
+        reducible: true,
+        note: "IV bolus immediately after leucovorin infusion."
+      },
+      {
+        name: "fluorouracil",
+        dose: 2400,
+        unit: "mg/m²",
+        basis: "bsa",
+        max: null,
+        weightCap: null,
+        route: "IV",
+        days: "Days 1–2 (CI 46 h)",
+        reducible: true,
+        note: "Continuous IV infusion over 46 h via ambulatory pump."
+      }
+    ],
+    labs: {
+      baseline: ["CBC & Diff", "creatinine", "ALT", "alkaline phosphatase", "total bilirubin", "albumin", "CEA", "urine protein (dipstick)", "UGT1A1 genotyping if available"],
+      cycle: ["CBC & Diff", "creatinine", "ALT", "total bilirubin", "urine protein (dipstick)"],
+      conditional: [
+        { label: "If urine protein ≥2+", tests: ["24 h urine protein"] },
+        { label: "If clinically indicated", tests: ["CEA", "magnesium"] }
+      ]
+    }
+  },
+  {
+    key: "GI-GIAVFL",
+    cat: "GI",
+    bcc: true,
+    name: "GIAVFL - Leucovorin + Fluorouracil (LV5FU2) [Advanced GI]",
+    cycle: 14,
+    notes: "Palliative chemotherapy for advanced colorectal cancer (first or later line), advanced gastric/esophagogastric cancer, advanced biliary tract cancer (2nd line), and advanced pancreatic cancer. Also used as the 5-FU backbone component in FOLFOX and FOLFIRI combinations.",
+    drugs: [
+      {
+        name: "leucovorin",
+        dose: 400,
+        unit: "mg/m²",
+        basis: "bsa",
+        max: null,
+        weightCap: null,
+        route: "IV",
+        days: "Day 1",
+        reducible: false,
+        note: "IV over 2 h."
+      },
+      {
+        name: "fluorouracil",
+        dose: 400,
+        unit: "mg/m²",
+        basis: "bsa",
+        max: null,
+        weightCap: null,
+        route: "IV",
+        days: "Day 1 (bolus)",
+        reducible: true,
+        note: "IV bolus immediately after leucovorin infusion."
+      },
+      {
+        name: "fluorouracil",
+        dose: 2400,
+        unit: "mg/m²",
+        basis: "bsa",
+        max: null,
+        weightCap: null,
+        route: "IV",
+        days: "Days 1–2 (CI 46 h)",
+        reducible: true,
+        note: "Continuous IV infusion over 46 h via ambulatory pump."
+      }
+    ],
+    labs: {
+      baseline: ["CBC & Diff", "creatinine", "ALT", "alkaline phosphatase", "total bilirubin", "albumin", "DPYD test"],
+      cycle: ["CBC & Diff", "creatinine", "ALT", "total bilirubin"],
+      conditional: [
+        { label: "If clinically indicated", tests: ["CEA", "CA 19-9"] }
+      ]
+    }
+  },
+  // GI PROTOCOLS SUB-BATCH 4
+  {
+    key: "GI-GIAVPANI",
+    cat: "GI",
+    bcc: true,
+    name: "GIAVPANI - PANitumumab [mCRC 3rd line]",
+    cycle: 14,
+    notes: "Palliative third-line treatment of metastatic colorectal adenocarcinoma. Requires wild-type RAS and wild-type BRAF (tested on primary or metastatic tumour). Previous treatment with fluorouracil or capecitabine, irinotecan, and oxaliplatin required. Patients may receive one of GIAVPANI or GIAVCETIR — not both.",
+    drugs: [
+      {
+        name: "panitumumab",
+        dose: 6,
+        unit: "mg/kg",
+        basis: "weight",
+        max: null,
+        weightCap: null,
+        route: "IV",
+        days: "Day 1",
+        reducible: true,
+        note: "IV in 100 mL NS over 60 min using 0.2 micron in-line filter; may reduce to 30 min if well tolerated in subsequent cycles. Do not shake. Consider preemptive doxycycline 100 mg PO BID + topical clindamycin 2%/hydrocortisone 1% lotion for first 6 weeks."
+      }
+    ],
+    labs: {
+      baseline: ["CBC & Diff", "creatinine", "ALT", "alkaline phosphatase", "total bilirubin", "albumin", "sodium", "potassium"],
+      cycle: ["CBC & Diff", "creatinine", "total bilirubin", "ALT", "magnesium"],
+      conditional: [
+        { label: "Baseline if clinically indicated", tests: ["CEA", "CA 19-9", "GGT", "magnesium", "calcium", "ECG"] },
+        { label: "If clinically indicated", tests: ["CEA", "CA 19-9", "alkaline phosphatase", "albumin", "calcium", "GGT", "sodium", "potassium", "ECG"] }
+      ]
+    }
+  },
+  {
+    key: "GI-GIAVPEMPG",
+    cat: "GI",
+    bcc: true,
+    name: "GIAVPEMPG - Pembrolizumab + Gemcitabine + CISplatin [Biliary Tract]",
+    cycle: 21,
+    notes: "First-line palliative treatment of advanced biliary tract cancer (intrahepatic/extrahepatic cholangiocarcinoma, gallbladder, mixed HCC-cholangiocarcinoma; excludes ampulla of Vater). Up to 8 cycles of pembrolizumab + gemcitabine + cisplatin, then maintenance with pembrolizumab + gemcitabine (q3w) or pembrolizumab monotherapy (q6w). Carboplatin AUC 5 Day 1 may substitute for cisplatin. Not for use sequentially with GIAVDURPG.",
+    drugs: [
+      {
+        name: "pembrolizumab",
+        dose: 2,
+        unit: "mg/kg",
+        basis: "weight",
+        max: 200,
+        weightCap: null,
+        route: "IV",
+        days: "Day 1",
+        reducible: false,
+        note: "IV in 50 mL NS over 30 min using 0.2 micron in-line filter. Do not dose reduce — delay or discontinue for immune-mediated toxicity. See SCIMMUNE for management of immune-mediated adverse reactions."
+      },
+      {
+        name: "gemcitabine",
+        dose: 1000,
+        unit: "mg/m²",
+        basis: "bsa",
+        max: null,
+        weightCap: null,
+        route: "IV",
+        days: "Days 1, 8",
+        reducible: true,
+        note: "IV in 250 mL NS over 30 min."
+      },
+      {
+        name: "cisplatin",
+        dose: 25,
+        unit: "mg/m²",
+        basis: "bsa",
+        max: null,
+        weightCap: null,
+        route: "IV",
+        days: "Days 1, 8 (cycles 1–8 only; max 8 cycles)",
+        reducible: true,
+        note: "IV in 100–250 mL NS over 30 min. Carboplatin AUC 5 Day 1 may substitute for cisplatin. Ensure adequate hydration."
+      }
+    ],
+    labs: {
+      baseline: ["CBC & Diff", "creatinine", "sodium", "potassium", "ALT", "alkaline phosphatase", "total bilirubin", "albumin", "TSH", "morning serum cortisol", "chest x-ray or CT chest"],
+      cycle: ["CBC & Diff", "creatinine", "ALT", "total bilirubin", "sodium", "potassium", "TSH"],
+      conditional: [
+        { label: "Before Day 8", tests: ["CBC & Diff", "creatinine (if using CISplatin)"] },
+        { label: "Baseline if clinically indicated", tests: ["GGT", "lipase", "random glucose", "CEA", "CA 19-9", "ECG"] },
+        { label: "If clinically indicated", tests: ["alkaline phosphatase", "albumin", "morning serum cortisol", "lipase", "random glucose", "GGT", "CEA", "CA 19-9", "ECG"] },
+        { label: "If on warfarin during gemcitabine: weekly until stable, then prior to each cycle", tests: ["INR"] }
+      ]
+    }
+  },
+  {
+    key: "GI-GIAVPG",
+    cat: "GI",
+    bcc: true,
+    name: "GIAVPG - Gemcitabine + CISplatin [Biliary/Pancreatic/Gallbladder]",
+    cycle: 21,
+    notes: "First-line palliative chemotherapy for advanced gallbladder carcinoma, pancreatic carcinoma, ampullary cancer, or cholangiocarcinoma. Carboplatin AUC 5 Day 1 may substitute for cisplatin in patients with creatinine clearance <45 mL/min or cisplatin intolerance. GFR capped at 125 mL/min for carboplatin dosing.",
+    drugs: [
+      {
+        name: "gemcitabine",
+        dose: 1000,
+        unit: "mg/m²",
+        basis: "bsa",
+        max: null,
+        weightCap: null,
+        route: "IV",
+        days: "Days 1, 8",
+        reducible: true,
+        note: "IV in 250 mL NS over 30 min."
+      },
+      {
+        name: "cisplatin",
+        dose: 25,
+        unit: "mg/m²",
+        basis: "bsa",
+        max: null,
+        weightCap: null,
+        route: "IV",
+        days: "Days 1, 8",
+        reducible: true,
+        note: "IV in 100–250 mL NS over 30 min. Carboplatin AUC 5 Day 1 may substitute. Ensure adequate hydration."
+      }
+    ],
+    labs: {
+      baseline: ["CBC & Diff", "creatinine", "ALT", "alkaline phosphatase", "total bilirubin", "albumin", "sodium", "potassium", "random glucose", "HbA1c"],
+      cycle: ["CBC & Diff", "creatinine", "total bilirubin", "ALT"],
+      conditional: [
+        { label: "Before Day 8", tests: ["CBC & Diff", "creatinine (if using CISplatin)"] },
+        { label: "Baseline if clinically indicated", tests: ["ECG", "CEA", "CA 19-9", "GGT"] },
+        { label: "If clinically indicated", tests: ["alkaline phosphatase", "albumin", "GGT", "sodium", "potassium", "random glucose", "HbA1c", "ECG", "CA 19-9", "CEA"] },
+        { label: "If on warfarin: weekly until stable warfarin dose established, then prior to each cycle", tests: ["INR"] }
+      ]
+    }
+  },
+  {
+    key: "GI-GIAVRALIR",
+    cat: "GI",
+    bcc: true,
+    name: "GIAVRALIR - Raltitrexed + Irinotecan [mCRC, 5-FU intolerant]",
+    cycle: 21,
+    notes: "Palliative therapy for stage IV metastatic colorectal cancer in patients with documented intolerance to fluorouracil or capecitabine, or known/suspected DPD deficiency. Folic acid and leucovorin must not be administered prior to or during raltitrexed (antagonism). Avoid prochlorperazine on irinotecan day (akathisia risk). Patients must have adequate supply of loperamide for diarrhea management.",
+    drugs: [
+      {
+        name: "raltitrexed",
+        dose: 3,
+        unit: "mg/m²",
+        basis: "bsa",
+        max: null,
+        weightCap: null,
+        route: "IV",
+        days: "Day 1",
+        reducible: true,
+        note: "IV in 100 mL NS over 15 min. Do not give leucovorin or folic acid concurrently. Dose-adjust for renal impairment (see protocol)."
+      },
+      {
+        name: "irinotecan",
+        dose: 180,
+        unit: "mg/m²",
+        basis: "bsa",
+        max: null,
+        weightCap: null,
+        route: "IV",
+        days: "Day 1",
+        reducible: true,
+        levels: [150, 120],
+        note: "IV in 500 mL D5W over 90 min. Atropine 0.3 mg SC may be needed for early cholinergic diarrhea. Loperamide for late diarrhea."
+      }
+    ],
+    labs: {
+      baseline: ["CBC & Diff", "creatinine", "ALT", "alkaline phosphatase", "total bilirubin", "albumin", "sodium", "potassium"],
+      cycle: ["CBC & Diff", "creatinine", "total bilirubin", "ALT"],
+      conditional: [
+        { label: "Baseline if clinically indicated", tests: ["CEA", "CA 19-9", "GGT", "ECG"] },
+        { label: "If clinically indicated", tests: ["CEA", "CA 19-9", "alkaline phosphatase", "albumin", "GGT", "sodium", "potassium", "ECG"] }
+      ]
+    }
+  }
 ]; // end PROTOCOLS
