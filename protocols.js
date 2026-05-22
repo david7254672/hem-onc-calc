@@ -18216,5 +18216,188 @@ const PROTOCOLS = [
         { label: "If on warfarin: weekly until stable, then prior to each cycle", tests: ["INR"] }
       ]
     }
+  },
+
+  // GI PROTOCOLS SUB-BATCH 2
+  {
+    key: "GI-GIAVCAP",
+    cat: "GI",
+    bcc: true,
+    name: "GIAVCAP - Capecitabine [Advanced GI]",
+    cycle: 21,
+    notes: "Palliative therapy for advanced GI cancers (colorectal, pancreatic post-gemcitabine, biliary tract 2nd line, gastric not fit for combination chemo). Starting dose of 1000 mg/m² BID recommended for elderly, poor PS, or extensively pretreated patients.",
+    drugs: [
+      {
+        name: "capecitabine",
+        dose: 1250,
+        unit: "mg/m²",
+        basis: "bsa",
+        max: null,
+        weightCap: null,
+        route: "PO",
+        days: "Days 1–14 BID (starting dose 1000 mg/m² BID for elderly/poor PS)",
+        reducible: true,
+        note: "Total daily dose 2000–2500 mg/m²/day. Use 1000 mg/m² BID as starting dose for elderly or poor PS patients."
+      }
+    ],
+    labs: {
+      baseline: ["CBC & Diff", "creatinine", "total bilirubin", "ALT", "alkaline phosphatase", "random glucose", "DPYD test"],
+      cycle: ["CBC & Diff", "creatinine", "total bilirubin", "ALT"],
+      conditional: [
+        { label: "Baseline if clinically indicated", tests: ["ECG", "GGT", "CEA", "CA 19-9"] },
+        { label: "If clinically indicated", tests: ["alkaline phosphatase", "albumin", "GGT", "sodium", "potassium", "random glucose", "ECG", "CEA", "CA 19-9"] },
+        { label: "If on warfarin: weekly until stable, then prior to each cycle", tests: ["INR"] }
+      ]
+    }
+  },
+  {
+    key: "GI-GIAVCAPB",
+    cat: "GI",
+    bcc: true,
+    name: "GIAVCAPB - Capecitabine + Bevacizumab [mCRC]",
+    cycle: 21,
+    notes: "Palliative therapy for metastatic colorectal adenocarcinoma. Patients without left-sided primary may receive bevacizumab OR panitumumab but not sequential use.",
+    drugs: [
+      {
+        name: "bevacizumab",
+        dose: 7.5,
+        unit: "mg/kg",
+        basis: "weight",
+        max: null,
+        weightCap: null,
+        route: "IV",
+        days: "Day 1",
+        reducible: false,
+        note: "IV in 100 mL NS over 15 min. Recalculate if >10% body weight change."
+      },
+      {
+        name: "capecitabine",
+        dose: 1000,
+        unit: "mg/m²",
+        basis: "bsa",
+        max: null,
+        weightCap: null,
+        route: "PO",
+        days: "Days 1–14 BID",
+        reducible: true,
+        note: "Total daily dose 2000 mg/m²/day."
+      }
+    ],
+    labs: {
+      baseline: ["CBC & Diff", "creatinine", "ALT", "alkaline phosphatase", "total bilirubin", "albumin", "sodium", "potassium", "DPYD test", "urinalysis for protein", "blood pressure"],
+      cycle: ["CBC & Diff", "creatinine", "total bilirubin", "ALT", "blood pressure"],
+      conditional: [
+        { label: "Baseline if clinically indicated", tests: ["CEA", "CA 19-9", "GGT", "ECG"] },
+        { label: "Prior to each even-numbered cycle", tests: ["urinalysis for protein"] },
+        { label: "If proteinuria 2+ or ≥1 g/L: within 3 days before next cycle", tests: ["24-hour urine protein"] },
+        { label: "If clinically indicated", tests: ["CEA", "CA 19-9", "alkaline phosphatase", "albumin", "GGT", "sodium", "potassium", "ECG"] },
+        { label: "If on warfarin: weekly until stable, then prior to each cycle", tests: ["INR"] }
+      ]
+    }
+  },
+  {
+    key: "GI-GIAVCETIR",
+    cat: "GI",
+    bcc: true,
+    name: "GIAVCETIR - Cetuximab + Irinotecan [mCRC 3rd line]",
+    cycle: 14,
+    notes: "Third-line therapy for metastatic colorectal adenocarcinoma. Requires wild-type RAS and wild-type BRAF. Patients may receive GIAVPANI or GIAVCETIR but not both.",
+    drugs: [
+      {
+        name: "cetuximab",
+        dose: 500,
+        unit: "mg/m²",
+        basis: "bsa",
+        max: null,
+        weightCap: null,
+        route: "IV",
+        days: "Day 1",
+        reducible: true,
+        note: "Cycle 1: infuse over 2 h, observe 1 h post-infusion. Subsequent: infuse over 1 h. No dilution required; flush with NS."
+      },
+      {
+        name: "irinotecan",
+        dose: 180,
+        unit: "mg/m²",
+        basis: "bsa",
+        max: null,
+        weightCap: null,
+        route: "IV",
+        days: "Day 1",
+        reducible: true,
+        note: "IV in 500 mL D5W over 90 min. Monitor for cholinergic symptoms; treat with atropine 0.3 mg SC."
+      }
+    ],
+    labs: {
+      baseline: ["CBC & Diff", "sodium", "potassium", "creatinine", "total bilirubin", "ALT", "alkaline phosphatase", "albumin"],
+      cycle: ["CBC & Diff", "creatinine", "total bilirubin", "ALT", "magnesium"],
+      conditional: [
+        { label: "Baseline if clinically indicated", tests: ["CEA", "CA19-9", "GGT", "magnesium", "calcium", "ECG"] },
+        { label: "If clinically indicated", tests: ["CEA", "CA19-9", "alkaline phosphatase", "albumin", "calcium", "GGT", "sodium", "potassium", "ECG"] }
+      ]
+    }
+  },
+  {
+    key: "GI-GIAVCRT",
+    cat: "GI",
+    bcc: true,
+    name: "GIAVCRT - Capecitabine + Radiation [Stage IV Rectal]",
+    cycle: null,
+    notes: "Combined modality therapy for Stage IV rectal carcinoma (palliative, symptomatic local disease). Capecitabine given on RT days only (25 fractions over 5–6 weeks). Radiation: 4500 cGy in 25 fractions ± boost.",
+    drugs: [
+      {
+        name: "capecitabine",
+        dose: 825,
+        unit: "mg/m²",
+        basis: "bsa",
+        max: null,
+        weightCap: null,
+        route: "PO",
+        days: "BID on each RT day (Days 1–5 each week for 5 weeks)",
+        reducible: true,
+        note: "Total daily dose 1650 mg/m²/day. Given only on radiation therapy days. Second dose 10–12 h after first."
+      }
+    ],
+    labs: {
+      baseline: ["CBC & Diff", "creatinine", "ALT", "alkaline phosphatase", "total bilirubin", "albumin", "sodium", "potassium", "DPYD test"],
+      cycle: ["CBC & Diff", "creatinine"],
+      conditional: [
+        { label: "Baseline if clinically indicated", tests: ["CEA", "CA19-9", "GGT", "ECG"] },
+        { label: "Weekly during radiation if clinically indicated", tests: ["total bilirubin", "ALT"] },
+        { label: "If clinically indicated", tests: ["CEA", "CA19-9", "total bilirubin", "ALT", "alkaline phosphatase", "albumin", "GGT", "sodium", "potassium", "ECG"] },
+        { label: "If on warfarin: weekly during capecitabine therapy", tests: ["INR"] }
+      ]
+    }
+  },
+  {
+    key: "GI-GIAVDOC",
+    cat: "GI",
+    bcc: true,
+    name: "GIAVDOC - DOCEtaxel [Esophagogastric]",
+    cycle: 21,
+    notes: "Palliative treatment of metastatic esophagogastric adenocarcinoma unsuitable for, or progressed on, platinum-based chemotherapy. Taxane-naive only.",
+    drugs: [
+      {
+        name: "docetaxel",
+        dose: 75,
+        unit: "mg/m²",
+        basis: "bsa",
+        max: null,
+        weightCap: null,
+        route: "IV",
+        days: "Day 1",
+        reducible: true,
+        note: "IV in 250–500 mL NS over 1 h (use non-DEHP equipment). Premedicate with dexamethasone 8 mg PO BID × 3 days starting 1 day prior."
+      }
+    ],
+    labs: {
+      baseline: ["CBC & Diff", "creatinine", "ALT", "alkaline phosphatase", "total bilirubin", "albumin", "sodium", "potassium"],
+      cycle: ["CBC & Diff", "creatinine", "total bilirubin", "ALT"],
+      conditional: [
+        { label: "Baseline if clinically indicated", tests: ["CEA", "CA 19-9", "GGT", "ECG"] },
+        { label: "If clinically indicated", tests: ["CEA", "CA 19-9", "alkaline phosphatase", "albumin", "GGT", "sodium", "potassium", "ECG"] },
+        { label: "If on warfarin: weekly until stable, then prior to each cycle", tests: ["INR"] }
+      ]
+    }
   }
 ]; // end PROTOCOLS
