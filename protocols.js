@@ -10391,6 +10391,108 @@ const PROTOCOLS = [
     }
   },
 
+  {
+    key: "BR-UBRAVCAFLV",
+    cat: "Breast",
+    bcc: true,
+    name: "UBRAVCAFLV - Capivasertib + Fulvestrant ± LHRH Agonist [Advanced HR+ HER2- PIK3CA/AKT1/PTEN-altered]",
+    cycle: 28,
+    notes: "HR+/HER2- locally advanced or metastatic breast cancer with PIK3CA/AKT1/PTEN alteration, progressed on ≥1 hormone therapy (or within 12 months of adjuvant HT). Post-menopausal women or men; pre-menopausal women require LHRH agonist. Compassionate Access Program approval required. Capivasertib 4 days on / 3 days off weekly schedule. Key risks: hyperglycemia (monitor fasting glucose weekly cycles 1–2, HbA1C every 12 weeks), diarrhea, cutaneous reactions. CYP3A4 substrate — avoid strong inducers.",
+    drugs: [
+      {
+        name: "Capivasertib",
+        dose: 400,
+        unit: "mg",
+        basis: "flat",
+        max: null,
+        weightCap: null,
+        route: "PO",
+        days: "Twice daily, Days 1–4 of each week (4 days on / 3 days off), every 28-day cycle",
+        reducible: true,
+        note: "AKT inhibitor. 4 on / 3 off weekly schedule. Monitor fasting glucose weekly (cycles 1–2). CYP3A4 substrate.",
+        levels: [320, 200]
+      },
+      {
+        name: "Fulvestrant",
+        dose: 500,
+        unit: "mg",
+        basis: "flat",
+        max: null,
+        weightCap: null,
+        route: "IM",
+        days: "Day 1 and Day 15 (Cycle 1); Day 1 only (Cycles 2+). Administer as two 250 mg injections.",
+        reducible: false,
+        note: "Continue fulvestrant even if capivasertib is held/reduced."
+      }
+    ],
+    labs: {
+      baseline: ["CBC & Diff", "creatinine", "ALT", "alkaline phosphatase", "total bilirubin", "GGT", "fasting glucose", "HbA1C"],
+      cycle: ["CBC & Diff", "fasting glucose"],
+      conditional: [
+        { label: "Baseline if indicated", tests: ["CA15-3", "ECG", "LDH"] },
+        { label: "Cycles 1 and 2 (weekly)", tests: ["fasting glucose"] },
+        { label: "Every 12 weeks (prior to cycles 4, 7, 10, 13, 16, etc.)", tests: ["HbA1C"] },
+        { label: "If clinically indicated", tests: ["HbA1C", "fasting glucose", "creatinine", "sodium", "potassium", "calcium", "magnesium", "lactate", "serum ketones", "albumin", "ALT", "alkaline phosphatase", "total bilirubin", "GGT", "LDH", "CA15-3", "ECG", "triglycerides"] }
+      ]
+    }
+  },
+  {
+    key: "BR-UBRAVTTCAP",
+    cat: "Breast",
+    bcc: true,
+    name: "UBRAVTTCAP - Trastuzumab + Tucatinib + Capecitabine [HER2+ Metastatic Breast]",
+    cycle: 21,
+    notes: "HER2+ unresectable locally advanced or metastatic breast cancer; prior trastuzumab, pertuzumab, and ADC (T-DM1 or T-DXd). Eligible with or without brain metastases. Trastuzumab loading dose (8 mg/kg) in Cycle 1 if ≥6 weeks since last trastuzumab (or ≥3 weeks since T-DM1/T-DXd); maintenance 6 mg/kg. Tucatinib CYP3A4 strong inhibitor — check drug interactions. DPYD testing required before capecitabine. Key risks: diarrhea, hand-foot syndrome, hepatotoxicity. Capecitabine reduce to 75% if CrCl 30–50 mL/min; discontinue if <30. Compassionate Access Program approval required.",
+    drugs: [
+      {
+        name: "Trastuzumab",
+        dose: 6,
+        unit: "mg/kg",
+        basis: "weight",
+        max: null,
+        weightCap: null,
+        route: "IV",
+        days: "Day 1 (loading dose 8 mg/kg Cycle 1 only if indicated; 6 mg/kg maintenance)",
+        reducible: false,
+        note: "Loading dose 8 mg/kg Cycle 1 if prior trastuzumab gap ≥6 weeks (or ≥3 weeks post T-DM1/T-DXd). Maintenance 6 mg/kg. Dose band per appendix table."
+      },
+      {
+        name: "Tucatinib",
+        dose: 300,
+        unit: "mg",
+        basis: "flat",
+        max: null,
+        weightCap: null,
+        route: "PO",
+        days: "Twice daily, continuously",
+        reducible: true,
+        note: "HER2-targeted TKI. Strong CYP3A4 inhibitor. Reduces dose for Grade ≥3 toxicity. Creatinine elevation is pharmacologic (OCT2/MATE1 inhibition), not true renal injury.",
+        levels: [250, 200, 150]
+      },
+      {
+        name: "Capecitabine",
+        dose: 1000,
+        unit: "mg/m²",
+        basis: "bsa",
+        max: null,
+        weightCap: null,
+        route: "PO",
+        days: "Twice daily, Days 1–14",
+        reducible: true,
+        note: "DPYD testing required. Reduce to 75% if CrCl 30–50 mL/min; discontinue if <30. Dose band per appendix table."
+      }
+    ],
+    labs: {
+      baseline: ["CBC & Diff", "creatinine", "total bilirubin", "ALT", "alkaline phosphatase", "DPYD test"],
+      cycle: ["CBC & Diff", "creatinine", "total bilirubin", "ALT"],
+      conditional: [
+        { label: "Baseline if clinically indicated", tests: ["ECG", "echocardiogram or MUGA scan"] },
+        { label: "If on warfarin: weekly until stable, then prior to each cycle", tests: ["INR"] },
+        { label: "If clinically indicated", tests: ["ECG", "echocardiogram", "MUGA scan", "total protein", "albumin", "GGT", "alkaline phosphatase", "LDH", "urea", "CA15-3"] }
+      ]
+    }
+  },
+
   // =========================================================
   // LUNG
   // =========================================================
