@@ -142,8 +142,11 @@ BC Cancer protocol codes follow a site prefix pattern, but some protocols have a
 The protocol `key` in the JS should reflect the actual BC Cancer code (e.g., `"LU-LUAVPC"`, `"LU-ULUAJATZ"`), and the `name` field should lead with the code for easy scanning in the dropdown (e.g., `"LUAVPC - CARBOplatin + PACLitaxel [NSCLC]"`).
 
 ## Pending / Known Issues
-- **GI, Breast protocols**: Categories exist in the dropdown but few or no protocols added.
+- **Breast protocols**: 57 entries (BR + UBR series complete as of PR 7).
+- **GI protocols**: 97 entries already populated in `protocols.js`. ⚠️ **Key-naming inconsistency**: pre-existing GI entries use a mix of `GI-GIxxx` (28 entries, matches CLAUDE.md convention) and `GI-xxx` single-prefix (69 entries — e.g. `GI-FOLFOX`, `GI-GAVCOXT`). Per the convention in this file, all keys should be `SITE-FULLCODE`, so the single-prefix entries should eventually be renamed to `GI-GIFOLFOX`, `GI-GIGAVCOXT`, etc. (mechanical follow-up). Source PDFs at `./Chemo protocols/GI - 2/source-pdfs/` (97 files).
 - **GU `levels` data**: substantially backfilled — all oral targeted agents (TKIs, AR-axis) and the gem/cis + small-cell chemo backbones now carry protocol-specific tiers. Still no levels by design for curative germ-cell regimens (GUBEP/GUEP/GUVEIP — protocol forbids reduction), AUC-only carboplatin (GUSCARB — delay only), MVAC variants (renal-trigger schemes don't map cleanly to discrete levels), and axitinib (continuous 2–10 mg BID range, not numbered tiers).
+
+> ⚠️ **Lesson learned (PRs 7–8):** Before extracting a new tumour-site category, ALWAYS check both `cat: "X"` AND `cat:"X"` (with and without space) — pre-existing entries from earlier sessions may use compact format that a strict-spaced grep misses. Use `grep -cE 'cat\s*:\s*"X"'` to catch both formats. The GI category was already fully populated in compact format when PR 7 began; my work silently duplicated 28 entries by key collision and another 27 semantically (under different key spellings) before the in-browser validator flagged it.
 
 ## Adding a New Protocol
 Add a new object to the `PROTOCOLS` array in `protocols.js` (before `]; // end PROTOCOLS`). Set `cat` to one of the existing category strings. Set `bcc: true` if sourced from BC Cancer. No other registration needed — both apps load `protocols.js` and `filterProtocols()` dynamically builds the dropdown from the array.
