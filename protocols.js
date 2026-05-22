@@ -12944,7 +12944,7 @@ const PROTOCOLS = [
   },
 
   {
-    key:"GI-EFFOXRT", cat:"GI", bcc:true,
+    key:"GI-GIEFFOXRT", cat:"GI", bcc:true,
     name:"EFFOX + Radiation (Esophageal)",
     cycle:14,
     notes:"Combined modality therapy for locally advanced squamous cell or adenocarcinoma of the esophagus; curative intent; 6 cycles total (cycles 1–3 concurrent with RT, cycles 4–6 post-RT). (GIEFFOXRT). BC Cancer GIEFFOXRT.",
@@ -12979,7 +12979,7 @@ const PROTOCOLS = [
   },
 
   {
-    key:"GI-ENACTRT", cat:"GI", bcc:true,
+    key:"GI-GIENACTRT", cat:"GI", bcc:true,
     name:"Carboplatin + Paclitaxel + Radiation (Esophageal Neoadjuvant)",
     cycle:7,
     notes:"Neoadjuvant chemoradiation for resectable esophageal or gastroesophageal junction carcinoma; weekly carboplatin AUC 2 + paclitaxel 50 mg/m² × 5 weeks concurrent with RT (41.4 Gy in 23 fractions). (GIENACTRT). BC Cancer GIENACTRT.",
@@ -13009,7 +13009,7 @@ const PROTOCOLS = [
   },
 
   {
-    key:"GI-ENDO2", cat:"GI", bcc:true,
+    key:"GI-GIENDO2", cat:"GI", bcc:true,
     name:"Streptozocin + Doxorubicin (Pancreatic NET)",
     cycle:42,
     notes:"Palliative therapy for metastatic or unresectable pancreatic endocrine tumours; streptozocin requires Health Canada Special Access Programme approval; 3–6 cycles. Preferred agent is GIAVTZCAP. (GIENDO2). BC Cancer GIENDO2.",
@@ -13043,7 +13043,7 @@ const PROTOCOLS = [
   },
 
   {
-    key:"GI-FFIRB", cat:"GI", bcc:true,
+    key:"GI-GIFFIRB", cat:"GI", bcc:true,
     name:"FOLFIRI + Bevacizumab (Colorectal)",
     cycle:14,
     notes:"Palliative combination chemotherapy for locally advanced or metastatic colorectal adenocarcinoma (also appendix/small bowel); first-line or after progression; bevacizumab not used sequentially with panitumumab. (GIFFIRB). BC Cancer GIFFIRB.",
@@ -13082,7 +13082,7 @@ const PROTOCOLS = [
   },
 
   {
-    key:"GI-FFIRPAN", cat:"GI", bcc:true,
+    key:"GI-GIFFIRPAN", cat:"GI", bcc:true,
     name:"FOLFIRI + Panitumumab (Colorectal)",
     cycle:14,
     notes:"Palliative combination chemotherapy for metastatic colorectal adenocarcinoma; wild-type RAS and BRAF required; left-sided tumours or bevacizumab-ineligible patients. (GIFFIRPAN). BC Cancer GIFFIRPAN.",
@@ -13119,7 +13119,7 @@ const PROTOCOLS = [
   },
 
   {
-    key:"GI-FFOXB", cat:"GI", bcc:true,
+    key:"GI-GIFFOXB", cat:"GI", bcc:true,
     name:"FOLFOX + Bevacizumab (Colorectal)",
     cycle:14,
     notes:"Palliative combination chemotherapy for locally advanced or metastatic colorectal adenocarcinoma (also appendix/small bowel); first-line or after progression; bevacizumab not used sequentially with panitumumab. (GIFFOXB). BC Cancer GIFFOXB.",
@@ -13158,7 +13158,7 @@ const PROTOCOLS = [
   },
 
   {
-    key:"GI-FFOXPAN", cat:"GI", bcc:true,
+    key:"GI-GIFFOXPAN", cat:"GI", bcc:true,
     name:"FOLFOX + Panitumumab (Colorectal)",
     cycle:14,
     notes:"Palliative combination chemotherapy for metastatic colorectal adenocarcinoma; wild-type RAS required; left-sided tumours or bevacizumab-ineligible patients. (GIFFOXPAN). BC Cancer GIFFOXPAN.",
@@ -13195,7 +13195,7 @@ const PROTOCOLS = [
   },
 
   {
-    key:"GI-FIRINOX", cat:"GI", bcc:true,
+    key:"GI-GIFIRINOX", cat:"GI", bcc:true,
     name:"FOLFIRINOX (Pancreatic)",
     cycle:14,
     notes:"Palliative combination chemotherapy for locally advanced or metastatic pancreatic adenocarcinoma; first-line; ECOG 0–1; not used sequentially with GIPGEMABR. (GIFIRINOX). BC Cancer GIFIRINOX.",
@@ -13233,7 +13233,7 @@ const PROTOCOLS = [
   },
 
   {
-    key:"GI-FOLFIRI", cat:"GI", bcc:true,
+    key:"GI-GIFOLFIRI", cat:"GI", bcc:true,
     name:"FOLFIRI (Colorectal)",
     cycle:14,
     notes:"Palliative combination chemotherapy for locally advanced or metastatic colorectal adenocarcinoma (also appendix/small bowel); first-line or after oxaliplatin-based therapy. (GIFOLFIRI). BC Cancer GIFOLFIRI.",
@@ -13268,7 +13268,7 @@ const PROTOCOLS = [
   },
 
   {
-    key:"GI-FOLFOX", cat:"GI", bcc:true,
+    key:"GI-GIFOLFOX", cat:"GI", bcc:true,
     name:"FOLFOX (Colorectal)",
     cycle:14,
     notes:"Palliative combination chemotherapy for locally advanced or metastatic colorectal adenocarcinoma (also appendix/small bowel); first-line, pseudoadjuvant, or after irinotecan-based therapy. (GIFOLFOX). BC Cancer GIFOLFOX.",
@@ -13303,7 +13303,7 @@ const PROTOCOLS = [
   },
 
   {
-    key:"GI-FUART", cat:"GI", bcc:true,
+    key:"GI-GIFUART", cat:"GI", bcc:true,
     name:"Mitomycin, Infusional Fluorouracil and Radiation Therapy for Anal Canal Carcinoma",
     cycle:null,
     notes:"Curative combined modality therapy for squamous cell or cloacogenic carcinoma of the anal canal (T any, N any, M0). Mitomycin on Day 1 of Weeks 1 and 5 (optional Week 5); fluorouracil Days 1–4 of Weeks 1 and 5, concurrent with 50.4 Gy radiation over 5.5 weeks. (GIFUART). BC Cancer GIFUART.",
@@ -13334,7 +13334,7 @@ const PROTOCOLS = [
   },
 
   {
-    key:"GI-FUC", cat:"GI", bcc:true,
+    key:"GI-GIFUC", cat:"GI", bcc:true,
     name:"Infusional Fluorouracil and CISplatin for Upper GI and Metastatic Anal Cancer",
     cycle:28,
     notes:"Palliative chemotherapy for metastatic/unresectable upper GI adenocarcinoma (gastric, esophageal, gallbladder, pancreas, bile ducts) or metastatic anal squamous cell/cloacogenic carcinoma. Weekly cisplatin and 48 h fluorouracil infusion on Days 1, 8, 15, 22. (GIFUC). BC Cancer GIFUC.",
@@ -13368,7 +13368,7 @@ const PROTOCOLS = [
   },
 
   {
-    key:"GI-GAJCOX", cat:"GI", bcc:true,
+    key:"GI-GIGAJCOX", cat:"GI", bcc:true,
     name:"Oxaliplatin and Capecitabine (CAPOX) Adjuvant for Gastric Cancer",
     cycle:21,
     notes:"Adjuvant chemotherapy for gastric cancer after D2 resection (node negative) or patients ineligible for adjuvant chemoradiation. Maximum 8 cycles. (GIGAJCOX). BC Cancer GIGAJCOX.",
@@ -13402,7 +13402,7 @@ const PROTOCOLS = [
   },
 
   {
-    key:"GI-GAJCPRT", cat:"GI", bcc:true,
+    key:"GI-GIGAJCPRT", cat:"GI", bcc:true,
     name:"CISplatin, Capecitabine and Radiation Therapy Adjuvant for Gastric Cancer (ARTIST)",
     cycle:21,
     notes:"Adjuvant chemoradiation for completely resected gastric cancer stage IIA or higher. 5 cycles: Cycles 1–2 pre-RT (cisplatin + capecitabine), Cycle 3 concurrent with 45 Gy RT (capecitabine alone), Cycles 4–5 post-RT (cisplatin + capecitabine). (GIGAJCPRT). BC Cancer GIGAJCPRT.",
@@ -13437,7 +13437,7 @@ const PROTOCOLS = [
   },
 
   {
-    key:"GI-GAJFFOX", cat:"GI", bcc:true,
+    key:"GI-GIGAJFFOX", cat:"GI", bcc:true,
     name:"Oxaliplatin, Fluorouracil and Leucovorin (mFOLFOX6) Adjuvant for Gastric Cancer",
     cycle:14,
     notes:"Adjuvant chemotherapy for gastric cancer after D2 resection (node negative) or ineligible for adjuvant chemoradiation. Maximum 12 cycles. (GIGAJFFOX). BC Cancer GIGAJFFOX.",
@@ -13473,7 +13473,7 @@ const PROTOCOLS = [
   },
 
   {
-    key:"GI-GAVCCT", cat:"GI", bcc:true,
+    key:"GI-GIGAVCCT", cat:"GI", bcc:true,
     name:"CISplatin, Capecitabine and Trastuzumab for HER2+ Gastric/GEJ/Esophageal Adenocarcinoma",
     cycle:21,
     notes:"First-line palliative treatment of metastatic or locally advanced HER2-positive (IHC3+ or FISH ≥2) gastric, gastroesophageal junction, or esophageal adenocarcinoma. 6 cycles then trastuzumab maintenance. Preferred protocol is GIGAVCOXT (oxaliplatin-based); use this for pre-existing neuropathy. (GIGAVCCT). BC Cancer GIGAVCCT.",
@@ -13508,7 +13508,7 @@ const PROTOCOLS = [
   },
 
   {
-    key:"GI-GAVCC", cat:"GI", bcc:true,
+    key:"GI-GIGAVCC", cat:"GI", bcc:true,
     name:"CISplatin and Capecitabine for Metastatic Anal Squamous Cell Carcinoma",
     cycle:21,
     notes:"Palliative therapy for metastatic or locally advanced anal squamous cell carcinoma. (GIGAVCC). BC Cancer GIGAVCC.",
@@ -13542,7 +13542,7 @@ const PROTOCOLS = [
   },
 
   {
-    key:"GI-GAVCFT", cat:"GI", bcc:true,
+    key:"GI-GIGAVCFT", cat:"GI", bcc:true,
     name:"CISplatin, Infusional Fluorouracil and Trastuzumab for HER2+ Gastric/GEJ Adenocarcinoma",
     cycle:21,
     notes:"First-line palliative treatment of metastatic or inoperable locally advanced HER2-positive (IHC3+ or FISH ≥2) gastric or gastroesophageal junction adenocarcinoma. 6 cycles then trastuzumab maintenance (see GIGAVTR). (GIGAVCFT). BC Cancer GIGAVCFT.",
@@ -13577,7 +13577,7 @@ const PROTOCOLS = [
   },
 
   {
-    key:"GI-GAVCOXN", cat:"GI", bcc:true,
+    key:"GI-GIGAVCOXN", cat:"GI", bcc:true,
     name:"Oxaliplatin, Capecitabine and Nivolumab (CAPOX + Nivolumab) for Gastroesophageal/Gastric Adenocarcinoma",
     cycle:21,
     notes:"First-line treatment of locally advanced or metastatic esophageal, gastroesophageal junction, or gastric adenocarcinoma with PD-L1 CPS ≥1 or dMMR/MSI-H; HER2-negative. Nivolumab until progression or maximum 2 years; chemotherapy until progression or unacceptable toxicity. (GIGAVCOXN). BC Cancer GIGAVCOXN.",
@@ -13618,7 +13618,7 @@ const PROTOCOLS = [
   },
 
   {
-    key:"GI-GAVCOXP", cat:"GI", bcc:true,
+    key:"GI-GIGAVCOXP", cat:"GI", bcc:true,
     name:"Oxaliplatin, Capecitabine and Pembrolizumab (CAPOX + Pembrolizumab) for Gastroesophageal Cancer",
     cycle:21,
     notes:"First-line treatment of locally advanced unresectable or metastatic HER2-negative esophageal (adeno or SCC), gastroesophageal junction, or gastric carcinoma with PD-L1 CPS ≥1 or dMMR/MSI-H. Pembrolizumab maximum 35 cycles (2 years); chemotherapy until progression or unacceptable toxicity. (GIGAVCOXP). BC Cancer GIGAVCOXP.",
@@ -13659,7 +13659,7 @@ const PROTOCOLS = [
   },
 
   {
-    key:"GI-GAVCOX", cat:"GI", bcc:true,
+    key:"GI-GIGAVCOX", cat:"GI", bcc:true,
     name:"Capecitabine and Oxaliplatin (CAPOX)",
     cycle:21,
     notes:"First-line palliative treatment of metastatic or locally advanced gastric, gastroesophageal junction, or esophageal carcinoma. Also used after progression on single-agent fluoropyrimidine. (GIGAVCOX). BC Cancer GIGAVCOX.",
@@ -13693,7 +13693,7 @@ const PROTOCOLS = [
   },
 
   {
-    key:"GI-GAVCOXT", cat:"GI", bcc:true,
+    key:"GI-GIGAVCOXT", cat:"GI", bcc:true,
     name:"Capecitabine, Oxaliplatin, and Trastuzumab (CAPOX-T)",
     cycle:21,
     notes:"First-line palliative treatment of HER2-positive metastatic or locally advanced gastric, gastroesophageal junction, or esophageal adenocarcinoma (IHC3+ or FISH ratio ≥2). (GIGAVCOXT). BC Cancer GIGAVCOXT.",
@@ -13728,7 +13728,7 @@ const PROTOCOLS = [
   },
 
   {
-    key:"GI-GAVCOXZ", cat:"GI", bcc:true,
+    key:"GI-GIGAVCOXZ", cat:"GI", bcc:true,
     name:"Capecitabine, Oxaliplatin, and Zolbetuximab (CAPOX-Z)",
     cycle:21,
     notes:"First-line treatment of HER2-negative, CLDN18.2-positive (≥75% moderate–strong IHC) metastatic or locally advanced gastric, GEJ, or esophageal adenocarcinoma. Cycle 1: zolbetuximab 800 mg/m² Day 1, oxaliplatin and capecitabine Day 2 onwards. (GIGAVCOXZ). BC Cancer GIGAVCOXZ.",
@@ -13763,7 +13763,7 @@ const PROTOCOLS = [
   },
 
   {
-    key:"GI-GAVENH", cat:"GI", bcc:true,
+    key:"GI-GIGAVENH", cat:"GI", bcc:true,
     name:"Trastuzumab Deruxtecan (ENHERTU)",
     cycle:21,
     notes:"Second-line treatment of HER2-positive (IHC3+ or FISH ratio ≥2) metastatic or locally advanced gastric, GEJ, or esophageal adenocarcinoma after prior trastuzumab-based first-line therapy. (GIGAVENH). BC Cancer GIGAVENH.",
@@ -13791,7 +13791,7 @@ const PROTOCOLS = [
   },
 
   {
-    key:"GI-GAVFFOX", cat:"GI", bcc:true,
+    key:"GI-GIGAVFFOX", cat:"GI", bcc:true,
     name:"Oxaliplatin, Fluorouracil, and Leucovorin (mFOLFOX6)",
     cycle:14,
     notes:"First-line palliative treatment of metastatic or locally advanced gastric, gastroesophageal junction, or esophageal carcinoma. Also used after progression on single-agent fluorouracil. (GIGAVFFOX). BC Cancer GIGAVFFOX.",
@@ -13827,7 +13827,7 @@ const PROTOCOLS = [
   },
 
   {
-    key:"GI-GAVFFOXN", cat:"GI", bcc:true,
+    key:"GI-GIGAVFFOXN", cat:"GI", bcc:true,
     name:"FOLFOX + Nivolumab",
     cycle:14,
     notes:"First-line treatment of locally advanced or metastatic esophageal, GEJ, or gastric adenocarcinoma with PD-L1 CPS ≥1 or dMMR/MSI-H; HER2-negative; no squamous cell carcinoma. Nivolumab up to 2 years; chemotherapy until progression. (GIGAVFFOXN). BC Cancer GIGAVFFOXN.",
@@ -13870,7 +13870,7 @@ const PROTOCOLS = [
   },
 
   {
-    key:"GI-GAVFFOXP", cat:"GI", bcc:true,
+    key:"GI-GIGAVFFOXP", cat:"GI", bcc:true,
     name:"FOLFOX + Pembrolizumab",
     cycle:42,
     notes:"First-line treatment of HER2-negative locally advanced or metastatic gastroesophageal cancer (esophageal, GEJ, or gastric; adenocarcinoma or SCC) with PD-L1 CPS ≥1 or dMMR/MSI-H. Pembrolizumab 4 mg/kg Day 1 q6w (max 400 mg); FOLFOX Days 1, 15, 29 (q2w within 42-day cycle). Pembrolizumab up to 18 cycles/2 years. (GIGAVFFOXP). BC Cancer GIGAVFFOXP.",
@@ -13914,7 +13914,7 @@ const PROTOCOLS = [
   },
 
   {
-    key:"GI-GAVFFOXT", cat:"GI", bcc:true,
+    key:"GI-GIGAVFFOXT", cat:"GI", bcc:true,
     name:"FOLFOX + Trastuzumab",
     cycle:14,
     notes:"First-line palliative treatment of HER2-positive (IHC3+ or FISH ratio ≥2) metastatic or locally advanced gastric, GEJ, or esophageal adenocarcinoma. Up to 9 cycles of FOLFOX; trastuzumab continues as single agent until progression. (GIGAVFFOXT). BC Cancer GIGAVFFOXT.",
@@ -13951,7 +13951,7 @@ const PROTOCOLS = [
   },
 
   {
-    key:"GI-GAVFFOXZ", cat:"GI", bcc:true,
+    key:"GI-GIGAVFFOXZ", cat:"GI", bcc:true,
     name:"FOLFOX + Zolbetuximab",
     cycle:14,
     notes:"First-line treatment of HER2-negative, CLDN18.2-positive (≥75% moderate–strong IHC) metastatic or locally advanced gastric, GEJ, or esophageal adenocarcinoma. Cycle 1: zolbetuximab 800 mg/m² Day 1, FOLFOX Day 2. Cycle 2+: zolbetuximab 400 mg/m² Day 1, FOLFOX Day 2. (GIGAVFFOXZ). BC Cancer GIGAVFFOXZ.",
@@ -13988,7 +13988,7 @@ const PROTOCOLS = [
   },
 
   {
-    key:"GI-GAVPCOXT", cat:"GI", bcc:true,
+    key:"GI-GIGAVPCOXT", cat:"GI", bcc:true,
     name:"Pembrolizumab, Capecitabine, Oxaliplatin, and Trastuzumab (KEYNOTE-811)",
     cycle:21,
     notes:"First-line treatment of HER2-positive (IHC3+ or FISH ratio ≥2), PD-L1 CPS ≥1 metastatic or locally advanced gastric, GEJ, or esophageal adenocarcinoma. Pembrolizumab 2 mg/kg (max 200 mg) q3w up to 35 cycles/2 years; trastuzumab and chemotherapy until progression. (GIGAVPCOXT). BC Cancer GIGAVPCOXT.",
@@ -14030,7 +14030,7 @@ const PROTOCOLS = [
   },
 
   {
-    key:"GI-GAVPFOXT", cat:"GI", bcc:true,
+    key:"GI-GIGAVPFOXT", cat:"GI", bcc:true,
     name:"Pembrolizumab + Oxaliplatin + Fluorouracil + Leucovorin + Trastuzumab (GIGAVPFOXT)",
     cycle:42,
     notes:"First-line therapy for metastatic or inoperable locally advanced gastric, gastroesophageal junction, or esophageal adenocarcinoma; HER-2 overexpression (IHC3+ or FISH ≥2) and PD-L1 CPS ≥1. Cycle 1 is 42 days with dosing on Days 1, 15, and 29; subsequent cycles repeat every 42 days. (GIGAVPFOXT). BC Cancer GIGAVPFOXT.",
@@ -14073,7 +14073,7 @@ const PROTOCOLS = [
   },
 
   {
-    key:"GI-GAVRAMT", cat:"GI", bcc:true,
+    key:"GI-GIGAVRAMT", cat:"GI", bcc:true,
     name:"Ramucirumab + Paclitaxel (GIGAVRAMT)",
     cycle:28,
     notes:"Second- or third-line therapy for metastatic or locally advanced gastric or gastroesophageal junction adenocarcinoma after progression on first-line chemotherapy (including after second-line trastuzumab deruxtecan). (GIGAVRAMT). BC Cancer GIGAVRAMT.",
@@ -14110,7 +14110,7 @@ const PROTOCOLS = [
   },
 
   {
-    key:"GI-GAVTR", cat:"GI", bcc:true,
+    key:"GI-GIGAVTR", cat:"GI", bcc:true,
     name:"Trastuzumab Maintenance (GIGAVTR)",
     cycle:21,
     notes:"Continuation of palliative treatment for metastatic or inoperable locally advanced gastric or gastroesophageal junction adenocarcinoma (HER-2 overexpression) after response to GIGAVCFT, GIGAVCCT, GIGAVCOXT, GIGAVFFOXT, GIGAVPCOXT, or GIGAVPFOXT. (GIGAVTR). BC Cancer GIGAVTR.",
@@ -14142,7 +14142,7 @@ const PROTOCOLS = [
   },
 
   {
-    key:"GI-GAVTT", cat:"GI", bcc:true,
+    key:"GI-GIGAVTT", cat:"GI", bcc:true,
     name:"Trifluridine-Tipiracil (GIGAVTT)",
     cycle:28,
     notes:"Third- or later-line therapy for metastatic gastric cancer or gastroesophageal junction adenocarcinoma after ≥2 prior lines including fluoropyrimidine, platinum, taxane or irinotecan, and HER2-directed therapy if HER2-positive. (GIGAVTT). BC Cancer GIGAVTT.",
@@ -14171,7 +14171,7 @@ const PROTOCOLS = [
   },
 
   {
-    key:"GI-GFLODOC", cat:"GI", bcc:true,
+    key:"GI-GIGFLODOC", cat:"GI", bcc:true,
     name:"Docetaxel + Oxaliplatin + Fluorouracil + Leucovorin – FLOT (GIGFLODOC)",
     cycle:14,
     notes:"Perioperative treatment of resectable adenocarcinoma of stomach, gastroesophageal junction, or lower 1/3 esophagus (Stage IB or greater). 4 cycles pre-surgery and 4 cycles post-surgery. (GIGFLODOC). BC Cancer GIGFLODOC.",
@@ -14204,7 +14204,7 @@ const PROTOCOLS = [
   },
 
   {
-    key:"GI-GFOLFIRI", cat:"GI", bcc:true,
+    key:"GI-GIGFOLFIRI", cat:"GI", bcc:true,
     name:"Irinotecan + Fluorouracil + Leucovorin – FOLFIRI (GIGFOLFIRI)",
     cycle:14,
     notes:"Second- or third-line palliative chemotherapy for locally advanced, locally recurrent or metastatic gastric or esophageal adenocarcinoma, or esophageal squamous cell carcinoma after 1–2 prior lines of treatment in advanced setting. (GIGFOLFIRI). BC Cancer GIGFOLFIRI.",
@@ -14237,7 +14237,7 @@ const PROTOCOLS = [
   },
 
   {
-    key:"GI-IRINALT", cat:"GI", bcc:true,
+    key:"GI-GIIRINALT", cat:"GI", bcc:true,
     name:"Irinotecan Weekly (GIIRINALT)",
     cycle:42,
     notes:"Palliative chemotherapy for metastatic colorectal cancer in patients who may not tolerate the q3-weekly irinotecan schedule (GIIR); for patients with high-risk features such as advanced age, prior pelvic irradiation, or impaired hepatic function. Maximum 6 cycles. (GIIRINALT). BC Cancer GIIRINALT.",
@@ -14265,7 +14265,7 @@ const PROTOCOLS = [
   },
 
   {
-    key:"GI-IR", cat:"GI", bcc:true,
+    key:"GI-GIIR", cat:"GI", bcc:true,
     name:"Irinotecan q3 Weekly (GIIR)",
     cycle:21,
     notes:"Palliative chemotherapy for metastatic colorectal cancer. Starting dose 300 mg/m² for patients age ≥70 years or ECOG 2. (GIIR). BC Cancer GIIR.",
@@ -14293,7 +14293,7 @@ const PROTOCOLS = [
   },
 
   {
-    key:"GI-NPRRT", cat:"GI", bcc:true,
+    key:"GI-GINPRRT", cat:"GI", bcc:true,
     name:"Peptide Receptor Radionuclide Therapy (GINPRRT)",
     cycle:null,
     notes:"Out-of-province peptide receptor radionuclide therapy (PRRT) for advanced well-to-moderately differentiated neuroendocrine tumors (Ki67 ≤20%) with progressive or symptomatic disease despite octreotide LAT. Patients referred to Cross Cancer Institute, Edmonton. Requires out-of-province funding approval. (GINPRRT). BC Cancer GINPRRT.",
@@ -14326,7 +14326,7 @@ const PROTOCOLS = [
   },
 
   {
-    key:"GI-PAJFIROX", cat:"GI", bcc:true,
+    key:"GI-GIPAJFIROX", cat:"GI", bcc:true,
     name:"mFOLFIRINOX – Irinotecan + Oxaliplatin + Fluorouracil + Leucovorin (GIPAJFIROX)",
     cycle:14,
     notes:"Adjuvant chemotherapy for resected pancreatic adenocarcinoma (R0 or R1 resection) or borderline resectable pancreatic adenocarcinoma. Maximum 12 cycles total including pre-operative and post-operative. (GIPAJFIROX). BC Cancer GIPAJFIROX.",
@@ -14360,7 +14360,7 @@ const PROTOCOLS = [
   },
 
   {
-    key:"GI-PAJGCAP", cat:"GI", bcc:true,
+    key:"GI-GIPAJGCAP", cat:"GI", bcc:true,
     name:"Adjuvant Gemcitabine and Capecitabine for Resected Pancreatic Adenocarcinoma",
     cycle:28,
     notes:"Adjuvant chemotherapy for resected (R0 or R1) node-negative or node-positive pancreatic adenocarcinoma. 6 cycles total. (GIPAJGCAP). BC Cancer GIPAJGCAP.",
@@ -14396,7 +14396,7 @@ const PROTOCOLS = [
   },
 
   {
-    key:"GI-PAJGEM", cat:"GI", bcc:true,
+    key:"GI-GIPAJGEM", cat:"GI", bcc:true,
     name:"Adjuvant Gemcitabine for Pancreatic Adenocarcinoma",
     cycle:28,
     notes:"Adjuvant chemotherapy for resected pancreatic adenocarcinoma or node-positive margin-negative ampullary cancer. 6 cycles total. (GIPAJGEM). BC Cancer GIPAJGEM.",
@@ -14430,7 +14430,7 @@ const PROTOCOLS = [
   },
 
   {
-    key:"GI-PAVFFIRI", cat:"GI", bcc:true,
+    key:"GI-GIPAVFFIRI", cat:"GI", bcc:true,
     name:"FOLFIRI for Metastatic Pancreatic or Biliary Tract Cancer",
     cycle:14,
     notes:"Second or third-line treatment for locally advanced unresectable or metastatic pancreatic adenocarcinoma or biliary tract cancer (cholangiocarcinoma or gallbladder). (GIPAVFFIRI). BC Cancer GIPAVFFIRI.",
@@ -14467,7 +14467,7 @@ const PROTOCOLS = [
   },
 
   {
-    key:"GI-PAVFFOX", cat:"GI", bcc:true,
+    key:"GI-GIPAVFFOX", cat:"GI", bcc:true,
     name:"FOLFOX for Metastatic Pancreatic or Biliary Tract Cancer",
     cycle:14,
     notes:"Second or third-line treatment for locally advanced unresectable or metastatic pancreatic adenocarcinoma or biliary tract cancer (cholangiocarcinoma or gallbladder). Consider for patients with Gilbert's syndrome or intolerance to irinotecan. (GIPAVFFOX). BC Cancer GIPAVFFOX.",
@@ -14504,7 +14504,7 @@ const PROTOCOLS = [
   },
 
   {
-    key:"GI-PE", cat:"GI", bcc:true,
+    key:"GI-GIPE", cat:"GI", bcc:true,
     name:"Cisplatin and Etoposide for Poorly Differentiated Neuroendocrine Carcinoma",
     cycle:21,
     notes:"Palliative therapy for poorly differentiated neuroendocrine carcinoma. Carboplatin may substitute for cisplatin in patients with toxicity, poor performance status, or age >75. (GIPE). BC Cancer GIPE.",
@@ -14536,7 +14536,7 @@ const PROTOCOLS = [
   },
 
   {
-    key:"GI-PGEMABR", cat:"GI", bcc:true,
+    key:"GI-GIPGEMABR", cat:"GI", bcc:true,
     name:"Nab-Paclitaxel and Gemcitabine for Metastatic Pancreatic Cancer",
     cycle:28,
     notes:"First-line treatment for locally advanced unresectable or metastatic pancreatic cancer. (GIPGEMABR). BC Cancer GIPGEMABR.",
@@ -14571,7 +14571,7 @@ const PROTOCOLS = [
   },
 
   {
-    key:"GI-PGEM", cat:"GI", bcc:true,
+    key:"GI-GIPGEM", cat:"GI", bcc:true,
     name:"Gemcitabine for Pancreatic Adenocarcinoma, Gallbladder Cancer, and Cholangiocarcinoma",
     cycle:28,
     notes:"Palliative chemotherapy for metastatic or unresectable pancreatic adenocarcinoma, gallbladder cancer, or cholangiocarcinoma. Continue while clinical benefit (response or stable disease with symptom improvement). (GIPGEM). BC Cancer GIPGEM.",
@@ -14605,7 +14605,7 @@ const PROTOCOLS = [
   },
 
   {
-    key:"GI-PMHIPEC", cat:"GI", bcc:true,
+    key:"GI-GIPMHIPEC", cat:"GI", bcc:true,
     name:"HIPEC for Peritoneal Mesothelioma (Doxorubicin, Cisplatin, Paclitaxel)",
     cycle:null,
     notes:"Hyperthermic intraperitoneal chemotherapy (HIPEC) combined with cytoreductive surgery (CRS) for peritoneal mesothelioma. Performed only at Vancouver General Hospital. All cases require multidisciplinary review. Doses based on ideal body weight. (GIPMHIPEC). BC Cancer GIPMHIPEC.",
@@ -14631,7 +14631,7 @@ const PROTOCOLS = [
   },
 
   {
-    key:"GI-PNEVER", cat:"GI", bcc:true,
+    key:"GI-GIPNEVER", cat:"GI", bcc:true,
     name:"Everolimus for Advanced Pancreatic Neuroendocrine Tumours",
     cycle:28,
     notes:"Palliative treatment for well to moderately differentiated unresectable or metastatic pancreatic neuroendocrine tumours. Note: approvals for GIPNEVER or GIPNSUNI — not both (unless intolerance within first month). (GIPNEVER). BC Cancer GIPNEVER.",
@@ -14667,7 +14667,7 @@ const PROTOCOLS = [
   },
 
   {
-    key:"GI-PNSUNI", cat:"GI", bcc:true,
+    key:"GI-GIPNSUNI", cat:"GI", bcc:true,
     name:"Sunitinib for Advanced Pancreatic Neuroendocrine Tumours",
     cycle:28,
     notes:"Palliative treatment for well to moderately differentiated unresectable or metastatic pancreatic neuroendocrine tumours (PNET). Note: approvals for GIPNSUNI or GIPNEVER — not both (unless intolerance within first month). (GIPNSUNI). BC Cancer GIPNSUNI.",
@@ -14707,7 +14707,7 @@ const PROTOCOLS = [
   },
 
   {
-    key:"GI-RAJCOX", cat:"GI", bcc:true,
+    key:"GI-GIRAJCOX", cat:"GI", bcc:true,
     name:"Adjuvant Oxaliplatin + Capecitabine for Stage III Rectal Cancer",
     cycle:21,
     notes:"Adjuvant therapy for upfront resected stage III (node positive) rectal cancer. 8 cycles if prior RT without concurrent fluoropyrimidine; 6 cycles if prior RT with concurrent capecitabine or fluorouracil. (GIRAJCOX). BC Cancer GIRAJCOX.",
@@ -14742,7 +14742,7 @@ const PROTOCOLS = [
   },
 
   {
-    key:"GI-RAJFFOX", cat:"GI", bcc:true,
+    key:"GI-GIRAJFFOX", cat:"GI", bcc:true,
     name:"Adjuvant FOLFOX (Oxaliplatin + Fluorouracil + Leucovorin) for Stage III Rectal Cancer",
     cycle:14,
     notes:"Adjuvant therapy for upfront resected stage III (node positive) rectal cancer. 12 cycles if prior RT without concurrent fluoropyrimidine; 8 cycles if prior RT with concurrent capecitabine or fluorouracil. (GIRAJFFOX). BC Cancer GIRAJFFOX.",
@@ -14779,7 +14779,7 @@ const PROTOCOLS = [
   },
 
   {
-    key:"GI-RALT", cat:"GI", bcc:true,
+    key:"GI-GIRALT", cat:"GI", bcc:true,
     name:"Palliative Raltitrexed for Metastatic Colorectal Cancer",
     cycle:21,
     notes:"Palliative chemotherapy for metastatic or unresectable colorectal adenocarcinoma in patients who are unable to tolerate fluorouracil or capecitabine despite dose reductions, or in late relapse (>6 months) after poorly tolerated adjuvant fluorouracil-based treatment. (GIRALT). BC Cancer GIRALT.",
@@ -14811,7 +14811,7 @@ const PROTOCOLS = [
   },
 
   {
-    key:"GI-RCAP", cat:"GI", bcc:true,
+    key:"GI-GIRCAP", cat:"GI", bcc:true,
     name:"Adjuvant Capecitabine for Stage II/III Rectal Cancer (Post-RT)",
     cycle:21,
     notes:"Adjuvant capecitabine monotherapy for stage II or III rectal adenocarcinoma previously treated with preoperative or postoperative radiation or chemoradiation therapy. 8 cycles total. (GIRCAP). BC Cancer GIRCAP.",
@@ -14845,7 +14845,7 @@ const PROTOCOLS = [
   },
 
   {
-    key:"GI-RCRT", cat:"GI", bcc:true,
+    key:"GI-GIRCRT", cat:"GI", bcc:true,
     name:"Combined Modality Adjuvant Capecitabine + Radiation for High-Risk Rectal Cancer",
     cycle:21,
     notes:"Combined modality adjuvant therapy for stage II/III or resectable stage IV rectal adenocarcinoma using capecitabine concurrent with pelvic radiotherapy (45 Gy/25 fractions). NOTE: new patients should be started on GIRLCRT. Only use GIRCRT to complete treatment for existing patients. (GIRCRT). BC Cancer GIRCRT.",
@@ -14880,7 +14880,7 @@ const PROTOCOLS = [
   },
 
   {
-    key:"GI-REGO", cat:"GI", bcc:true,
+    key:"GI-GIREGO", cat:"GI", bcc:true,
     name:"Regorafenib for Advanced Hepatocellular Carcinoma",
     cycle:28,
     notes:"Second-line treatment for advanced hepatocellular carcinoma with disease progression on first-line sorafenib or lenvatinib. Child-Pugh A only. (GIREGO). BC Cancer GIREGO.",
@@ -14921,7 +14921,7 @@ const PROTOCOLS = [
   },
 
   {
-    key:"GI-RINFRT", cat:"GI", bcc:true,
+    key:"GI-GIRINFRT", cat:"GI", bcc:true,
     name:"Combined Modality Adjuvant Capecitabine/Infusional Fluorouracil + Radiation for High-Risk Rectal Cancer",
     cycle:21,
     notes:"Combined modality adjuvant therapy for stage II/III rectal adenocarcinoma using infusional fluorouracil concurrent with pelvic radiotherapy (45 Gy/25 fractions) followed by adjuvant capecitabine. Appropriate for colostomy/ileostomy patients who cannot tolerate capecitabine due to output issues. (GIRINFRT). BC Cancer GIRINFRT.",
@@ -14957,7 +14957,7 @@ const PROTOCOLS = [
   },
 
   {
-    key:"GI-RLCRT", cat:"GI", bcc:true,
+    key:"GI-GIRLCRT", cat:"GI", bcc:true,
     name:"Combined Modality Capecitabine + Radiation for Rectal Cancer (Neoadjuvant or Adjuvant)",
     cycle:null,
     notes:"Capecitabine concurrent with pelvic radiotherapy (45 Gy/25 fractions) for colorectal adenocarcinoma planned for combination chemoradiotherapy. May be given neoadjuvantly (before or after GIRNACOX/GIRNAFFOX) or adjuvantly. Supersedes GIRCRT for new patients. (GIRLCRT). BC Cancer GIRLCRT.",
@@ -14992,7 +14992,7 @@ const PROTOCOLS = [
   },
 
   {
-    key:"GI-RNACOX", cat:"GI", bcc:true,
+    key:"GI-GIRNACOX", cat:"GI", bcc:true,
     name:"Neoadjuvant Oxaliplatin + Capecitabine (CAPOX) for Locally Advanced Rectal Cancer",
     cycle:21,
     notes:"Neoadjuvant treatment for rectal adenocarcinoma treated with curative intent. Up to 9 cycles. Often given before or after GIRLCRT. (GIRNACOX). BC Cancer GIRNACOX.",
@@ -15027,7 +15027,7 @@ const PROTOCOLS = [
   },
 
   {
-    key:"GI-RNAFFOX", cat:"GI", bcc:true,
+    key:"GI-GIRNAFFOX", cat:"GI", bcc:true,
     name:"Neoadjuvant FOLFOX (Oxaliplatin + Fluorouracil + Leucovorin) for Locally Advanced Rectal Cancer",
     cycle:14,
     notes:"Neoadjuvant treatment for rectal adenocarcinoma treated with curative intent. Up to 12 cycles. Often given before or after GIRLCRT. (GIRNAFFOX). BC Cancer GIRNAFFOX.",
@@ -15064,7 +15064,7 @@ const PROTOCOLS = [
   },
 
   {
-    key:"GI-SORAF", cat:"GI", bcc:true,
+    key:"GI-GISORAF", cat:"GI", bcc:true,
     name:"Sorafenib for Advanced Hepatocellular Carcinoma",
     cycle:28,
     notes:"Advanced hepatocellular carcinoma; no prior systemic therapy and lenvatinib-intolerant, or progression on first-line GIATZB or GITREMDUR and lenvatinib-intolerant. (GISORAF). BC Cancer GISORAF.",
@@ -15101,7 +15101,7 @@ const PROTOCOLS = [
   },
 
   {
-    key:"GI-TREMDUR", cat:"GI", bcc:true,
+    key:"GI-GITREMDUR", cat:"GI", bcc:true,
     name:"Tremelimumab + Durvalumab for Advanced Hepatocellular Carcinoma",
     cycle:28,
     notes:"First-line treatment of previously untreated unresectable or metastatic hepatocellular carcinoma (HCC). Cycle 1: tremelimumab + durvalumab; Cycles 2–4: durvalumab monotherapy; Cycles 5+: durvalumab monotherapy (with option for one-time tremelimumab retreatment). (GITREMDUR). BC Cancer GITREMDUR.",
