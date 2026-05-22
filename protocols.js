@@ -18626,5 +18626,179 @@ const PROTOCOLS = [
         { label: "If clinically indicated", tests: ["CEA", "CA 19-9"] }
       ]
     }
+  },
+  // GI PROTOCOLS SUB-BATCH 4
+  {
+    key: "GI-GIAVPANI",
+    cat: "GI",
+    bcc: true,
+    name: "GIAVPANI - PANitumumab [mCRC 3rd line]",
+    cycle: 14,
+    notes: "Palliative third-line treatment of metastatic colorectal adenocarcinoma. Requires wild-type RAS and wild-type BRAF (tested on primary or metastatic tumour). Previous treatment with fluorouracil or capecitabine, irinotecan, and oxaliplatin required. Patients may receive one of GIAVPANI or GIAVCETIR — not both.",
+    drugs: [
+      {
+        name: "panitumumab",
+        dose: 6,
+        unit: "mg/kg",
+        basis: "weight",
+        max: null,
+        weightCap: null,
+        route: "IV",
+        days: "Day 1",
+        reducible: true,
+        note: "IV in 100 mL NS over 60 min using 0.2 micron in-line filter; may reduce to 30 min if well tolerated in subsequent cycles. Do not shake. Consider preemptive doxycycline 100 mg PO BID + topical clindamycin 2%/hydrocortisone 1% lotion for first 6 weeks."
+      }
+    ],
+    labs: {
+      baseline: ["CBC & Diff", "creatinine", "ALT", "alkaline phosphatase", "total bilirubin", "albumin", "sodium", "potassium"],
+      cycle: ["CBC & Diff", "creatinine", "total bilirubin", "ALT", "magnesium"],
+      conditional: [
+        { label: "Baseline if clinically indicated", tests: ["CEA", "CA 19-9", "GGT", "magnesium", "calcium", "ECG"] },
+        { label: "If clinically indicated", tests: ["CEA", "CA 19-9", "alkaline phosphatase", "albumin", "calcium", "GGT", "sodium", "potassium", "ECG"] }
+      ]
+    }
+  },
+  {
+    key: "GI-GIAVPEMPG",
+    cat: "GI",
+    bcc: true,
+    name: "GIAVPEMPG - Pembrolizumab + Gemcitabine + CISplatin [Biliary Tract]",
+    cycle: 21,
+    notes: "First-line palliative treatment of advanced biliary tract cancer (intrahepatic/extrahepatic cholangiocarcinoma, gallbladder, mixed HCC-cholangiocarcinoma; excludes ampulla of Vater). Up to 8 cycles of pembrolizumab + gemcitabine + cisplatin, then maintenance with pembrolizumab + gemcitabine (q3w) or pembrolizumab monotherapy (q6w). Carboplatin AUC 5 Day 1 may substitute for cisplatin. Not for use sequentially with GIAVDURPG.",
+    drugs: [
+      {
+        name: "pembrolizumab",
+        dose: 2,
+        unit: "mg/kg",
+        basis: "weight",
+        max: 200,
+        weightCap: null,
+        route: "IV",
+        days: "Day 1",
+        reducible: false,
+        note: "IV in 50 mL NS over 30 min using 0.2 micron in-line filter. Do not dose reduce — delay or discontinue for immune-mediated toxicity. See SCIMMUNE for management of immune-mediated adverse reactions."
+      },
+      {
+        name: "gemcitabine",
+        dose: 1000,
+        unit: "mg/m²",
+        basis: "bsa",
+        max: null,
+        weightCap: null,
+        route: "IV",
+        days: "Days 1, 8",
+        reducible: true,
+        note: "IV in 250 mL NS over 30 min."
+      },
+      {
+        name: "cisplatin",
+        dose: 25,
+        unit: "mg/m²",
+        basis: "bsa",
+        max: null,
+        weightCap: null,
+        route: "IV",
+        days: "Days 1, 8 (cycles 1–8 only; max 8 cycles)",
+        reducible: true,
+        note: "IV in 100–250 mL NS over 30 min. Carboplatin AUC 5 Day 1 may substitute for cisplatin. Ensure adequate hydration."
+      }
+    ],
+    labs: {
+      baseline: ["CBC & Diff", "creatinine", "sodium", "potassium", "ALT", "alkaline phosphatase", "total bilirubin", "albumin", "TSH", "morning serum cortisol", "chest x-ray or CT chest"],
+      cycle: ["CBC & Diff", "creatinine", "ALT", "total bilirubin", "sodium", "potassium", "TSH"],
+      conditional: [
+        { label: "Before Day 8", tests: ["CBC & Diff", "creatinine (if using CISplatin)"] },
+        { label: "Baseline if clinically indicated", tests: ["GGT", "lipase", "random glucose", "CEA", "CA 19-9", "ECG"] },
+        { label: "If clinically indicated", tests: ["alkaline phosphatase", "albumin", "morning serum cortisol", "lipase", "random glucose", "GGT", "CEA", "CA 19-9", "ECG"] },
+        { label: "If on warfarin during gemcitabine: weekly until stable, then prior to each cycle", tests: ["INR"] }
+      ]
+    }
+  },
+  {
+    key: "GI-GIAVPG",
+    cat: "GI",
+    bcc: true,
+    name: "GIAVPG - Gemcitabine + CISplatin [Biliary/Pancreatic/Gallbladder]",
+    cycle: 21,
+    notes: "First-line palliative chemotherapy for advanced gallbladder carcinoma, pancreatic carcinoma, ampullary cancer, or cholangiocarcinoma. Carboplatin AUC 5 Day 1 may substitute for cisplatin in patients with creatinine clearance <45 mL/min or cisplatin intolerance. GFR capped at 125 mL/min for carboplatin dosing.",
+    drugs: [
+      {
+        name: "gemcitabine",
+        dose: 1000,
+        unit: "mg/m²",
+        basis: "bsa",
+        max: null,
+        weightCap: null,
+        route: "IV",
+        days: "Days 1, 8",
+        reducible: true,
+        note: "IV in 250 mL NS over 30 min."
+      },
+      {
+        name: "cisplatin",
+        dose: 25,
+        unit: "mg/m²",
+        basis: "bsa",
+        max: null,
+        weightCap: null,
+        route: "IV",
+        days: "Days 1, 8",
+        reducible: true,
+        note: "IV in 100–250 mL NS over 30 min. Carboplatin AUC 5 Day 1 may substitute. Ensure adequate hydration."
+      }
+    ],
+    labs: {
+      baseline: ["CBC & Diff", "creatinine", "ALT", "alkaline phosphatase", "total bilirubin", "albumin", "sodium", "potassium", "random glucose", "HbA1c"],
+      cycle: ["CBC & Diff", "creatinine", "total bilirubin", "ALT"],
+      conditional: [
+        { label: "Before Day 8", tests: ["CBC & Diff", "creatinine (if using CISplatin)"] },
+        { label: "Baseline if clinically indicated", tests: ["ECG", "CEA", "CA 19-9", "GGT"] },
+        { label: "If clinically indicated", tests: ["alkaline phosphatase", "albumin", "GGT", "sodium", "potassium", "random glucose", "HbA1c", "ECG", "CA 19-9", "CEA"] },
+        { label: "If on warfarin: weekly until stable warfarin dose established, then prior to each cycle", tests: ["INR"] }
+      ]
+    }
+  },
+  {
+    key: "GI-GIAVRALIR",
+    cat: "GI",
+    bcc: true,
+    name: "GIAVRALIR - Raltitrexed + Irinotecan [mCRC, 5-FU intolerant]",
+    cycle: 21,
+    notes: "Palliative therapy for stage IV metastatic colorectal cancer in patients with documented intolerance to fluorouracil or capecitabine, or known/suspected DPD deficiency. Folic acid and leucovorin must not be administered prior to or during raltitrexed (antagonism). Avoid prochlorperazine on irinotecan day (akathisia risk). Patients must have adequate supply of loperamide for diarrhea management.",
+    drugs: [
+      {
+        name: "raltitrexed",
+        dose: 3,
+        unit: "mg/m²",
+        basis: "bsa",
+        max: null,
+        weightCap: null,
+        route: "IV",
+        days: "Day 1",
+        reducible: true,
+        note: "IV in 100 mL NS over 15 min. Do not give leucovorin or folic acid concurrently. Dose-adjust for renal impairment (see protocol)."
+      },
+      {
+        name: "irinotecan",
+        dose: 180,
+        unit: "mg/m²",
+        basis: "bsa",
+        max: null,
+        weightCap: null,
+        route: "IV",
+        days: "Day 1",
+        reducible: true,
+        levels: [150, 120],
+        note: "IV in 500 mL D5W over 90 min. Atropine 0.3 mg SC may be needed for early cholinergic diarrhea. Loperamide for late diarrhea."
+      }
+    ],
+    labs: {
+      baseline: ["CBC & Diff", "creatinine", "ALT", "alkaline phosphatase", "total bilirubin", "albumin", "sodium", "potassium"],
+      cycle: ["CBC & Diff", "creatinine", "total bilirubin", "ALT"],
+      conditional: [
+        { label: "Baseline if clinically indicated", tests: ["CEA", "CA 19-9", "GGT", "ECG"] },
+        { label: "If clinically indicated", tests: ["CEA", "CA 19-9", "alkaline phosphatase", "albumin", "GGT", "sodium", "potassium", "ECG"] }
+      ]
+    }
   }
 ]; // end PROTOCOLS
