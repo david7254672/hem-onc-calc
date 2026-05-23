@@ -3796,6 +3796,51 @@ const PROTOCOLS = [
     }
   },
   {
+    key: "LY-LYLENR",
+    cat: "Lymphoma",
+    bcc: true,
+    name: "LYLENR - Lenalidomide + riTUXimab [Relapsed/Refractory FL or MZL]",
+    cycle: 28,
+    notes: "Relapsed/refractory Grade 1-3a follicular lymphoma or marginal zone lymphoma after ≥1 prior line. Excludes transformed lymphoma, FL Grade 3b, and riTUXimab-refractory disease (no response or relapse within 6 months of last riTUXimab dose). RevAid Program registration required. Total 12 cycles: Cycles 1-5 = R² (lenalidomide + riTUXimab); Cycles 6-12 = lenalidomide monotherapy. Very high risk of HBV reactivation. VZV prophylaxis (valACYclovir 500 mg PO daily) recommended. VTE prophylaxis (ASA / warfarin / DOAC / LMWH) recommended for duration of lenalidomide.",
+    drugs: [
+      {
+        name: "riTUXimab",
+        dose: 375,
+        unit: "mg/m²",
+        basis: "bsa",
+        max: null,
+        weightCap: null,
+        route: "IV (first dose mandatory IV); SC 1400 mg fixed dose for subsequent doses if IV tolerated",
+        days: "Cycle 1: Days 1, 8, 15, 22; Cycles 2-5: Day 1 only",
+        reducible: false,
+        note: "No dose reductions for riTUXimab. First dose must be IV (highest reaction risk). IV: 250-500 mL NS, start 50 mg/h, increase q30 min to 400 mg/h. SC: 1400 mg fixed (11.7 mL) over 5 min into abdominal wall after first IV tolerated. IV dose selected per dose-banding table (see PDF appendix). Discontinued after Cycle 5."
+      },
+      {
+        name: "lenalidomide",
+        dose: 20,
+        unit: "mg",
+        basis: "flat",
+        max: null,
+        weightCap: null,
+        route: "PO",
+        days: "Days 1-21 of each 28-day cycle (Cycles 1-12)",
+        reducible: true,
+        note: "Evening dosing preferred. Renal: CrCl ≥60 → 20 mg; CrCl 30-59 → 10 mg (may escalate to 15 mg after 2 cycles if no Grade 3-4 toxicity). Contraindicated if CrCl <30. Continues as monotherapy Cycles 6-12.",
+        levels: [15, 10, 5, 2.5]
+      }
+    ],
+    labs: {
+      baseline: ["CBC & Diff", "creatinine", "ALT", "total bilirubin", "uric acid", "LDH", "HBsAg", "HBsAb", "HBcoreAb", "TSH", "quantitative beta-hCG (if FCBP, 7-14 days and 24 h prior to initial Rx)"],
+      cycle: ["CBC & Diff", "creatinine", "ALT", "total bilirubin", "LDH"],
+      conditional: [
+        { label: "Cycle 1 prior to Days 8, 15, 22", tests: ["CBC & Diff"] },
+        { label: "Every 3 months", tests: ["TSH"] },
+        { label: "If FCBP: weekly during Cycle 1, then every 4 weeks", tests: ["quantitative beta-hCG"] },
+        { label: "If clinically indicated", tests: ["CBC & Diff weekly", "HBV viral load (see SCHBV)"] }
+      ]
+    }
+  },
+  {
     key: "LY-LYMCALT",
     cat: "Lymphoma",
     bcc: true,
