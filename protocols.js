@@ -17912,5 +17912,231 @@ const PROTOCOLS = [
         { label: "Every 3 months if taking flutamide", tests: ["total bilirubin", "ALT", "alkaline phosphatase"] }
       ]
     }
+},
+
+// GIAVIPNI — Ipilimumab + Nivolumab [dMMR/MSI-H CRC]
+{
+  key: "GI-GIAVIPNI",
+  cat: "GI",
+  bcc: true,
+  name: "GIAVIPNI - Ipilimumab + Nivolumab [dMMR/MSI-H Colorectal]",
+  cycle: 21,
+  notes: "First-line treatment of unresectable or metastatic dMMR/MSI-H colorectal adenocarcinoma. Induction phase (Cycles 1-4): nivolumab 3 mg/kg (max 240 mg) + ipilimumab 1 mg/kg IV every 3 weeks. Maintenance phase (begins 3 weeks after last induction dose): nivolumab 6 mg/kg (max 480 mg) IV every 4 weeks, up to a maximum of 27 cycles total (including induction) or 2 years. If nivolumab discontinued for toxicity, discontinue ipilimumab; if ipilimumab discontinued for toxicity, nivolumab may continue as monotherapy. Retreatment with nivolumab ± ipilimumab is allowed after progression if initial induction was completed without progression and progression occurred >6 months after treatment completion. Manage immune-mediated adverse reactions per SCIMMUNE. BC Cancer protocol activated 1 Apr 2026.",
+  drugs: [
+    {
+      name: "nivolumab",
+      dose: 3,
+      unit: "mg/kg",
+      basis: "weight",
+      max: 240,
+      weightCap: null,
+      route: "IV",
+      days: "Day 1",
+      reducible: false,
+      note: "Induction (Cycles 1-4): 3 mg/kg IV (max 240 mg) over 30 min q3w. Maintenance (Cycle 5+): 6 mg/kg IV (max 480 mg) over 30 min q4w. Use 0.2 micron in-line filter; separate line from ipilimumab. No specific dose modifications — manage toxicity by delay."
+    },
+    {
+      name: "ipilimumab",
+      dose: 1,
+      unit: "mg/kg",
+      basis: "weight",
+      max: null,
+      weightCap: null,
+      route: "IV",
+      days: "Day 1 (Cycles 1-4 only)",
+      reducible: false,
+      note: "Induction phase only — 4 cycles q3w. IV in 25-100 mL NS over 30 min using 0.2 micron in-line filter. No specific dose modifications — manage toxicity by delay (see SCIMMUNE)."
+    }
+  ],
+  labs: {
+    baseline: ["CBC & Diff", "creatinine", "alkaline phosphatase", "ALT", "total bilirubin", "albumin", "sodium", "potassium", "TSH", "morning serum cortisol", "chest x-ray or CT chest"],
+    cycle: ["CBC & Diff", "creatinine", "ALT", "total bilirubin", "sodium", "potassium", "TSH"],
+    conditional: [
+      { label: "Baseline if clinically indicated", tests: ["CEA", "CA19-9", "creatine kinase", "troponin", "free T3", "free T4", "GGT", "lipase", "random glucose", "serum or urine HCG", "serum ACTH", "testosterone", "estradiol", "FSH", "LH", "ECG"] },
+      { label: "If clinically indicated", tests: ["CEA", "CA19-9", "morning serum cortisol", "lipase", "random glucose", "serum or urine HCG", "free T3", "free T4", "serum ACTH", "testosterone", "estradiol", "FSH", "LH", "alkaline phosphatase", "albumin", "GGT", "creatine kinase", "troponin", "ECG", "chest x-ray"] }
+    ]
+  }
+},
+
+// GUMCSPDAR — Darolutamide [mCSPC]
+{
+  key: "GU-GUMCSPDAR",
+  cat: "GU",
+  bcc: true,
+  name: "GUMCSPDAR - Darolutamide [Metastatic Castration-Sensitive Prostate]",
+  cycle: null,
+  notes: "Metastatic castration-sensitive prostate cancer (mCSPC) — darolutamide 600 mg PO twice daily, continued with ongoing ADT (see GUPADT) until disease progression or unacceptable toxicity. Discontinue any antiandrogen (e.g., bicalutamide) used as part of combined androgen blockade prior to starting darolutamide. Dose level -1 = 300 mg PO BID; do not reduce below 300 mg BID. Patients are eligible for any one of apalutamide (GUMCSPAPA), abiraterone (GUMCSPABI), darolutamide (GUMCSPDAR), darolutamide + docetaxel (UGUMCSPDD), or enzalutamide (GUMCSPENZ) — but not sequential use. Patients treated with darolutamide for mCSPC who develop castration-resistant disease are NOT eligible for abiraterone or enzalutamide. Hepatic adjustment: Child-Pugh B → 300 mg BID; Child-Pugh C → not recommended. Renal adjustment: CrCl 15-29 mL/min → 300 mg BID; <15 → not recommended. Major CYP3A4 substrate (caution with strong inducers/inhibitors). BC Cancer protocol activated 1 May 2026.",
+  drugs: [
+    {
+      name: "darolutamide",
+      dose: 600,
+      unit: "mg",
+      basis: "flat",
+      max: null,
+      weightCap: null,
+      route: "PO BID",
+      days: "Continuous, twice daily",
+      reducible: true,
+      note: "Dispense 90-day supply per visit. Take with food. Continue until progression or unacceptable toxicity.",
+      levels: [300]
+    }
+  ],
+  labs: {
+    baseline: ["CBC & Diff", "albumin", "total bilirubin", "alkaline phosphatase", "GGT", "INR", "ALT", "creatinine", "sodium", "potassium", "PSA", "testosterone", "blood pressure"],
+    cycle: ["PSA", "blood pressure"],
+    conditional: [
+      { label: "Baseline if clinically indicated", tests: ["ECG"] },
+      { label: "If clinically indicated", tests: ["albumin", "total bilirubin", "INR", "ALT", "creatinine", "sodium", "potassium", "TSH", "ECG", "HbA1c", "calcium", "random glucose", "testosterone"] }
+    ]
+  }
+},
+
+// LUAVSEL — Selpercatinib [RET+ NSCLC]
+{
+  key: "LU-LUAVSEL",
+  cat: "Lung",
+  bcc: true,
+  name: "LUAVSEL - Selpercatinib [RET Fusion-Positive NSCLC]",
+  cycle: 30,
+  notes: "RET fusion-positive metastatic NSCLC — selpercatinib monotherapy. Starting dose 160 mg PO BID for body weight ≥50 kg; 120 mg PO BID for body weight <50 kg. For severe hepatic impairment (Child-Pugh C) at baseline: start at 80 mg PO BID regardless of weight. Continue until progression or unacceptable toxicity. Dose levels for weight ≥50 kg: 0=160 mg BID, -1=120 mg BID, -2=80 mg BID, -3=40 mg BID. For weight <50 kg: 0=120 mg BID, -1=80 mg BID, -2=40 mg BID, -3=40 mg once daily. Do not initiate if QTc >470 ms. Monitor BP, electrolytes (K/Mg/Ca), LFTs, ECG. Hold for QTc ≥501 ms, ANC <1.0 or platelets <75, BP >160/100, or ALT/AST 5-20× ULN; restart at reduced dose per protocol. Hypersensitivity (4-6%) presents as maculopapular rash with fever/arthralgia/myalgia — hold, give prednisone 1 mg/kg, restart 3 levels lower with continued steroid. CYP3A4 substrate; inhibits CYP2C8, P-gp, MATE1 (so creatinine may rise without true GFR change). Hold ≥7 days before elective surgery; do not restart for ≥2 weeks after major surgery. BC Cancer protocol activated 1 Sep 2023.",
+  drugs: [
+    {
+      name: "selpercatinib",
+      dose: 160,
+      unit: "mg",
+      basis: "flat",
+      max: null,
+      weightCap: null,
+      route: "PO BID",
+      days: "Continuous, twice daily",
+      reducible: true,
+      note: "Default 160 mg BID for ≥50 kg; use 120 mg BID for <50 kg (see protocol notes for weight-based dose levels). Take on an empty stomach if used with proton pump inhibitors; otherwise may take with or without food. Repeat every 30 days = 1 cycle.",
+      levels: [120, 80, 40]
+    }
+  ],
+  labs: {
+    baseline: ["CBC & Diff", "platelets", "creatinine", "alkaline phosphatase", "ALT", "total bilirubin", "LDH", "sodium", "potassium", "magnesium", "calcium", "albumin", "blood pressure", "ECG"],
+    cycle: ["CBC & Diff", "platelets", "creatinine", "ALT", "total bilirubin", "sodium", "potassium", "magnesium", "calcium", "albumin", "LDH", "blood pressure"],
+    conditional: [
+      { label: "Day 7 after start", tests: ["sodium", "potassium", "magnesium", "calcium", "blood pressure", "ECG"] },
+      { label: "Every 2 weeks for first 3 months", tests: ["ALT", "total bilirubin"] },
+      { label: "Monthly Months 1-6", tests: ["CBC & Diff", "platelets", "creatinine", "ALT", "total bilirubin", "sodium", "potassium", "magnesium", "calcium", "albumin", "LDH", "blood pressure", "ECG"] },
+      { label: "If clinically indicated", tests: ["random glucose", "uric acid", "phosphorus", "total cholesterol", "BUN", "ECG", "chest x-ray", "C-reactive protein"] }
+    ]
+  }
+},
+
+// ULUAVPPAF — CARBOplatin + Pemetrexed + Amivantamab (1L EGFR exon 20 insertion NSCLC)
+{
+  key: "LU-ULUAVPPAF",
+  cat: "Lung",
+  bcc: true,
+  name: "ULUAVPPAF - CARBOplatin + Pemetrexed + Amivantamab [1L EGFR Exon 20 Insertion NSCLC]",
+  cycle: 21,
+  notes: "First-line treatment of advanced non-squamous NSCLC with EGFR exon 20 insertion mutation. Compassionate Access Program approval required. CARBOplatin + pemetrexed given Cycles 1-4 only; amivantamab and pemetrexed continue as maintenance from Cycle 5+. Amivantamab dosing is weight-banded (<80 kg vs ≥80 kg) and schedule changes each cycle — see below. Cycle 1: split amivantamab loading (Day 1 = 350 mg, Day 2 = 1050 or 1400 mg, Day 8 + 15 = 1400 or 1750 mg). Cycle 2 Day 1: 1400 mg (<80 kg) or 1750 mg (≥80 kg). Cycles 3-4 Day 1: 1750 mg (<80 kg) or 2100 mg (≥80 kg). Cycle 5+ (maintenance, no carboplatin): pemetrexed + amivantamab 1750/2100 mg Day 1. Repeat q21d until progression or intolerable toxicity. Dexamethasone 8 mg PO BID × 4 doses starting 2 days before Cycle 1 Day 1. Folic acid 0.4-1 mg PO daily and vitamin B12 1000 mcg IM q9 weeks mandatory (start ≥7 days before first pemetrexed; continue 21 days after last). Skin/nail prophylaxis: doxycycline or minocycline 100 mg PO BID × 12 weeks, then clindamycin 1% topical lotion to scalp × 9 months; chlorhexidine 4% soap for hands/feet; non-comedogenic moisturizer. Amivantamab dose reduction tiers (any toxicity): 1050→700→350; 1400→1050→700; 1750→1400→1050; 2100→1750→1400, then discontinue. BC Cancer protocol activated 1 Apr 2026.",
+  drugs: [
+    {
+      name: "pemetrexed",
+      dose: 500,
+      unit: "mg/m²",
+      basis: "bsa",
+      max: null,
+      weightCap: null,
+      route: "IV",
+      days: "Day 1 (every cycle)",
+      reducible: true,
+      note: "IV in 100 mL NS over 10 min. Hold if CrCl <45 mL/min. Mucositis Grade 3-4 → 50% prior dose (discontinue after 2 reductions). Folic acid + B12 mandatory."
+    },
+    {
+      name: "CARBOplatin",
+      dose: 5,
+      unit: "AUC",
+      basis: "auc",
+      max: null,
+      weightCap: null,
+      route: "IV",
+      days: "Day 1 (Cycles 1-4 only)",
+      reducible: true,
+      note: "Calvert: AUC 5 × (GFR + 25), GFR capped at 125 mL/min. IV in 100-250 mL NS over 30 min. Recalculate GFR if creatinine rises >20% or above ULN. Stopped after Cycle 4 (pemetrexed + amivantamab continue as maintenance)."
+    },
+    {
+      name: "amivantamab",
+      dose: 1750,
+      unit: "mg",
+      basis: "flat",
+      max: null,
+      weightCap: null,
+      route: "IV",
+      days: "Cycle 1: Days 1, 2, 8, 15 (split loading); Cycle 2+: Day 1",
+      reducible: true,
+      note: "Weight-banded fixed dosing — see protocol notes. Default shown is steady-state Cycle 5+ dose for body weight <80 kg (≥80 kg = 2100 mg). Cycle 1 split-load dosing differs (350 mg D1, 1050/1400 mg D2, 1400/1750 mg D8 and D15). Use 0.2 micron in-line filter; peripheral line in Cycle 1. Premedicate: dexamethasone IV + diphenhydrAMINE IV + famotidine IV + acetaminophen PO before D1 and D2; dexamethasone PO before pemetrexed Cycle 2+.",
+      levels: [1400, 1050]
+    }
+  ],
+  labs: {
+    baseline: ["CBC & Diff", "creatinine", "alkaline phosphatase", "ALT", "total bilirubin", "LDH", "GGT", "albumin", "sodium", "potassium", "magnesium", "random glucose"],
+    cycle: ["CBC & Diff", "creatinine", "total bilirubin", "ALT"],
+    conditional: [
+      { label: "If clinically indicated, prior to Cycle 1 Days 8 and 15", tests: ["CBC & Diff", "creatinine", "total bilirubin", "ALT"] },
+      { label: "If clinically indicated", tests: ["alkaline phosphatase", "LDH", "GGT", "albumin", "sodium", "potassium", "magnesium", "random glucose"] }
+    ]
+  }
+},
+
+// ULUAVPPAMI — CARBOplatin + Pemetrexed + Amivantamab (post-osimertinib EGFR ex19del/L858R NSCLC)
+{
+  key: "LU-ULUAVPPAMI",
+  cat: "Lung",
+  bcc: true,
+  name: "ULUAVPPAMI - CARBOplatin + Pemetrexed + Amivantamab [Post-Osimertinib EGFR ex19del/L858R NSCLC]",
+  cycle: 21,
+  notes: "Treatment of advanced non-squamous NSCLC with EGFR exon 19 deletion or exon 21 L858R substitution after progression on osimertinib (MARIPOSA-2 regimen, no lazertinib). Last platinum exposure must be >6 months prior. CARBOplatin + pemetrexed given Cycles 1-4 only; amivantamab and pemetrexed continue as maintenance from Cycle 5+. Amivantamab dosing identical to ULUAVPPAF — weight-banded (<80 kg vs ≥80 kg), Cycle 1 split-load (Day 1 = 350 mg, Day 2 = 1050 or 1400 mg, Days 8 and 15 = 1400 or 1750 mg). Cycle 2 Day 1: 1400 mg or 1750 mg. Cycles 3-4 Day 1: 1750 mg or 2100 mg. Cycle 5+ (maintenance, no carboplatin): pemetrexed + amivantamab 1750 mg or 2100 mg Day 1. Repeat q21d until progression or intolerable toxicity. Premedications and skin/nail prophylaxis identical to ULUAVPPAF: dexamethasone 8 mg PO BID × 4 doses starting 2 days before C1D1; folic acid 0.4-1 mg PO daily + vitamin B12 1000 mcg IM q9 weeks; doxycycline/minocycline 100 mg PO BID × 12 weeks then clindamycin 1% lotion × 9 months. Amivantamab dose reduction tiers (any toxicity): 1050→700→350; 1400→1050→700; 1750→1400→1050; 2100→1750→1400, then discontinue. BC Cancer protocol activated 1 Apr 2026.",
+  drugs: [
+    {
+      name: "pemetrexed",
+      dose: 500,
+      unit: "mg/m²",
+      basis: "bsa",
+      max: null,
+      weightCap: null,
+      route: "IV",
+      days: "Day 1 (every cycle)",
+      reducible: true,
+      note: "IV in 100 mL NS over 10 min. Hold if CrCl <45 mL/min. Mucositis Grade 3-4 → 50% prior dose (discontinue after 2 reductions). Folic acid + B12 mandatory."
+    },
+    {
+      name: "CARBOplatin",
+      dose: 5,
+      unit: "AUC",
+      basis: "auc",
+      max: null,
+      weightCap: null,
+      route: "IV",
+      days: "Day 1 (Cycles 1-4 only)",
+      reducible: true,
+      note: "Calvert: AUC 5 × (GFR + 25), GFR capped at 125 mL/min. IV in 100-250 mL NS over 30 min. Recalculate GFR if creatinine rises >20% or above ULN. Stopped after Cycle 4 (pemetrexed + amivantamab continue as maintenance)."
+    },
+    {
+      name: "amivantamab",
+      dose: 1750,
+      unit: "mg",
+      basis: "flat",
+      max: null,
+      weightCap: null,
+      route: "IV",
+      days: "Cycle 1: Days 1, 2, 8, 15 (split loading); Cycle 2+: Day 1",
+      reducible: true,
+      note: "Weight-banded fixed dosing — see protocol notes. Default shown is steady-state Cycle 5+ dose for body weight <80 kg (≥80 kg = 2100 mg). Cycle 1 split-load dosing differs (350 mg D1, 1050/1400 mg D2, 1400/1750 mg D8 and D15). Use 0.2 micron in-line filter; peripheral line in Cycle 1. Premedicate: dexamethasone IV + diphenhydrAMINE IV + famotidine IV + acetaminophen PO before D1 and D2; dexamethasone PO before pemetrexed Cycle 2+.",
+      levels: [1400, 1050]
+    }
+  ],
+  labs: {
+    baseline: ["CBC & Diff", "creatinine", "alkaline phosphatase", "ALT", "total bilirubin", "LDH", "GGT", "albumin", "sodium", "potassium", "magnesium", "random glucose"],
+    cycle: ["CBC & Diff", "creatinine", "total bilirubin", "ALT"],
+    conditional: [
+      { label: "If clinically indicated, prior to Cycle 1 Days 8 and 15", tests: ["CBC & Diff", "creatinine", "total bilirubin", "ALT"] },
+      { label: "If clinically indicated", tests: ["alkaline phosphatase", "LDH", "GGT", "albumin", "sodium", "potassium", "magnesium", "random glucose"] }
+    ]
+  }
 }
 ]; // end PROTOCOLS
