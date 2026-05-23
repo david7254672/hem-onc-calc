@@ -6837,6 +6837,94 @@ const PROTOCOLS = [
     }
   },
   {
+    key: "MY-MYDBLDF",
+    cat: "Multiple Myeloma",
+    bcc: true,
+    name: "MYDBLDF - daratumumab + bortezomib + lenalidomide + dexamethasone [MM — Transplant-Eligible, Frontline]",
+    cycle: 28,
+    notes: "Previously untreated multiple myeloma, eligible for autologous stem cell transplant (PERSEUS regimen, D-VRd). RevAid Program registration required for lenalidomide. Three phases: Induction (Cycles 1-4, pre-transplant), Consolidation (Cycles 5-6, starts 30-60 days post-transplant), Maintenance (Cycle 7+, len + monthly dara, 28-day cycles). Combined induction + consolidation ≤6 cycles. Last bortezomib dose ≥14 days, last lenalidomide and daratumumab ≥21 days prior to stem cell collection. Patients eligible for only one line of anti-CD38 mAb therapy. Daratumumab interferes with Coombs/cross-match for ≤6 mo; type and screen + RBC phenotype required pre-daratumumab. VZV prophylaxis (valACYclovir 500 mg PO daily) and anticoagulation (ASA / DOAC / LMWH) required. After ≥24 mo maintenance, daratumumab may be stopped in sustained MRD-negative complete responders. Protocol MYDBLDF.",
+    drugs: [
+      {
+        name: "daratumumab",
+        dose: 1800,
+        unit: "mg",
+        basis: "flat",
+        max: null,
+        weightCap: null,
+        route: "SC",
+        days: "Induction C1-2: Days 1, 8, 15, 22 (weekly); C3-4: Days 1, 15; Consolidation C5-6: Days 1, 15; Maintenance C7+: Day 1 (monthly)",
+        reducible: false,
+        note: "Fixed dose 1800 mg in 15 mL SC over 5 min in abdomen. Observe 1 hour post-injection on Cycle 1 Day 1 only. Premeds: acetaminophen 650 mg + loratadine 10 mg (or diphenhydrAMINE 50 mg) + montelukast 10 mg (C1D1 only, then optional) + dexamethasone 20-40 mg PO (Cycle 1 only). May discontinue premeds after 4 reaction-free doses. No dose reduction required (100% maintained for hematologic and renal toxicity)."
+      },
+      {
+        name: "bortezomib",
+        dose: 1.5,
+        unit: "mg/m²",
+        basis: "bsa",
+        max: null,
+        weightCap: null,
+        route: "SC",
+        days: "Induction (C1-4) and Consolidation (C5-6): Days 1, 8, 15, 22; not given in Maintenance",
+        reducible: true,
+        note: "May start at 1.3 mg/m² (clinician judgment). Give before daratumumab on shared days. SC route preferred (abdomen / thigh / back of arm) — significantly less neuropathy than IV. Moderate/severe hepatic impairment (bili >1.5× ULN): start at 0.7 mg/m². Peripheral neuropathy Gr 1+pain or Gr 2: reduce to 1.3 mg/m²; Gr 2+pain or Gr 3: delay and reduce to 1.0 mg/m².",
+        levels: [1.3, 1.0, 0.7, 0.5]
+      },
+      {
+        name: "lenalidomide",
+        dose: 25,
+        unit: "mg",
+        basis: "flat",
+        max: null,
+        weightCap: null,
+        route: "PO",
+        days: "Induction + Consolidation (C1-6): Days 1-21 (25 mg); Maintenance (C7+): Days 1-21 or continuous Days 1-28 (10 mg, may escalate to 15 mg after 3 maintenance cycles)",
+        reducible: true,
+        note: "Evening dosing preferred. Renal adjustment: eGFR ≥60 → 25 mg; eGFR 30-59 → 10 mg daily; eGFR <30 not dialysis → 15 mg every other day; dialysis-dependent → 5 mg daily post-dialysis. Maintenance dose levels are separate: 15 → 10 → 5 → 2.5 mg. Continue dexamethasone even if lenalidomide held. Teratogenic — RevAid Program registration required.",
+        levels: [20, 15, 10, 5, 2.5]
+      },
+      {
+        name: "dexamethasone",
+        dose: 40,
+        unit: "mg",
+        basis: "flat",
+        max: null,
+        weightCap: null,
+        route: "PO",
+        days: "Induction + Consolidation (C1-6): Days 1, 8, 15, 22 (prior to daratumumab); not part of Maintenance (premedication only if dara restart)",
+        reducible: false,
+        note: "Starting dose 20 mg weekly for patients ≥75 years. Dose may vary 4-40 mg per tolerability. predniSONE (10-100 mg PO weekly; ≥100 mg for Cycle 1) may be substituted. Therapeutic dose serves as premedication in Cycle 1; after C1, steroid premedication not required for daratumumab."
+      }
+    ],
+    labs: {
+      baseline: [
+        "Red Blood Cell phenotype and Group and Screen (mark requisition 'patient to start daratumumab')",
+        "CBC & Diff", "creatinine", "total bilirubin", "ALT", "alkaline phosphatase",
+        "calcium", "albumin", "LDH", "random glucose",
+        "serum protein electrophoresis", "serum free light chain levels",
+        "immunoglobulin panel (IgA, IgG, IgM)", "HCAb", "HBsAg", "HBsAb", "HBcoreAb",
+        "TSH", "beta-2 microglobulin",
+        "quantitative beta-hCG (if FCBP: 7-14 days and 24 h prior to initial prescription)",
+        "bone marrow aspirate for MRD (baseline)"
+      ],
+      cycle: [
+        "CBC & Diff", "creatinine", "total bilirubin", "ALT", "alkaline phosphatase",
+        "calcium", "albumin", "LDH",
+        "quantitative beta-hCG (if FCBP)"
+      ],
+      conditional: [
+        { label: "Every 4 weeks (required)", tests: ["serum protein electrophoresis", "serum free light chain levels"] },
+        { label: "Every 4 weeks (optional/encouraged)", tests: ["urine protein electrophoresis", "immunoglobulin panel (IgA, IgG, IgM)"] },
+        { label: "Days 8, 15, 22 (optional — if pre-cycle cytopenias, hypercalcemia, hepatic/renal dysfunction a concern)", tests: ["CBC & Diff", "creatinine", "sodium", "potassium", "total bilirubin", "ALT", "alkaline phosphatase", "calcium", "albumin"] },
+        { label: "Every 3 months (required for lenalidomide)", tests: ["TSH"] },
+        { label: "Weekly x 4 weeks during Cycle 1 and during Cycle 5 (if FCBP)", tests: ["quantitative beta-hCG"] },
+        { label: "7-14 days and 24 hours prior to Cycle 5 (if FCBP)", tests: ["quantitative beta-hCG"] },
+        { label: "At 12 mo, 24 mo (and optionally 36 mo)", tests: ["bone marrow aspirate for MRD"] },
+        { label: "Baseline if clinically indicated", tests: ["urea", "sodium", "potassium"] },
+        { label: "If clinically indicated", tests: ["HBV viral load (see SCHBV)"] }
+      ]
+    }
+  },
+  {
     key: "MY-MYLDREL",
     cat: "Multiple Myeloma",
     bcc: true,
