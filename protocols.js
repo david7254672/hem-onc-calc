@@ -1773,7 +1773,7 @@ const PROTOCOLS = [
   },
   {
     key: "LY-LYCLLBENDR",
-    cat: "CLL",
+    cat: "Lymphoma",
     bcc: true,
     name: "LYCLLBENDR — Bendamustine + riTUXimab [Relapsed/Refractory CLL/SLL]",
     cycle: 28,
@@ -1814,7 +1814,7 @@ const PROTOCOLS = [
   },
   {
     key: "LY-LYCLLBEND",
-    cat: "CLL",
+    cat: "Lymphoma",
     bcc: true,
     name: "LYCLLBEND — Bendamustine [Relapsed CLL/SLL]",
     cycle: 28,
@@ -1843,7 +1843,7 @@ const PROTOCOLS = [
   },
   {
     key: "LY-LYCLLCHLR",
-    cat: "CLL",
+    cat: "Lymphoma",
     bcc: true,
     name: "LYCLLCHLR — Chlorambucil + riTUXimab [CLL/SLL]",
     cycle: 28,
@@ -1885,7 +1885,7 @@ const PROTOCOLS = [
   },
   {
     key: "LY-LYCLLCVPR",
-    cat: "CLL",
+    cat: "Lymphoma",
     bcc: true,
     name: "LYCLLCVPR — CVP-R [Relapsed CLL/SLL]",
     cycle: 28,
@@ -1951,7 +1951,7 @@ const PROTOCOLS = [
   },
   {
     key: "LY-LYCLLFBR",
-    cat: "CLL",
+    cat: "Lymphoma",
     bcc: true,
     name: "LYCLLFBR — Bendamustine + riTUXimab [Previously Untreated CLL/SLL]",
     cycle: 28,
@@ -1992,7 +1992,7 @@ const PROTOCOLS = [
   },
   {
     key: "LY-LYCLLFLUDR",
-    cat: "CLL",
+    cat: "Lymphoma",
     bcc: true,
     name: "LYCLLFLUDR — Fludarabine + riTUXimab [CLL/SLL / Prolymphocytic Leukemia]",
     cycle: 28,
@@ -2034,7 +2034,7 @@ const PROTOCOLS = [
   },
   {
     key: "LY-LYCLLIV",
-    cat: "CLL",
+    cat: "Lymphoma",
     bcc: true,
     name: "LYCLLIV — iBRUtinib + venetoCLAX [Previously Untreated CLL/SLL]",
     cycle: null,
@@ -2084,7 +2084,7 @@ const PROTOCOLS = [
 
 {
     key: "LY-LYCLLZANU",
-    cat: "CLL",
+    cat: "Lymphoma",
     bcc: true,
     name: "LYCLLZANU — Zanubrutinib [CLL/SLL]",
     cycle: null,
@@ -2953,7 +2953,7 @@ const PROTOCOLS = [
   },
   {
     key: "LY-LYFACAL",
-    cat: "CLL",
+    cat: "Lymphoma",
     bcc: true,
     name: "LYFACAL — Acalabrutinib [CLL/SLL — First-line]",
     cycle: null,
@@ -2990,7 +2990,7 @@ const PROTOCOLS = [
   },
   {
     key: "LY-LYFCR",
-    cat: "CLL",
+    cat: "Lymphoma",
     bcc: true,
     name: "LYFCR — FCR [CLL/SLL / Prolymphocytic Leukemia — First-line]",
     cycle: 28,
@@ -3046,7 +3046,7 @@ const PROTOCOLS = [
   },
   {
     key: "LY-LYFIBRU",
-    cat: "CLL",
+    cat: "Lymphoma",
     bcc: true,
     name: "LYFIBRU — iBRUtinib [CLL/SLL — First-line]",
     cycle: null,
@@ -4763,7 +4763,7 @@ const PROTOCOLS = [
   },
   {
     key: "LY-LYVENETOR",
-    cat: "CLL",
+    cat: "Lymphoma",
     bcc: true,
     name: "LYVENETOR — Venetoclax + riTUXimab [CLL/SLL, R/R]",
     cycle: 28,
@@ -4880,7 +4880,7 @@ const PROTOCOLS = [
   },
   {
     key: "LY-LYVENOB",
-    cat: "CLL",
+    cat: "Lymphoma",
     bcc: true,
     name: "LYVENOB — Venetoclax + oBINutuzumab [CLL/SLL, previously untreated]",
     cycle: 28,
@@ -5824,65 +5824,6 @@ const PROTOCOLS = [
   // =========================================================
   // MULTIPLE MYELOMA
   // =========================================================
-
-  // Legacy entries (no BC Cancer PDF source)
-  {
-    key:"VRd", cat:"Multiple Myeloma",
-    name:"VRd (Bortezomib, Lenalidomide, Dexamethasone)",
-    cycle:21,
-    notes:"Standard first-line myeloma. SubQ bortezomib preferred (less neuropathy). Lenalidomide renally dosed: CrCl 30–59: 10 mg/day; CrCl <30: 7.5 mg/day. VTE prophylaxis required.",
-    drugs:[
-      { name:"Bortezomib (Velcade)",    dose:1.3, unit:"mg/m²", basis:"bsa",  max:null, route:"SubQ preferred", days:"Days 1, 4, 8, 11", reducible:true,  note:"SubQ preferred to reduce neuropathy" },
-      { name:"Lenalidomide (Revlimid)", dose:25,  unit:"mg",    basis:"flat", max:null, route:"PO",             days:"Days 1–14",         reducible:false, note:"Renal dose-adjust: CrCl 30–59→10mg; CrCl<30→7.5mg" },
-      { name:"Dexamethasone",           dose:20,  unit:"mg",    basis:"flat", max:null, route:"PO or IV",       days:"Days 1,2,4,5,8,9,11,12", reducible:false }
-    ],
-    labs:{
-      baseline:["CBC & Diff", "creatinine", "sodium", "potassium", "calcium", "ALT", "total bilirubin", "alkaline phosphatase", "albumin", "LDH", "serum protein electrophoresis", "serum free light chains", "HBsAg", "HBsAb", "HBcoreAb"],
-      cycle:["CBC & Diff", "creatinine", "calcium", "ALT", "total bilirubin"],
-      conditional:[
-        { label:"Every 4 weeks", tests:["serum protein electrophoresis", "serum free light chains"] },
-        { label:"If clinically indicated", tests:["HBV viral load", "quantitative beta-hCG (if FCBP)"] }
-      ]
-    }
-  },
-  {
-    key:"CyBorD", cat:"Multiple Myeloma",
-    name:"CyBorD (Cyclophosphamide, Bortezomib, Dexamethasone)",
-    cycle:21,
-    notes:"Alternative first-line myeloma, especially pre-transplant. Weekly bortezomib schedule (less neurotoxicity). SubQ preferred. VTE prophylaxis required.",
-    drugs:[
-      { name:"Cyclophosphamide",     dose:300, unit:"mg/m²",  basis:"bsa",  max:null, route:"PO or IV",       days:"Days 1, 8, 15", reducible:true  },
-      { name:"Bortezomib (Velcade)", dose:1.3, unit:"mg/m²",  basis:"bsa",  max:null, route:"SubQ",           days:"Days 1, 8, 15", reducible:true, note:"Weekly schedule; SubQ preferred" },
-      { name:"Dexamethasone",        dose:20,  unit:"mg",     basis:"flat", max:null, route:"PO or IV",       days:"Days 1,2,8,9,15,16", reducible:false }
-    ],
-    labs:{
-      baseline:["CBC & Diff", "creatinine", "sodium", "potassium", "calcium", "ALT", "total bilirubin", "alkaline phosphatase", "albumin", "LDH", "serum protein electrophoresis", "serum free light chains", "HBsAg", "HBsAb", "HBcoreAb"],
-      cycle:["CBC & Diff", "creatinine", "calcium", "ALT", "total bilirubin"],
-      conditional:[
-        { label:"Every 4 weeks", tests:["serum protein electrophoresis", "serum free light chains"] },
-        { label:"If clinically indicated", tests:["HBV viral load"] }
-      ]
-    }
-  },
-  {
-    key:"Rd", cat:"Multiple Myeloma",
-    name:"Rd (Lenalidomide, Dexamethasone)",
-    cycle:28,
-    notes:"Continuous Rd for transplant-ineligible patients. Lenalidomide until progression. Renal dose adjustment required. Reduce dexamethasone to 20 mg/week if age >75. VTE prophylaxis required.",
-    drugs:[
-      { name:"Lenalidomide (Revlimid)", dose:25, unit:"mg", basis:"flat", max:null, route:"PO", days:"Days 1–21", reducible:false, note:"Renal dose-adjust required" },
-      { name:"Dexamethasone",           dose:40, unit:"mg", basis:"flat", max:null, route:"PO", days:"Days 1, 8, 15, 22", reducible:false, note:"Reduce to 20 mg/week if age >75" }
-    ],
-    labs:{
-      baseline:["CBC & Diff", "creatinine", "sodium", "potassium", "calcium", "ALT", "total bilirubin", "alkaline phosphatase", "albumin", "LDH", "TSH", "serum protein electrophoresis", "serum free light chains", "HBsAg", "HBsAb", "HBcoreAb"],
-      cycle:["CBC & Diff", "creatinine", "calcium", "ALT", "total bilirubin"],
-      conditional:[
-        { label:"Every 4 weeks", tests:["serum protein electrophoresis", "serum free light chains"] },
-        { label:"Every 3 months", tests:["TSH"] },
-        { label:"If clinically indicated", tests:["HBV viral load", "quantitative beta-hCG (if FCBP)"] }
-      ]
-    }
-  },
 
   // BC Cancer MY / UMY protocols
   {
@@ -10490,26 +10431,6 @@ const PROTOCOLS = [
         { label: "If on warfarin: weekly until stable, then prior to each cycle", tests: ["INR"] },
         { label: "If clinically indicated", tests: ["ECG", "echocardiogram", "MUGA scan", "total protein", "albumin", "GGT", "alkaline phosphatase", "LDH", "urea", "CA15-3"] }
       ]
-    }
-  },
-
-  // =========================================================
-  // LUNG
-  // =========================================================
-
-  {
-    key:"Carbo-Pacli-Lung", cat:"Lung",
-    name:"Carboplatin AUC5 + Paclitaxel [NSCLC]",
-    cycle:21,
-    notes:"First-line or second-line NSCLC. Carboplatin dose by Calvert formula (AUC 5) — see Carboplatin tab. Paclitaxel premedications required (dexamethasone 20 mg PO/IV, diphenhydramine 50 mg IV, H2-blocker IV).",
-    drugs:[
-      { name:"Paclitaxel",  dose:175, unit:"mg/m²", basis:"bsa", max:null, route:"IV over 3h",     days:"Day 1", reducible:true, note:"Premedications required — see notes" },
-      { name:"CARBOplatin", dose:5,   unit:"AUC",   basis:"auc", max:null, route:"IV over 30–60 min", days:"Day 1", reducible:false, note:"Calvert: AUC 5 × (CrCl+25). CrCl capped at 125 mL/min." }
-    ],
-    labs: {
-      baseline: ["CBC & Diff", "platelets", "creatinine", "alkaline phosphatase", "ALT", "total bilirubin"],
-      cycle: ["CBC & Diff", "platelets", "creatinine", "ALT", "alkaline phosphatase", "total bilirubin"],
-      conditional: [{ label:"Day 8", tests:["CBC & Diff", "platelets", "creatinine"] }]
     }
   },
 
@@ -15429,46 +15350,6 @@ const PROTOCOLS = [
   // =========================================================
   // GYNE (BC Cancer GO protocols)
   // =========================================================
-
-  {
-    key:"Carbo-Pacli-Gyne", cat:"Gyne",
-    name:"Carboplatin AUC5 + Paclitaxel [Ovarian / Endometrial]",
-    cycle:21,
-    notes:"Standard for ovarian and endometrial cancer. Carboplatin dose by Calvert formula — see Carboplatin tab. Paclitaxel premedications required.",
-    drugs:[
-      { name:"Paclitaxel",  dose:175, unit:"mg/m²", basis:"bsa", max:null, route:"IV over 3h",     days:"Day 1", reducible:true, note:"Premedications required" },
-      { name:"CARBOplatin", dose:5,   unit:"AUC",   basis:"auc", max:null, route:"IV over 30–60 min", days:"Day 1", reducible:false, note:"Calvert: AUC 5 × (CrCl+25). CrCl capped at 125 mL/min." }
-    ],
-    labs:{
-      baseline:["CBC & differential", "Creatinine", "ALT, alkaline phosphatase, total bilirubin, albumin", "Sodium, potassium", "DPYD test (not required if previously tested or tolerated fluorouracil/capecitabine)"],
-      cycle:["CBC & differential", "Creatinine", "Total bilirubin, ALT"],
-      conditional:[
-        { label:"Baseline if clinically indicated", tests:["CEA, CA 19-9", "GGT", "ECG"] },
-        { label:"If clinically indicated", tests:["CEA, CA 19-9", "Alkaline phosphatase, albumin, GGT", "Sodium, potassium", "ECG"] },
-        { label:"Patients on warfarin", tests:["Weekly INR until stable warfarin dose established, then INR prior to each cycle"] }
-      ]
-    }
-  },
-
-  {
-    key:"Carbo-Pacli-AUC6-Gyne", cat:"Gyne",
-    name:"Carboplatin AUC6 + Paclitaxel [Ovarian — Higher Intensity]",
-    cycle:21,
-    notes:"Higher-intensity regimen for selected ovarian cancer patients. Carboplatin dose by Calvert formula (AUC 6) — see Carboplatin tab.",
-    drugs:[
-      { name:"Paclitaxel",  dose:175, unit:"mg/m²", basis:"bsa", max:null, route:"IV over 3h",       days:"Day 1", reducible:true  },
-      { name:"CARBOplatin", dose:6,   unit:"AUC",   basis:"auc", max:null, route:"IV over 30–60 min", days:"Day 1", reducible:false, note:"Calvert: AUC 6 × (CrCl+25). CrCl capped at 125 mL/min." }
-    ],
-    labs:{
-      baseline:["CBC & differential", "Creatinine", "ALT, alkaline phosphatase, total bilirubin, albumin", "Sodium, potassium", "DPYD test (not required if previously tested or tolerated fluorouracil/capecitabine)"],
-      cycle:["CBC & differential", "Creatinine", "Total bilirubin, ALT"],
-      conditional:[
-        { label:"Baseline if clinically indicated", tests:["CEA, CA 19-9", "GGT", "ECG"] },
-        { label:"If clinically indicated", tests:["CEA, CA 19-9", "Alkaline phosphatase, albumin, GGT", "Sodium, potassium", "ECG"] },
-        { label:"Patients on warfarin", tests:["Weekly INR until stable warfarin dose established, then INR prior to each cycle"] }
-      ]
-    }
-  },
 
   {
     key:"GO-GOCXBP",

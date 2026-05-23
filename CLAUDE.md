@@ -103,11 +103,13 @@ Anthropic-inspired color scheme via CSS variables:
 
 ## Protocol Categories
 Current categories in the category dropdown (match exactly with `cat` strings in protocol entries):
-`Lymphoma` | `CLL` | `Myeloid` | `Multiple Myeloma` | `Breast` | `Lung` | `GI` | `GU` | `Gyne`
+`Lymphoma` | `Myeloid` | `Multiple Myeloma` | `Breast` | `Lung` | `GI` | `GU` | `Gyne`
 
-BC Cancer protocols (Mar 2025) are tagged `bcc: true` and show the BC Cancer badge. Total protocol count: 437. For exact per-category counts, grep `protocols.js` (e.g. `grep -c 'cat: "Lymphoma"' protocols.js`).
+BC Cancer protocols (Mar 2025) are tagged `bcc: true` and show the BC Cancer badge. Total protocol count: 433 (post PR 13). For exact per-category counts, grep with a format-agnostic pattern (entries use both `cat: "X"` and `cat:"X"` formats): `grep -cE 'cat\s*:\s*"Lymphoma"' protocols.js`.
 
-Populated categories include Lymphoma (LY series), CLL, Myeloid, Multiple Myeloma, GU, Lung, Gyne. GI and Breast are present as dropdown categories but have few or no protocols yet — confirm by grep before claiming a count.
+All categories are well populated. CLL/SLL protocols are grouped under the **Lymphoma** category (merged in PR 13 — clinically appropriate since CLL/SLL share many regimens with indolent lymphoma; the dropdown option is labelled "Lymphoma / CLL / SLL").
+
+⚠️ **Before adding new protocols**, always run a format-agnostic grep to confirm the category's existing state — pre-existing entries may use compact format (`cat:"X"`) that strict-spaced grep (`cat: "X"`) misses. See "Lesson learned" callout below.
 
 ## Protocol Source Files
 BC Cancer protocol PDFs are at:
