@@ -112,21 +112,27 @@ All categories are well populated. CLL/SLL protocols are grouped under the **Lym
 ⚠️ **Before adding new protocols**, always run a format-agnostic grep to confirm the category's existing state — pre-existing entries may use compact format (`cat:"X"`) that strict-spaced grep (`cat: "X"`) misses. See "Lesson learned" callout below.
 
 ## Protocol Source Files
-BC Cancer protocol PDFs are at:
-`/Users/david/Documents/BC Cancer Protocols Mar 2025/`
+BC Cancer protocol PDFs (Mar 2025 release) are organized under `./Chemo protocols/` using a uniform `<SITE>/source-pdfs/` layout (standardized in 2026-05):
 
-Individual protocol PDFs (used for extraction) are organized by tumour site inside the app folder:
-`./Chemo protocols/LU protocols/` — Lung (LUXXX_Protocol.pdf)
-`./Chemo protocols/BR protocols/` — Breast (BRXXX_Protocol.pdf) *(next)*
-`./Chemo protocols/GI protocols/` — GI
-`./Chemo protocols/GO protocols/` — Gyne (GOXXX_Protocol.pdf / UGOXXX_Protocol.pdf)
-`./Chemo protocols/GU protocols/` — GU
-`./Chemo protocols/LY Protocols/` — Lymphoma
-`./Chemo protocols/LK protocols/` — Leukemia
-`./Chemo protocols/MY protocols/` — Myeloid
+| Folder | Site | PDFs | App category |
+|---|---|---|---|
+| `BR/source-pdfs/` | Breast (BR + UBR) | 57 | Breast |
+| `GI/source-pdfs/` | GI (GI + UGI) | 97 | GI |
+| `GO/source-pdfs/` | Gyne (GO + UGO) | 22 | Gyne |
+| `GU/source-pdfs/` | GU (GU + UGU) | 60 | GU |
+| `LK/source-pdfs/` | Leukemia / MPN (LK + ULK) | 8 | Myeloid |
+| `LU/source-pdfs/` | Lung (LU + ULU) | 47 | Lung |
+| `LY/source-pdfs/` | Lymphoma / CLL (LY + ULY) | 88 | Lymphoma |
+| `MY/source-pdfs/` | Multiple Myeloma (MY + UMY) | 21 | Multiple Myeloma |
+| `inbox/` | Ad-hoc / pending | 0 | (drop here, sort later) |
 
-GU protocols extracted text (pdfplumber output, all 239 pages) is cached at:
-`/Users/david/Desktop/GU_protocols_extracted.txt`
+Each `<SITE>/` may also contain `intermediate/` (pdfplumber extracts, batch JSON) and `output/` (prior extraction work artifacts) — historical, not consumed by anything live.
+
+### Adding new PDFs ad-hoc
+Drop into `./Chemo protocols/inbox/` (see its README). After extraction lands in `protocols.js`, the PDF gets moved into the matching `<SITE>/source-pdfs/`. `inbox/` should be empty most of the time.
+
+### Master BC Cancer reference set
+The unsplit Mar 2025 PDFs live at `/Users/david/Documents/BC Cancer Protocols Mar 2025/` — useful if you need to look up the original combined document.
 
 ## BC Cancer Protocol Naming Conventions
 BC Cancer protocol codes follow a site prefix pattern, but some protocols have a `U` prefix indicating a different variant (e.g., unconventional dosing, urothelial sub-site, etc.):
@@ -145,7 +151,7 @@ The protocol `key` in the JS should reflect the actual BC Cancer code (e.g., `"L
 
 ## Pending / Known Issues
 - **Breast protocols**: 57 entries (BR + UBR series complete as of PR 7).
-- **GI protocols**: 97 entries populated in `protocols.js`. Key-naming normalized to `GI-GIxxx` (`SITE-FULLCODE`) convention as of PR 12. Source PDFs at `./Chemo protocols/GI - 2/source-pdfs/` (97 files).
+- **GI protocols**: 97 entries populated in `protocols.js`. Key-naming normalized to `GI-GIxxx` (`SITE-FULLCODE`) convention as of PR 12. Source PDFs at `./Chemo protocols/GI/source-pdfs/` (97 files).
   - Note: pre-existing GI entries still use compact single-line format (`key:"GI-GIxxx", cat:"GI", bcc:true,`) rather than the multi-line standard format used by newer Breast/GU/Lung entries. The `name:` field on these entries also doesn't yet lead with the BC code (e.g. `name:"FOLFOX (Colorectal)"` rather than `name:"GIFOLFOX - FOLFOX [Colorectal]"`). These are cosmetic-only differences; both formats are valid JS and pass the validator.
 - **GU `levels` data**: substantially backfilled — all oral targeted agents (TKIs, AR-axis) and the gem/cis + small-cell chemo backbones now carry protocol-specific tiers. Still no levels by design for curative germ-cell regimens (GUBEP/GUEP/GUVEIP — protocol forbids reduction), AUC-only carboplatin (GUSCARB — delay only), MVAC variants (renal-trigger schemes don't map cleanly to discrete levels), and axitinib (continuous 2–10 mg BID range, not numbered tiers).
 
@@ -166,7 +172,7 @@ The load-time validator in each HTML file (search `function validateProtocols`) 
 
 1. **List all PDFs** in the target folder:
    ```bash
-   ls /Users/david/Desktop/Claude\ Code/Chemo\ protocols/LU\ protocols/
+   ls "./Chemo protocols/LU/source-pdfs/"
    ```
    Include both `LUXXX` and `ULUXXX` prefixes (see naming conventions above).
 
