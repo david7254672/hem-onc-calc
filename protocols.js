@@ -18138,5 +18138,98 @@ const PROTOCOLS = [
       { label: "If clinically indicated", tests: ["alkaline phosphatase", "LDH", "GGT", "albumin", "sodium", "potassium", "magnesium", "random glucose"] }
     ]
   }
+},
+{
+  key: "LY-ULYOGGEMOX",
+  cat: "Lymphoma",
+  bcc: true,
+  name: "ULYOGGEMOX — oBINutuzumab + Glofitamab + Gemcitabine + Oxaliplatin [DLBCL, R/R]",
+  cycle: 21,
+  notes: "STARGLO regimen (Abramson, Lancet 2024) — relapsed/refractory DLBCL NOS, transformed DLBCL, high-grade B-cell lymphoma, PMBCL, or FL Grade 3b. Eligible if ASCT-ineligible (≥1 prior line), or ≥2 prior lines and CAR-T ineligible, or prior CAR-T. CAP approval required. Treatment centre must manage CRS/ICANS. Schema: Cycle 1 Day 1 oBINutuzumab 1000 mg → Day 2 gemcitabine + oxaliplatin → Day 8 glofitamab 2.5 mg (step-up 1, inpatient ≥24 h) → Day 15 glofitamab 10 mg (step-up 2). Cycle 2 starts 7 days after C1D15 (glofitamab 30 mg + gem + oxali). Cycles 3–8: glofitamab 30 mg + gem + oxali Day 1 q21d. Cycles 9–12: glofitamab 30 mg Day 1 only q21d. Max 12 cycles. No dose reductions for oBINutuzumab, glofitamab, or gemcitabine — interrupt/hold/rate-reduce only. Oxaliplatin: reduce to 75 mg/m² for Grade 2–3 neuropathy. Do not start next glofitamab dose until CRS resolved ≥72 h. Permanently discontinue glofitamab for recurrent Grade 3 or any Grade 4 CRS, Grade 4 ICANS. Very high HBV reactivation risk — follow SCHBV if HBsAg/HBcoreAb positive. Mandatory valACYclovir 500 mg PO daily + cotrimoxazole DS 3×/wk during treatment and 3 months after.",
+  drugs: [
+    {
+      name: "oBINutuzumab",
+      dose: 1000,
+      unit: "mg",
+      basis: "flat",
+      max: null,
+      weightCap: null,
+      route: "IV",
+      days: "Cycle 1 Day 1 only",
+      reducible: false,
+      note: "IV in 250 mL NS; initiate at 50 mg/h, increase by 50 mg/h q30 min to max 400 mg/h; constant visual observation during infusion and 30 min after. Premed: dexamethasone 20 mg IV + acetaminophen 650–975 mg PO + diphenhydrAMINE 50 mg PO/IV."
+    },
+    {
+      name: "gemcitabine",
+      dose: 1000,
+      unit: "mg/m²",
+      basis: "bsa",
+      max: null,
+      weightCap: null,
+      route: "IV",
+      days: "Cycle 1 Day 2; Cycles 2–8 Day 1",
+      reducible: false,
+      note: "IV in 250 mL NS over 30 min. No dose reductions per protocol — hold/delay only. Possible warfarin interaction; monitor INR weekly during therapy and 1–2 mo after stopping."
+    },
+    {
+      name: "oxaliplatin",
+      dose: 100,
+      unit: "mg/m²",
+      basis: "bsa",
+      max: null,
+      weightCap: null,
+      route: "IV",
+      days: "Cycle 1 Day 2; Cycles 2–8 Day 1",
+      reducible: true,
+      note: "IV in 250–500 mL D5W over 2 h (NOT NS — incompatible). Avoid cold drinks/air ×3–5 days. NO cryotherapy. Reduce to 75 mg/m² for Grade 2–3 neuropathy not recovered to Grade 1 by next dose; permanently discontinue for persistent/recurrent Grade 3 or any Grade 4 neuropathy. For Grade 1–2 hypersensitivity: premedicate with dexamethasone 20 mg IV + diphenhydrAMINE 50 mg IV + famotidine 20 mg IV.",
+      levels: [75]
+    },
+    {
+      name: "glofitamab (step-up dose 1)",
+      dose: 2.5,
+      unit: "mg",
+      basis: "flat",
+      max: null,
+      weightCap: null,
+      route: "IV",
+      days: "Cycle 1 Day 8",
+      reducible: false,
+      note: "IV in 25 mL NS over 4 h with Y-site NS TKVO at 20 mL/h. Inpatient monitoring during infusion and ≥24 h after — highest CRS risk (median onset 13 h). Premed: dexamethasone 20 mg IV + acetaminophen 650–975 mg PO + diphenhydrAMINE 50 mg PO/IV. Optional 500 mL NS prehydration over 30 min."
+    },
+    {
+      name: "glofitamab (step-up dose 2)",
+      dose: 10,
+      unit: "mg",
+      basis: "flat",
+      max: null,
+      weightCap: null,
+      route: "IV",
+      days: "Cycle 1 Day 15",
+      reducible: false,
+      note: "IV in 100 mL NS over 4 h (extend to 8 h if any prior CRS). Ambulatory if no CRS with Day 8; inpatient if any grade CRS or treatment interruption with Day 8. Patient must remain near facility ≥24 h post-infusion. Same premeds as step-up 1."
+    },
+    {
+      name: "glofitamab (full dose)",
+      dose: 30,
+      unit: "mg",
+      basis: "flat",
+      max: null,
+      weightCap: null,
+      route: "IV",
+      days: "Cycles 2–12 Day 1",
+      reducible: false,
+      note: "Cycle 2: IV in 100 mL NS over 4 h, observe 90 min post-infusion. Cycles 3–12: over 2 h (or 4 h if any prior CRS); observation may be discontinued after 3 consecutive CRS-free doses. Inpatient if Grade ≥2 CRS with previous dose. Cycles 9–12 = glofitamab monotherapy. Max 12 cycles total. Premeds C2–C3 same as step-ups; C4+ omit dexamethasone if no prior CRS."
+    }
+  ],
+  labs: {
+    baseline: ["CBC & Diff", "creatinine", "total bilirubin", "ALT", "HCAb", "HBsAg", "HBsAb", "HBcoreAb"],
+    cycle: ["CBC & Diff", "creatinine", "total bilirubin", "ALT", "vital signs"],
+    conditional: [
+      { label: "Baseline if clinically indicated", tests: ["sodium", "potassium", "urea", "uric acid", "alkaline phosphatase", "phosphate", "calcium", "albumin", "LDH", "random glucose", "immunoglobulin panel (IgA, IgG, IgM)"] },
+      { label: "Cycle 1 prior to Days 8 and 15", tests: ["CBC & Diff"] },
+      { label: "Cycle 1 Day 9 if clinically indicated", tests: ["CBC & Diff", "creatinine", "sodium", "potassium", "phosphate", "calcium", "magnesium", "total bilirubin", "ALT", "alkaline phosphatase", "LDH"] },
+      { label: "If clinically indicated", tests: ["sodium", "potassium", "phosphate", "calcium", "magnesium", "uric acid", "albumin", "alkaline phosphatase", "LDH", "random glucose", "GGT", "immunoglobulin panel (IgA, IgG, IgM)", "HBV viral load"] }
+    ]
+  }
 }
 ]; // end PROTOCOLS
