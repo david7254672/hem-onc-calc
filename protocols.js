@@ -6837,10 +6837,10 @@ const PROTOCOLS = [
     }
   },
   {
-    key: "MY-MYDBLDF",
+    key: "MY-MYDBLDFTE",
     cat: "Multiple Myeloma",
     bcc: true,
-    name: "MYDBLDF - daratumumab + bortezomib + lenalidomide + dexamethasone [MM — Transplant-Eligible, Frontline]",
+    name: "MYDBLDFTE - daratumumab + bortezomib + lenalidomide + dexamethasone [MM — Transplant-Eligible, Frontline] (formerly MYDBLDF)",
     cycle: 28,
     notes: "Previously untreated multiple myeloma, eligible for autologous stem cell transplant (PERSEUS regimen, D-VRd). RevAid Program registration required for lenalidomide. Three phases: Induction (Cycles 1-4, pre-transplant), Consolidation (Cycles 5-6, starts 30-60 days post-transplant), Maintenance (Cycle 7+, len + monthly dara, 28-day cycles). Combined induction + consolidation ≤6 cycles. Last bortezomib dose ≥14 days, last lenalidomide and daratumumab ≥21 days prior to stem cell collection. Patients eligible for only one line of anti-CD38 mAb therapy. Daratumumab interferes with Coombs/cross-match for ≤6 mo; type and screen + RBC phenotype required pre-daratumumab. VZV prophylaxis (valACYclovir 500 mg PO daily) and anticoagulation (ASA / DOAC / LMWH) required. After ≥24 mo maintenance, daratumumab may be stopped in sustained MRD-negative complete responders. Protocol MYDBLDF.",
     drugs: [
@@ -18229,6 +18229,138 @@ const PROTOCOLS = [
       { label: "Cycle 1 prior to Days 8 and 15", tests: ["CBC & Diff"] },
       { label: "Cycle 1 Day 9 if clinically indicated", tests: ["CBC & Diff", "creatinine", "sodium", "potassium", "phosphate", "calcium", "magnesium", "total bilirubin", "ALT", "alkaline phosphatase", "LDH"] },
       { label: "If clinically indicated", tests: ["sodium", "potassium", "phosphate", "calcium", "magnesium", "uric acid", "albumin", "alkaline phosphatase", "LDH", "random glucose", "GGT", "immunoglobulin panel (IgA, IgG, IgM)", "HBV viral load"] }
+    ]
+  }
+},
+{
+  key: "LY-LYMCIV",
+  cat: "Lymphoma",
+  bcc: true,
+  name: "LYMCIV — Venetoclax + iBRUtinib [Mantle Cell Lymphoma, R/R]",
+  cycle: 28,
+  notes: "SYMPATICO regimen (Wang, Lancet Oncol 2025) — relapsed/refractory mantle cell lymphoma after ≥1 prior line. Cycle 1 = 35 days (5-week venetoclax ramp-up): Week 1: venetoclax 20 mg PO daily, Week 2: 50 mg, Week 3: 100 mg, Week 4: 200 mg, Week 5: 400 mg; ibrutinib 560 mg PO daily throughout. Cycles 2–24 = 28 days: ibrutinib 560 mg + venetoclax 400 mg PO daily. Cycles 25+: ibrutinib 560 mg PO daily until PD or intolerance (venetoclax discontinued after 24 cycles total). TLS risk highest during ramp-up — stratify by tumour burden (Low: CrCl ≥60 AND lesions ≤5 cm OR ALC ≤25; High: CrCl <60, any lesion >10 cm, or ≥5 cm lesion + ALC ≤25). Low-risk patients: outpatient, start on a Thursday at 6 AM, STAT TLS labs at 6h and 24h post first 20 mg and 50 mg doses. High-risk: inpatient for first 20 mg and 50 mg doses with monitoring at 4/8/12/24h. Allopurinol 300 mg PO daily × ≥72h pre-dose; oral hydration 1.5–2 L/day × 48h pre through week 5 (add IV NS 150–200 mL/h for high-risk); consider rasburicase for high-risk if baseline uric acid elevated. Strong CYP3A4 inhibitors CONTRAINDICATED during ramp-up. VZV prophylaxis (valACYclovir 500 mg PO BID) and PJP prophylaxis (cotrimoxazole DS 3×/wk) if increased infection risk. HBV reactivation risk — SCHBV if HBsAg/HBcoreAb positive. Ibrutinib hold 3–7 days pre/post surgery. Mild hepatic impairment (Child-Pugh A): ibrutinib 140 mg PO daily; moderate/severe (B or C): do not use.",
+  drugs: [
+    {
+      name: "iBRUtinib",
+      dose: 560,
+      unit: "mg",
+      basis: "flat",
+      max: null,
+      weightCap: null,
+      route: "PO",
+      days: "Once daily continuously (all cycles)",
+      reducible: true,
+      note: "Cardiac toxicity (Grade 2 CHF or Grade 3 arrhythmia): reduce to 420 → 280 mg then discontinue. Grade 3/4 CHF or Grade 4 arrhythmia: discontinue. Mild hepatic impairment: 140 mg daily. Avoid strong/moderate CYP3A inhibitors.",
+      levels: [420, 280, 140]
+    },
+    {
+      name: "venetoclax (ramp-up, Cycle 1)",
+      dose: 400,
+      unit: "mg",
+      basis: "flat",
+      max: null,
+      weightCap: null,
+      route: "PO",
+      days: "Cycle 1: Week 1: 20 mg × 7d; Week 2: 50 mg × 7d; Week 3: 100 mg × 7d; Week 4: 200 mg × 7d; Week 5: 400 mg × 7d",
+      reducible: true,
+      note: "5-week ramp-up per TLS risk. Displayed target dose = 400 mg. TLS labs mandatory before each dose increase and 6h/24h post first 20 mg and 50 mg doses (low-risk); 4/8/12/24h post first 20 mg and 50 mg doses (high-risk, inpatient). Strong CYP3A4 inhibitors CONTRAINDICATED during ramp-up.",
+      levels: [300, 200, 100, 50, 20]
+    },
+    {
+      name: "venetoclax (steady-state, Cycles 2–24)",
+      dose: 400,
+      unit: "mg",
+      basis: "flat",
+      max: null,
+      weightCap: null,
+      route: "PO",
+      days: "Once daily, Cycles 2–24 only (discontinue after 24 cycles)",
+      reducible: true,
+      note: "Reductions after ramp-up: 300 → 200 → 100 → 50 → 20 → 10 mg. Consider discontinuing if reduced <100 mg for >2 weeks. After ramp-up: strong CYP3A4 inhibitor → reduce dose 75%; moderate CYP3A4 inhibitor or P-gp inhibitor → reduce dose ≥50% (azithromycin exempted).",
+      levels: [300, 200, 100, 50, 20, 10]
+    }
+  ],
+  labs: {
+    baseline: ["CBC & Diff", "potassium", "calcium", "magnesium", "phosphate", "uric acid", "creatinine", "urea", "total bilirubin", "ALT", "LDH", "albumin", "PTT", "INR", "HBsAg", "HBsAb", "HBcoreAb"],
+    cycle: ["CBC & Diff", "creatinine", "total bilirubin", "ALT", "blood pressure"],
+    conditional: [
+      { label: "Baseline within 72 h of first treatment (required)", tests: ["CBC & Diff", "potassium", "calcium", "magnesium", "phosphate", "uric acid", "creatinine", "urea", "total bilirubin", "ALT", "LDH", "albumin", "PTT", "INR"] },
+      { label: "Baseline if clinically indicated", tests: ["ECG", "MUGA scan or echocardiogram"] },
+      { label: "Prior to each dose increment during ramp-up (Cycle 1 Weeks 1–5)", tests: ["potassium", "calcium", "phosphate", "uric acid", "creatinine", "LDH", "albumin"] },
+      { label: "TLS labs — 6 h and 24 h post first 20 mg and 50 mg doses (low-risk); 4/8/12/24 h inpatient (high-risk)", tests: ["potassium", "calcium", "phosphate", "uric acid", "creatinine", "LDH", "albumin"] },
+      { label: "If clinically indicated", tests: ["PTT", "INR", "ECG", "MUGA scan or echocardiogram", "HBV viral load"] }
+    ]
+  }
+},
+{
+  key: "MY-MYDBLDFTI",
+  cat: "Multiple Myeloma",
+  bcc: true,
+  name: "MYDBLDFTI — daratumumab + bortezomib + lenalidomide + dexamethasone [MM — Transplant-Ineligible, Frontline]",
+  cycle: 28,
+  notes: "CEPHEUS regimen (Usmani, Nat Med 2025) — previously untreated MM, transplant-ineligible or transplant-deferred. RevAid Program registration required for lenalidomide. Two phases: Cycles 1–8 (Vd-containing induction, bortezomib weekly Days 1/8/15/22), Cycle 9+ (dara + len + dex maintenance, no bortezomib) — continuous 28-day cycles until PD or intolerance. Bortezomib STARTING dose 1.3 mg/m² (may start at 1.5 mg/m² per clinician judgement). Daratumumab schedule: C1–C2 weekly (D1,8,15,22), C3–C4 q2wk (D1,15), C5–C8 monthly (D1 only), C9+ monthly. Dexamethasone 40 mg PO weekly (20 mg weekly if ≥75 y; may discontinue after 2 cycles in elderly if responding). Patients eligible for only one line of anti-CD38 mAb therapy. Daratumumab interferes with Coombs/cross-match for ≤6 mo — type and screen + RBC phenotype required pre-daratumumab. Very high HBV reactivation risk — SCHBV if HBsAg/HBcoreAb positive. VZV prophylaxis (valACYclovir 500 mg PO daily) and anticoagulation (ASA 81 mg / DOAC / LMWH) required for lenalidomide. Green tea avoidance while on bortezomib. Live vaccines contraindicated. Renamed protocol: distinct from MYDBLDFTE (transplant-eligible D-VRd, PERSEUS).",
+  drugs: [
+    {
+      name: "daratumumab (SC)",
+      dose: 1800,
+      unit: "mg",
+      basis: "flat",
+      max: null,
+      weightCap: null,
+      route: "SC",
+      days: "C1–C2: Days 1, 8, 15, 22; C3–C4: Days 1, 15; C5+: Day 1 only",
+      reducible: false,
+      note: "Fixed 1800 mg in 15 mL SC over 5 min in abdomen. No renal or hepatic dose adjustment. No dose reductions for IRRs — manage with premeds/observation. Observe 1 h after C1D1 injection only. Premeds Cycle 1 only: acetaminophen 650 mg PO + loratadine 10 mg PO (or diphenhydrAMINE 50 mg) + montelukast 10 mg PO (C1D1) + dexamethasone 20–40 mg PO. After 4 consecutive doses without reaction, may discontinue antihistamine/montelukast/acetaminophen premeds."
+    },
+    {
+      name: "bortezomib",
+      dose: 1.3,
+      unit: "mg/m²",
+      basis: "bsa",
+      max: null,
+      weightCap: null,
+      route: "SC",
+      days: "Cycles 1–8, Days 1, 8, 15, 22",
+      reducible: true,
+      note: "SC (abdomen/thigh; back of arm as 3rd option). STARTING dose 1.3 mg/m² per protocol (may start at 1.5 mg/m² at clinician discretion). Dose reductions for Grade 1 with pain / Grade 2 neuropathy → 1 mg/m² × 2; Grade 3 delay → 1 mg/m²; Grade 4 discontinue. Moderate/severe hepatic impairment: start 0.7 mg/m². Green tea reduces bortezomib activity — avoid. Discontinued after Cycle 8.",
+      levels: [1.0, 0.7, 0.5]
+    },
+    {
+      name: "lenalidomide",
+      dose: 25,
+      unit: "mg",
+      basis: "flat",
+      max: null,
+      weightCap: null,
+      route: "PO",
+      days: "Days 1–21 (each 28-day cycle)",
+      reducible: true,
+      note: "PO, evening preferred. Continuous throughout all cycles. Renal dose: CrCl 30–60 → 10 mg daily; CrCl <30 not on dialysis → 15 mg q other day; CrCl <30 on dialysis → 5 mg daily post-dialysis. Grade 3–4 non-heme toxicity: reduce one level (do not dose below 2.5 mg). Grade 3+ exfoliative rash/SJS/TEN: discontinue. Pneumonitis: hold and investigate. Teratogenic — RevAid Program registration mandatory.",
+      levels: [20, 15, 10, 5, 2.5]
+    },
+    {
+      name: "dexamethasone",
+      dose: 40,
+      unit: "mg",
+      basis: "flat",
+      max: null,
+      weightCap: null,
+      route: "PO",
+      days: "Days 1, 8, 15, 22 (all cycles)",
+      reducible: true,
+      note: "Weekly. Age ≥75 y: start at 20 mg weekly (in elderly, may discontinue after 2 cycles if responding well). Doses of 4–40 mg PO weekly acceptable based on tolerance. predniSONE 10–100 mg PO weekly can substitute. Continue even if lenalidomide held for toxicity. Cycle 1: also serves as daratumumab premed steroid."
+    }
+  ],
+  labs: {
+    baseline: ["Red Blood Cell phenotype", "Group and Screen", "CBC & Diff", "creatinine", "total bilirubin", "ALT", "alkaline phosphatase", "calcium", "albumin", "LDH", "random glucose", "serum protein electrophoresis", "serum free light chain levels", "immunoglobulin panel (IgA, IgG, IgM)", "HCAb", "HBsAg", "HBsAb", "HBcoreAb", "TSH", "beta-2 microglobulin"],
+    cycle: ["CBC & Diff", "creatinine", "total bilirubin", "ALT", "alkaline phosphatase", "calcium", "albumin", "LDH", "serum protein electrophoresis", "serum free light chain levels"],
+    conditional: [
+      { label: "Baseline if clinically indicated", tests: ["urea", "sodium", "potassium"] },
+      { label: "Every 4 weeks (optional, encouraged prior to each cycle)", tests: ["urine protein electrophoresis", "immunoglobulin panel (IgA, IgG, IgM)"] },
+      { label: "Days 8, 15, 22 if pre-cycle cytopenias or hepatic/renal dysfunction (optional)", tests: ["CBC & Diff", "creatinine", "sodium", "potassium", "total bilirubin", "ALT", "alkaline phosphatase", "calcium", "albumin"] },
+      { label: "Every 3 months (required for lenalidomide)", tests: ["TSH"] },
+      { label: "If female of childbearing potential — 7–14 d and 24 h prior to first Rx, then weekly × 4 weeks during Cycle 1, then every 4 weeks", tests: ["quantitative beta-hCG"] },
+      { label: "If clinically indicated", tests: ["urea", "sodium", "potassium", "HBV viral load"] }
     ]
   }
 }
