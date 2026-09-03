@@ -18363,5 +18363,113 @@ const PROTOCOLS = [
       { label: "If clinically indicated", tests: ["urea", "sodium", "potassium", "HBV viral load"] }
     ]
   }
-}
+},
+
+  // =========================================================
+  // Inbox batch — Sep 2026 (durvalumab perioperative protocols)
+  // =========================================================
+
+  {
+    key: "GI-GIGAJDFLOD",
+    cat: "GI",
+    bcc: true,
+    name: "Durvalumab + DOCEtaxel + Oxaliplatin + Fluorouracil/Leucovorin (Gastric/GEJ/Esophageal — Neoadjuvant/Adjuvant Combination)",
+    cycle: 28,
+    notes: "Perioperative treatment of resectable stage II–IVA gastric, GEJ or esophageal adenocarcinoma. Neoadjuvant Cycles 1–2, then surgery, then (within 16 weeks, if progression-free) Adjuvant Combination Cycles 3–4 using the identical regimen, then durvalumab monotherapy (GI-GIGAJDFLOD4) Cycles 5–14. Durvalumab given Day 1 only; DOCEtaxel, oxaliplatin, leucovorin and fluorouracil given Days 1 and 15 each 28-day cycle. Avoid oxaliplatin if CrCl <30 mL/min or congenital long QT syndrome. G-CSF support Days 3–7 and 17–21. BC Cancer GIGAJDFLOD.",
+    drugs: [
+      { name:"Durvalumab", dose:20, unit:"mg/kg", basis:"weight", max:1500, weightCap:null, route:"IV", days:"Day 1", reducible:false, note:"Cap 1500 mg; 0.2 micron in-line filter. No dose modifications; manage toxicity by delay." },
+      { name:"DOCEtaxel", dose:50, unit:"mg/m²", basis:"bsa", max:null, weightCap:null, route:"IV", days:"Days 1 and 15", reducible:true, note:"Dexamethasone premedication required (fluid retention). Non-DEHP equipment. Reduce to 75% then 50% of initial dose for febrile neutropenia, thrombocytopenia with bleeding, or other dose-limiting hematologic toxicity (in tandem with oxaliplatin). Reduce for hepatic dysfunction.", levels:[40, 30] },
+      { name:"Oxaliplatin", dose:85, unit:"mg/m²", basis:"bsa", max:null, weightCap:null, route:"IV", days:"Days 1 and 15", reducible:true, note:"IV in 250–500 mL D5W over 2 hours (not compatible with NS). Omit if CrCl <30 mL/min. Reduce 1 dose level for Grade 3 or persistent Grade 2 neurotoxicity; discontinue for Grade 4.", levels:[65, 50] },
+      { name:"Leucovorin", dose:200, unit:"mg/m²", basis:"bsa", max:null, weightCap:null, route:"IV", days:"Days 1 and 15", reducible:false, note:"IV in 250 mL D5W over 2 hours (Y-site with oxaliplatin, not combined in same bag). Dose unchanged at 200 mg/m² even if oxaliplatin is omitted. No dose modifications." },
+      { name:"Fluorouracil", dose:2600, unit:"mg/m²", basis:"bsa", max:null, weightCap:null, route:"IV", days:"Days 1 and 15", reducible:true, note:"Continuous IV infusion over 24 hours to total volume 240 mL via infusor device. Dose per DPYD activity score. Reduce 1 dose level for Grade ≥3 diarrhea/stomatitis; reduce fluorouracil + oxaliplatin for Grade 4.", levels:[2000, 1600] },
+      { name:"Filgrastim (G-CSF)", dose:5, unit:"mcg/kg", basis:"weight", max:null, weightCap:null, route:"SC", days:"Days 3–7 and 17–21 (once daily ×5 each)", reducible:false, note:"Commonly rounded to 300 or 480 mcg fixed-dose vials. Adjust/eliminate per neutrophil count; do not stop before predicted chemotherapy nadir." }
+    ],
+    labs: {
+      baseline: ["CBC & Diff", "creatinine", "ALT", "alkaline phosphatase", "total bilirubin", "albumin", "sodium", "potassium", "TSH", "morning serum cortisol", "chest x-ray or CT chest", "DPYD test (not required if previously tested or tolerated fluorouracil/capecitabine)"],
+      cycle: ["CBC & Diff", "creatinine", "sodium", "potassium", "total bilirubin", "ALT", "TSH"],
+      conditional: [
+        { label: "Day 15 of Cycles 1–4 (Neoadjuvant and Adjuvant Combination Phase)", tests: ["CBC & Diff", "creatinine", "total bilirubin", "ALT"] },
+        { label: "If clinically indicated", tests: ["CEA", "CA 19-9", "morning serum cortisol", "lipase", "random glucose", "serum or urine HCG", "free T3 and free T4", "creatine kinase", "troponin", "serum ACTH", "testosterone, estradiol, FSH, LH", "alkaline phosphatase", "albumin", "GGT", "ECG", "chest x-ray"] },
+        { label: "Patients on warfarin", tests: ["Weekly INR during fluorouracil therapy until stable warfarin dose established, then INR prior to each cycle"] }
+      ]
+    }
+  },
+
+  {
+    key: "GI-GIGAJDFLOD4",
+    cat: "GI",
+    bcc: true,
+    name: "Durvalumab Monotherapy (Gastric/GEJ/Esophageal — Adjuvant)",
+    cycle: 28,
+    notes: "Adjuvant durvalumab monotherapy following the GI-GIGAJDFLOD combination phase (Cycles 1–4: neoadjuvant + adjuvant combination). Repeat every 28 days Cycles 5–14 (combined total of 14 cycles of durvalumab including neoadjuvant/adjuvant combination doses) until disease progression or intolerable toxicity. No dose modifications; manage toxicity by delay. BC Cancer GIGAJDFLOD.",
+    drugs: [
+      { name:"Durvalumab", dose:20, unit:"mg/kg", basis:"weight", max:1500, weightCap:null, route:"IV", days:"Day 1", reducible:false, note:"Cap 1500 mg; 0.2 micron in-line filter. No dose modifications; manage toxicity by delay." }
+    ],
+    labs: {
+      baseline: ["CBC & Diff", "creatinine", "ALT", "alkaline phosphatase", "total bilirubin", "albumin", "sodium", "potassium", "TSH"],
+      cycle: ["CBC & Diff", "creatinine", "sodium", "potassium", "total bilirubin", "ALT", "TSH"],
+      conditional: [
+        { label: "If clinically indicated", tests: ["CEA", "CA 19-9", "morning serum cortisol", "lipase", "random glucose", "serum or urine HCG", "free T3 and free T4", "creatine kinase", "troponin", "serum ACTH", "testosterone, estradiol, FSH, LH", "alkaline phosphatase", "albumin", "GGT", "ECG", "chest x-ray"] }
+      ]
+    }
+  },
+
+  {
+    key: "GO-GOEAVDUCAT",
+    cat: "Gyne",
+    bcc: true,
+    name: "GOEAVDUCAT - Durvalumab + CARBOplatin + PACLitaxel [Endometrial MSI-H/dMMR]",
+    cycle: 21,
+    notes: "MSI-H or dMMR advanced/metastatic endometrial cancer not amenable to curative intent. Cycles 1–6: durvalumab 15 mg/kg (max 1120 mg) + PACLitaxel 175 mg/m² + CARBOplatin AUC 5 or 6 q3 weeks. Cycle 7 onward: durvalumab 20 mg/kg (max 1500 mg) q4 weeks until disease progression or intolerable toxicity. CARBOplatin AUC 6; use AUC 5 if extensive prior radiation. GFR capped at 125 mL/min. No dose reductions for durvalumab. Patients eligible for dostarlimab, durvalumab, or pembrolizumab, but not sequential use.",
+    drugs: [
+      { name:"Durvalumab", dose:15, unit:"mg/kg", basis:"weight", max:1120, weightCap:null, route:"IV", days:"Day 1 (Cycles 1–6, with PACLitaxel/CARBOplatin)", reducible:false, note:"15 mg/kg (max 1120 mg) Cycles 1–6; 20 mg/kg (max 1500 mg) q4 weeks Cycle 7 onward until progression or toxicity. No dose modifications; manage toxicity by delay." },
+      { name:"PACLitaxel", dose:175, unit:"mg/m²", basis:"bsa", max:null, weightCap:null, route:"IV", days:"Day 1 (Cycles 1–6)", reducible:true, note:"Cycles 1–6 only. Conservative dosing 155 or 135 mg/m² with escalation if tolerated may be used for ECOG ≥2, myelosuppression risk, arthralgia/myalgia risk, or prior pelvic radiotherapy. Delay until recovery for ANC <1.0 or platelets <100; reduce to 80% after febrile neutropenia. Reduce to 135 mg/m² if arthralgia/myalgia persists despite NSAIDs/gabapentin.", levels:[140, 105] },
+      { name:"CARBOplatin", dose:6, unit:"AUC", basis:"auc", max:null, weightCap:null, route:"IV", days:"Day 1 (Cycles 1–6)", reducible:true, note:"Cycles 1–6 only. AUC 6; use AUC 5 if extensive prior radiation. GFR capped at 125 mL/min (Cockcroft-Gault or lab-reported MDRD — use the same method throughout). Recalculate GFR/dose if creatinine rises >20% or above ULN.", levels:[5, 4] }
+    ],
+    labs: {
+      baseline: ["CBC & Diff", "creatinine", "ALT", "alkaline phosphatase", "total bilirubin", "sodium", "potassium", "TSH", "random glucose", "morning serum cortisol", "chest x-ray or CT chest (if not previously done)"],
+      cycle: ["CBC & Diff", "creatinine", "ALT", "alkaline phosphatase", "total bilirubin", "sodium", "potassium", "TSH"]
+    }
+  },
+
+  {
+    key: "GU-GUBNADURPG",
+    cat: "GU",
+    bcc: true,
+    name: "GUBNADURPG - Durvalumab + Gemcitabine + CISplatin [MIBC — Neoadjuvant]",
+    cycle: 21,
+    notes: "Neoadjuvant treatment of muscle-invasive bladder cancer (MIBC) prior to radical cystectomy or bladder-sparing trimodal therapy. Repeat every 3 weeks for 4 cycles, then proceed to surgery, then adjuvant durvalumab (GU-GUBAJDUR) × 8 cycles within 6 months. CARBOplatin AUC 5 may substitute for CISplatin if CrCl <45 mL/min. If chemotherapy-intolerant after ≥1 cycle, durvalumab may continue as single agent.",
+    drugs: [
+      { name:"Durvalumab", dose:20, unit:"mg/kg", basis:"weight", max:1500, weightCap:null, route:"IV in 100 mL NS over 60 min", days:"Day 1", reducible:false, note:"Cap 1500 mg; 0.2 micron in-line filter. No dose modifications; manage toxicity by delay." },
+      { name:"Gemcitabine", dose:1000, unit:"mg/m²", basis:"bsa", max:null, weightCap:null, route:"IV in 250 mL NS over 30 min", days:"Days 1 and 8", reducible:true, note:"Heme reduction tier: 75% (750 mg/m²) for ANC 0.5–<1.0 or platelets 75–<100; Day 1 dose (with CISplatin) delayed if ANC <0.5 or platelets <75; Day 8 dose omitted if ANC <0.5 or platelets <75.", levels:[750] },
+      { name:"CISplatin", dose:70, unit:"mg/m²", basis:"bsa", max:null, weightCap:null, route:"IV in 500 mL NS with 20 mEq KCl, 1 g MgSO4, 30 g mannitol over 1 h (prehydrate 1000 mL NS over 1 h)", days:"Day 1", reducible:true, note:"Reduce to 35 mg/m² Days 1 and 8 (same prehydration) if CrCl 45–59 mL/min. Delay if CrCl <45 mL/min, or substitute CARBOplatin." },
+      { name:"CARBOplatin", dose:5, unit:"AUC", basis:"auc", max:null, weightCap:null, route:"IV in 250 mL NS over 30 min", days:"Day 1 (substitute for CISplatin)", reducible:true, note:"Alternative to CISplatin if CrCl <45 mL/min or platinum intolerance. AUC 5; GFR capped at 125 mL/min for Calvert formula. Given with gemcitabine 1000 mg/m² Days 1 and 8 (total 2000 mg/m²/cycle)." }
+    ],
+    labs: {
+      baseline: ["CBC & Diff", "creatinine", "sodium", "potassium", "ALT", "alkaline phosphatase", "total bilirubin", "LDH", "TSH", "morning serum cortisol", "chest x-ray or CT chest"],
+      cycle: ["CBC & Diff", "creatinine", "alkaline phosphatase", "ALT", "total bilirubin", "LDH", "sodium", "potassium", "TSH"],
+      conditional: [
+        { label: "Day 8", tests: ["CBC & Diff"] },
+        { label: "Day 8, if using split-dose CISplatin", tests: ["creatinine"] },
+        { label: "If clinically indicated", tests: ["chest x-ray", "morning serum cortisol", "lipase", "random glucose", "free T3 and free T4", "serum ACTH", "testosterone, estradiol, FSH, LH", "ECG", "CRP", "creatine kinase", "troponin"] }
+      ]
+    }
+  },
+
+  {
+    key: "GU-GUBAJDUR",
+    cat: "GU",
+    bcc: true,
+    name: "GUBAJDUR - Durvalumab [MIBC — Adjuvant]",
+    cycle: 28,
+    notes: "Adjuvant durvalumab following neoadjuvant GU-GUBNADURPG and cystectomy (or bladder-sparing trimodal therapy) for resected muscle-invasive bladder cancer. Initiate within 6 months of surgery, without evidence of disease progression. Repeat every 4 weeks for 8 cycles (combined total of 12 cycles including GUBNADURPG neoadjuvant doses) unless progression or unacceptable toxicity. No dose modifications; manage toxicity by delay.",
+    drugs: [
+      { name:"Durvalumab", dose:20, unit:"mg/kg", basis:"weight", max:1500, weightCap:null, route:"IV in 100 mL NS over 60 min", days:"Day 1", reducible:false, note:"Cap 1500 mg; 0.2 micron in-line filter. No dose modifications; manage toxicity by delay." }
+    ],
+    labs: {
+      baseline: ["CBC & Diff", "creatinine", "alkaline phosphatase", "ALT", "total bilirubin", "LDH", "sodium", "potassium", "TSH", "morning serum cortisol", "chest x-ray or CT chest (if no baseline CT)"],
+      cycle: ["CBC & Diff", "creatinine", "alkaline phosphatase", "ALT", "total bilirubin", "LDH", "sodium", "potassium", "TSH"],
+      conditional: [{ label: "If clinically indicated", tests: ["chest x-ray", "morning serum cortisol", "lipase", "random glucose", "free T3 and free T4", "serum ACTH", "testosterone, estradiol, FSH, LH", "ECG", "CRP", "creatine kinase", "troponin"] }]
+    }
+  }
 ]; // end PROTOCOLS
