@@ -131,6 +131,26 @@ Each `<SITE>/` may also contain `intermediate/` (pdfplumber extracts, batch JSON
 ### Adding new PDFs ad-hoc
 Drop into `./Chemo protocols/inbox/` (see its README). After extraction lands in `protocols.js`, the PDF gets moved into the matching `<SITE>/source-pdfs/`. `inbox/` should be empty most of the time.
 
+### Monthly BC Cancer protocol digest
+A Cowork scheduled task (**"BC Cancer ST Update — monthly protocol digest"**) runs on the 3rd of each month, reads the BC Cancer Systemic Therapy Update newsletter, and **emails** a digest of new and revised protocols with direct PDF links. It downloads nothing and does not touch this repo. David reads the digest, decides what is worth adding or updating, and saves those PDFs into `./Chemo protocols/inbox/` by hand.
+
+The digest reports, per protocol: what the newsletter says changed, whether that change plausibly affects anything this app models (doses, dose levels, labs, cycle length, premedications), whether the code is already in `protocols.js`, and whether the site has actually posted the revised PDF yet.
+
+⚠️ **A PDF in `inbox/` may be a REVISION, not a new protocol.** Before extracting, check whether its code already exists in `protocols.js`:
+
+| Case | What to do |
+|---|---|
+| Code not in `protocols.js` | Add a new entry to `PROTOCOLS` (normal flow) |
+| Code already in `protocols.js` | **Update the existing entry in place** — do NOT append |
+
+Appending instead of updating creates a duplicate `key`, which the load-time validator flags as a dup-key error. When updating, re-check doses, `levels`, `labs`, `cycle` and `notes` against the new PDF — a revision can change any of them.
+
+**Watch the revision date.** The newsletter announces revisions before the site necessarily posts them — a protocol can be listed as revised this month while the posted PDF still carries a revision date a year or more old. Check the "Revised" line in the PDF header before extracting; the digest flags known cases.
+
+Protocol PDF URL pattern (folder by code prefix, ignoring a leading `U`):
+`https://www.bccancer.bc.ca/chemotherapy-protocols-site/Documents/<FOLDER>/<CODE>_Protocol.pdf`
+BR=`Breast`, CN=`Neuro-Oncology`, GI=`Gastrointestinal`, GO=`Gynecology`, GU=`Genitourinary`, LK=`Leukemia-BMT`, LU=`Lung`, LY and MY both=`Lymphoma-Myeloma`, SM=`Melanoma`, HN=`Head and Neck`, SA=`Sarcoma`, SC=`Supportive Care`. If a URL 404s, search `https://www.bccancer.bc.ca/search?k=<CODE>`.
+
 ### Master BC Cancer reference set
 The unsplit Mar 2025 PDFs live at `/Users/david/Documents/BC Cancer Protocols Mar 2025/` — useful if you need to look up the original combined document.
 
@@ -158,6 +178,8 @@ The protocol `key` in the JS should reflect the actual BC Cancer code (e.g., `"L
 > ⚠️ **Lesson learned (PRs 7–8):** Before extracting a new tumour-site category, ALWAYS check both `cat: "X"` AND `cat:"X"` (with and without space) — pre-existing entries from earlier sessions may use compact format that a strict-spaced grep misses. Use `grep -cE 'cat\s*:\s*"X"'` to catch both formats. The GI category was already fully populated in compact format when PR 7 began; my work silently duplicated 28 entries by key collision and another 27 semantically (under different key spellings) before the in-browser validator flagged it.
 
 ## Adding a New Protocol
+> If the PDF came from `inbox/`, check whether its protocol code already exists in `protocols.js` — a revision must be **updated in place**, not added. See "Monthly BC Cancer protocol digest" above.
+
 Add a new object to the `PROTOCOLS` array in `protocols.js` (before `]; // end PROTOCOLS`). Set `cat` to one of the existing category strings. Set `bcc: true` if sourced from BC Cancer. No other registration needed — both apps load `protocols.js` and `filterProtocols()` dynamically builds the dropdown from the array.
 
 The load-time validator in each HTML file (search `function validateProtocols`) will surface broken entries on next page load: missing required fields, dup keys, bad `basis`, unit/basis mismatch, cycled regimens with no labs, or malformed `labs.conditional`. Failures show a red dismissible banner and log to `console.error`. `dose:null` is allowed for variable doses; `meta:true` on a drug row skips drug-shape checks (used for cross-reference rows like "See LYCHOPR protocol").

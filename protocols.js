@@ -18471,5 +18471,220 @@ const PROTOCOLS = [
       cycle: ["CBC & Diff", "creatinine", "alkaline phosphatase", "ALT", "total bilirubin", "LDH", "sodium", "potassium", "TSH"],
       conditional: [{ label: "If clinically indicated", tests: ["chest x-ray", "morning serum cortisol", "lipase", "random glucose", "free T3 and free T4", "serum ACTH", "testosterone, estradiol, FSH, LH", "ECG", "CRP", "creatine kinase", "troponin"] }]
     }
+  },
+
+  // NEW/REVISED PROTOCOLS — Nov 2026 BC Cancer ST Update (added post-digest)
+
+  {
+    key: "BR-BRAJPEM6",
+    cat: "Breast",
+    bcc: true,
+    name: "BRAJPEM6 - Pembrolizumab 6-weekly [TNBC adjuvant, post-neoadjuvant]",
+    cycle: 42,
+    notes: "6-weekly schedule variant of BRAJPEM. Adjuvant pembrolizumab for TNBC (HER2-neg, ER <1%) with residual disease after neoadjuvant BRPCTAC or BRPCWTAC, clinical stage IIA or greater, fully resected or resection pending. Combined total of 1 year of pembrolizumab including neoadjuvant and BRAJPEM adjuvant doses. CAP approval not required to switch between BRAJPEM6 and BRAJPEM. Adjuvant radiotherapy permitted concurrently. No dose modifications; manage toxicity by delay.",
+    drugs: [
+      { name: "PEMBROlizumab", dose: 4, unit: "mg/kg", basis: "weight", max: 400, weightCap: null, route: "IV", days: "Day 1 every 6 weeks", reducible: false, note: "IV in 50 mL NS over 10 min with 0.2 micron in-line filter. Select dose per Dose Banding Table. No dose modifications; manage toxicity by delay." }
+    ],
+    labs: {
+      baseline: ["CBC & Diff", "creatinine", "alkaline phosphatase", "ALT", "total bilirubin", "LDH", "sodium", "potassium", "TSH", "morning serum cortisol", "creatine kinase"],
+      cycle: ["CBC & Diff", "creatinine", "alkaline phosphatase", "ALT", "total bilirubin", "LDH", "sodium", "potassium", "TSH", "creatine kinase"],
+      conditional: [
+        { label: "If clinically indicated", tests: ["chest x-ray", "morning serum cortisol", "creatine kinase", "lipase", "serum or urine HCG", "free T3 and free T4", "serum ACTH", "testosterone, estradiol, FSH, LH", "random glucose", "troponin", "ECG"] }
+      ]
+    }
+  },
+
+  {
+    key: "BR-UBRAVIPBFL",
+    cat: "Breast",
+    bcc: true,
+    name: "UBRAVIPBFL - Inavolisib + Palbociclib + Fulvestrant ± LHRH Agonist [Advanced HR+/HER2- PIK3CA-mutated Breast]",
+    cycle: 28,
+    notes: "Locally advanced or metastatic HR+/HER2- breast cancer with confirmed PIK3CA mutation; progression during or within 12 months of adjuvant endocrine therapy; no prior therapy for advanced disease. CAP approval required. Premenopausal women need chemically-induced menopause (LHRH agonist); men need LHRH agonist too. Mutually exclusive (no sequential use) with capivasertib+fulvestrant (UBRAVCAFLV), other CDK4/6i+endocrine combinations (BRAVPBFLV/BRAVRBFLV/BRAVRIBAI/BRAVPALAI), or everolimus+exemestane (BRAVEVEX). Stomatitis prophylaxis: dexamethasone mouthwash 0.1 mg/mL QID × 8 weeks from Day 1. Consider metformin prophylaxis for high hyperglycemia risk. Close fasting-glucose monitoring, especially Cycle 1.",
+    drugs: [
+      { name: "Inavolisib", dose: 9, unit: "mg", basis: "flat", max: null, weightCap: null, route: "PO", days: "Daily continuously", reducible: true, note: "Renal-adjusted starting dose: 6 mg if CrCl 30–59 mL/min; 3 mg if CrCl <30 mL/min. May re-escalate to 9 mg if tolerated. Hold/reduce per hyperglycemia grade and neutropenia tables.", levels: [6, 3] },
+      { name: "Palbociclib", dose: 125, unit: "mg", basis: "flat", max: null, weightCap: null, route: "PO", days: "Days 1-21 of 28 (21 days on, 7 days off)", reducible: true, note: "First reduction 100 mg (no re-escalation); second reduction 75 mg (may re-escalate to 100 mg at physician discretion); discontinue if further reduction required.", levels: [100, 75] },
+      { name: "Fulvestrant", dose: 500, unit: "mg", basis: "flat", max: null, weightCap: null, route: "IM", days: "Days 1 and 15 (Cycle 1), then Day 1 every 28 days", reducible: false, note: "Administer as two 250 mg injections. Continue even if inavolisib/palbociclib held." }
+    ],
+    labs: {
+      baseline: ["CBC & Diff", "creatinine", "ALT", "alkaline phosphatase", "total bilirubin", "GGT", "fasting glucose", "HbA1C"],
+      cycle: ["CBC & Diff", "creatinine", "fasting glucose"],
+      conditional: [
+        { label: "Baseline if indicated", tests: ["LDH", "CA15-3", "ECG"] },
+        { label: "Cycle 1 Days 3, 6, 8, 15, 22", tests: ["fasting glucose"] },
+        { label: "Day 15 of Cycle 1", tests: ["CBC & Diff"] },
+        { label: "Prior to Cycle 4 and every 12 weeks thereafter", tests: ["HbA1C"] },
+        { label: "If clinically indicated", tests: ["ALT", "alkaline phosphatase", "total bilirubin", "GGT", "LDH", "serum ketones", "CA15-3", "ECG", "serum cholesterol", "triglycerides", "urea", "LH", "FSH", "serum estradiol"] }
+      ]
+    }
+  },
+
+  {
+    key: "BR-BRAVLUENH",
+    cat: "Breast",
+    bcc: true,
+    name: "BRAVLUENH - Trastuzumab Deruxtecan (ENHERTU) [HER2-Low/Ultralow Metastatic Breast]",
+    cycle: 21,
+    notes: "Unresectable or metastatic breast cancer, HER2-low (IHC 1+, or IHC 2+/FISH-negative) or HER2-ultralow (IHC 0+ with incomplete, faint membrane staining in <10% of cells); HR-positive or HR-negative per eligibility table. No prior antibody-drug conjugate exposure. Mutually exclusive with sacituzumab govitecan (BRAVSG) — no sequential use (switching for intolerance/toxicity permitted). Excludes active untreated CNS metastases, interstitial lung disease/pneumonitis, symptomatic cord compression. Distinct, lower-dose protocol from BRAVENH (6.4 mg/kg, HER2+/HER2-low). Monitor for ILD/pneumonitis and LVEF.",
+    drugs: [
+      { name: "Trastuzumab Deruxtecan", dose: 5.4, unit: "mg/kg", basis: "weight", max: null, weightCap: null, route: "IV", days: "Day 1", reducible: true, note: "Infuse in 100 mL D5W over 90 min (Cycle 1) with 0.2 micron in-line filter; 30 min subsequently if no infusion reaction. Dose should not be re-escalated after a reduction. Monitor for ILD/pneumonitis — permanently discontinue if Grade ≥2. Monitor LVEF.", levels: [4.4, 3.2] }
+    ],
+    labs: {
+      baseline: ["CBC & Diff", "creatinine", "total bilirubin", "ALT", "pregnancy test (if applicable)", "CT chest"],
+      cycle: ["CBC & Diff", "creatinine", "total bilirubin", "ALT"],
+      conditional: [
+        { label: "Baseline if clinically indicated", tests: ["GGT", "LDH", "alkaline phosphatase", "CA 15-3", "echocardiogram or MUGA scan"] },
+        { label: "If clinically indicated", tests: ["CA15-3", "alkaline phosphatase", "sodium", "potassium", "magnesium", "calcium", "albumin", "phosphate", "CT chest", "echocardiogram or MUGA scan", "pregnancy test"] }
+      ]
+    }
+  },
+
+  {
+    key: "GI-GIGAVTW",
+    cat: "GI",
+    bcc: true,
+    name: "GIGAVTW - Weekly PACLitaxel [Esophageal/GEJ SCC, 2nd-Line]",
+    cycle: 28,
+    notes: "Locally advanced unresectable or metastatic esophageal or gastroesophageal junction squamous cell carcinoma, not amenable to curative-intent therapy. Progression following first-line treatment, or not a candidate for first-line fluoropyrimidine plus platinum-based chemotherapy. Days 1, 8 and 15 every 28 days until progression or intolerable toxicity. Weekly INR for patients on warfarin until stable dose established.",
+    drugs: [
+      { name: "PACLitaxel", dose: 80, unit: "mg/m²", basis: "bsa", max: null, weightCap: null, route: "IV", days: "Days 1, 8 and 15", reducible: true, note: "Non-DEHP bag/tubing with 0.2 micron in-line filter, over 60 min. Hematologic: reduce to 65 then 50 mg/m² per nadir ANC/platelets table or after neutropenic sepsis. Hepatic: 60 mg/m² if bili ≤1.25×ULN & AST/ALT <10×ULN moving to 2.01–5×ULN bili; 40 mg/m² if bili 2.01–5×ULN; not recommended above. Reduce 10 mg/m² for Grade 2 non-heme toxicity (hold until ≤Grade 1 first); discontinue at Grade ≥3.", levels: [65, 50] }
+    ],
+    labs: {
+      baseline: ["CBC & Diff", "total bilirubin", "ALT", "alkaline phosphatase", "albumin", "sodium", "potassium"],
+      cycle: ["CBC & Diff", "creatinine", "total bilirubin", "ALT"],
+      conditional: [
+        { label: "Days 8 and 15 of each cycle", tests: ["CBC & Diff"] },
+        { label: "If clinically indicated", tests: ["CEA", "CA 19-9", "alkaline phosphatase", "albumin", "GGT", "sodium", "potassium", "ECG"] },
+        { label: "Patients on warfarin (weekly until stable, then monthly)", tests: ["INR"] }
+      ]
+    }
+  },
+
+  {
+    key: "GO-GOCXCPNB",
+    cat: "Gyne",
+    bcc: true,
+    name: "GOCXCPNB - Bevacizumab + CARBOplatin + PACLitaxel NAB [Cervical Cancer, Taxane-Hypersensitive]",
+    cycle: 21,
+    notes: "Alternative to standard carboplatin/paclitaxel ± bevacizumab regimens for cervical cancer, for patients with severe PACLitaxel hypersensitivity unmanageable despite premedication (or moderate reaction with strong contraindication to high-dose steroids). Must be eligible for GOCXCATB or UGOCXCATBP. Excludes platinum-resistant/refractory disease, progression on prior taxane, prior bevacizumab, recent major surgery, uncontrolled hypertension, bleeding diathesis, bowel obstruction history. Repeat every 21 days to complete the total cycle count of the original protocol. GFR capped at 125 mL/min for Calvert formula.",
+    drugs: [
+      { name: "PACLitaxel NAB", dose: 260, unit: "mg/m²", basis: "bsa", max: null, weightCap: null, route: "IV", days: "Day 1", reducible: true, note: "Over 30 min, 15 micron filter (no special bag/tubing material required). Select dose per Dose Banding Table. Nadir-based: reduce to 80% (both NAB-paclitaxel and carboplatin) if ANC <0.5 and platelets <75, or febrile neutropenia. Neuropathy Grade 3: hold until Grade ≤2 then 85% (1st) / 70% (2nd occurrence); Grade 4: 70% or discontinue. Hepatic: 80% if AST/ALT >1.5–5×ULN." },
+      { name: "CARBOplatin", dose: 6, unit: "AUC", basis: "auc", max: null, weightCap: null, route: "IV", days: "Day 1", reducible: true, note: "AUC 6; use AUC 5 if prior pelvic radiotherapy. GFR capped at 125 mL/min (Cockcroft-Gault or lab-reported MDRD — use same method throughout). Nadir-based reduction to 80% if ANC <0.5 and platelets <75, or febrile neutropenia." },
+      { name: "Bevacizumab", dose: 15, unit: "mg/kg", basis: "weight", max: null, weightCap: null, route: "IV", days: "Day 1", reducible: false, note: "Dose not recalculated after Cycle 1. Select dose per Dose Banding Table. Hold for proteinuria work-up (per 24h urine protein table), hypertensive crisis, GI perforation/wound dehiscence, Grade 3-4 hemorrhage, or Grade 4 (or recurrent Grade 3) thromboembolism." }
+    ],
+    labs: {
+      baseline: ["CBC & Diff", "creatinine", "total bilirubin", "ALT", "alkaline phosphatase", "urinalysis for protein", "blood pressure"],
+      cycle: ["CBC & Diff", "creatinine", "total bilirubin", "alkaline phosphatase", "ALT", "urinalysis for protein", "blood pressure"],
+      conditional: [
+        { label: "Day 14 if clinically indicated (nadir monitoring)", tests: ["CBC & Diff"] },
+        { label: "If clinically indicated", tests: ["sodium", "potassium", "magnesium", "calcium", "CA 125", "CA19-9", "CA 15-3", "CEA", "SCC"] },
+        { label: "24-hour urine for protein if dipstick ≥2+ or lab urinalysis ≥1 g/L", tests: ["24-hour urine protein"] }
+      ]
+    }
+  },
+
+  {
+    key: "GO-GOOVCPNB",
+    cat: "Gyne",
+    bcc: true,
+    name: "GOOVCPNB - Bevacizumab + CARBOplatin + PACLitaxel NAB [Ovarian Cancer, Taxane-Hypersensitive]",
+    cycle: 21,
+    notes: "Alternative to standard carboplatin/paclitaxel ± bevacizumab regimens for ovarian cancer, for patients with severe PACLitaxel hypersensitivity unmanageable despite premedication (or moderate reaction with strong contraindication to high-dose steroids). Must be eligible for GOOVCATB. Bevacizumab begins at Cycle 2 of platinum therapy. Excludes platinum-resistant/refractory disease, progression on prior taxane, prior bevacizumab, recent major surgery, uncontrolled hypertension, bleeding diathesis, bowel obstruction history. Repeat every 21 days to complete the total cycle count of the original protocol; continue maintenance bevacizumab via GOOVCATB afterward. GFR capped at 125 mL/min for Calvert formula.",
+    drugs: [
+      { name: "PACLitaxel NAB", dose: 260, unit: "mg/m²", basis: "bsa", max: null, weightCap: null, route: "IV", days: "Day 1", reducible: true, note: "Over 30 min, 15 micron filter (no special bag/tubing material required). Select dose per Dose Banding Table. Nadir-based: reduce to 80% (both NAB-paclitaxel and carboplatin) if ANC <0.5 and platelets <75, or febrile neutropenia. Neuropathy Grade 3: hold until Grade ≤2 then 85% (1st) / 70% (2nd occurrence); Grade 4: 70% or discontinue. Hepatic: 80% if AST/ALT >1.5–5×ULN." },
+      { name: "CARBOplatin", dose: 6, unit: "AUC", basis: "auc", max: null, weightCap: null, route: "IV", days: "Day 1", reducible: true, note: "AUC 6; use AUC 5 if prior pelvic radiotherapy. GFR capped at 125 mL/min (Cockcroft-Gault or lab-reported MDRD — use same method throughout). Nadir-based reduction to 80% if ANC <0.5 and platelets <75, or febrile neutropenia." },
+      { name: "Bevacizumab", dose: 7.5, unit: "mg/kg", basis: "weight", max: null, weightCap: null, route: "IV", days: "Day 1, beginning Cycle 2 of platinum therapy", reducible: false, note: "Dose not recalculated after Cycle 1. Select dose per Dose Banding Table. Hold for proteinuria work-up (per 24h urine protein table), hypertensive crisis, GI perforation/wound dehiscence, Grade 3-4 hemorrhage, or Grade 4 (or recurrent Grade 3) thromboembolism." }
+    ],
+    labs: {
+      baseline: ["CBC & Diff", "creatinine", "total bilirubin", "ALT", "alkaline phosphatase", "urinalysis for protein", "blood pressure"],
+      cycle: ["CBC & Diff", "creatinine", "total bilirubin", "alkaline phosphatase", "ALT", "urinalysis for protein", "blood pressure"],
+      conditional: [
+        { label: "Day 14 if clinically indicated (nadir monitoring)", tests: ["CBC & Diff"] },
+        { label: "If clinically indicated", tests: ["sodium", "potassium", "magnesium", "calcium", "CA 125", "CA19-9", "CA 15-3", "CEA", "SCC"] },
+        { label: "24-hour urine for protein if dipstick ≥2+ or lab urinalysis ≥1 g/L", tests: ["24-hour urine protein"] }
+      ]
+    }
+  },
+
+  {
+    key: "LK-LKCMLA",
+    cat: "Myeloid",
+    bcc: true,
+    name: "LKCMLA - Asciminib [CML Chronic Phase]",
+    cycle: null,
+    notes: "Philadelphia chromosome-positive CML, chronic phase: newly diagnosed with no prior systemic treatment, or resistant/intolerant to ≥2 prior TKI lines. Excludes accelerated/blast phase CML and T315I or V299L mutation. May combine with dexamethasone, hydroxyUREA, interferon, or predniSONE. Continuous until progression or unacceptable toxicity. Moderate hepatitis B reactivation risk — screen HBsAg/HBsAb/HBcoreAb.",
+    drugs: [
+      { name: "Asciminib", dose: 40, unit: "mg", basis: "flat", max: null, weightCap: null, route: "PO", days: "Twice daily (continuous); may be given as 80 mg once daily", reducible: true, note: "Dose Level -1: 20 mg BID (or 40 mg once daily). Hold for ANC <1.0 or platelets <50 — restart at starting dose if recovery ≤2 weeks, else Dose Level -1. Hold for lipase/amylase >2×ULN or any elevation with abdominal symptoms. Hold for Grade ≥3 hypersensitivity.", levels: [20] }
+    ],
+    labs: {
+      baseline: ["CBC & Diff", "ALT", "total bilirubin", "creatinine", "BUN", "sodium", "potassium", "magnesium", "calcium", "phosphorus", "lipase", "uric acid", "body weight", "ECG", "blood pressure", "HBsAg", "HBsAb", "HBcoreAb"],
+      cycle: ["CBC & Diff", "creatinine", "uric acid", "sodium", "potassium", "magnesium", "calcium", "phosphorus", "lipase", "blood pressure"],
+      conditional: [
+        { label: "Every 3 months (stable), or more often per protocol schedule", tests: ["peripheral blood BCR/ABL QPCR", "ALT", "total bilirubin", "alkaline phosphatase", "albumin", "triglycerides", "cholesterol", "creatine kinase"] },
+        { label: "If clinically indicated", tests: ["FISH", "RT-PCR for BCR/ABL", "BCR-ABL mutational analysis", "bone marrow exam with cytogenetics", "HBV viral load"] }
+      ]
+    }
+  },
+
+  {
+    key: "LK-LKCMLB",
+    cat: "Myeloid",
+    bcc: true,
+    name: "LKCMLB - Bosutinib [CML]",
+    cycle: null,
+    notes: "Chronic or accelerated phase Philadelphia chromosome-positive CML, resistant to ≥2 prior lines (one must be a TKI), or intolerant to iMAtinib, niLOtinib and daSATinib. Sequential use between second-generation TKIs (bosutinib, daSATinib, nilotinib) for progression is not allowed unless a mutation-specific resistance/sensitivity pattern is demonstrated; sequencing for intolerance is allowed. Contraindicated with baseline hepatic impairment. Moderate hepatitis B reactivation risk. Take with food.",
+    drugs: [
+      { name: "Bosutinib", dose: 500, unit: "mg", basis: "flat", max: null, weightCap: null, route: "PO", days: "Once daily, continuous, with food", reducible: true, note: "May escalate to 600 mg if ≤Grade 2 AEs and inadequate response at 8–12 weeks. Renal-adjusted starting dose: 400 mg if CrCl 30–50 mL/min; 300 mg if CrCl <30 mL/min. Reduce 1 level for ANC <1.0 and/or platelets <50 recovering >2 weeks, liver transaminases >5×ULN, Grade 3-4 fluid retention/diarrhea, or other clinically significant toxicity.", levels: [400, 300] }
+    ],
+    labs: {
+      baseline: ["CBC & Diff", "ALT", "total bilirubin", "creatinine", "urea", "sodium", "potassium", "magnesium", "calcium", "phosphorus", "lipase", "body weight", "bone marrow exam with cytogenetics", "FISH", "RT-PCR for BCR/ABL", "BCR-ABL mutational analysis", "ECG", "HBsAg", "HBsAb", "HBcoreAb"],
+      cycle: ["CBC & Diff", "platelets", "creatinine", "uric acid"],
+      conditional: [
+        { label: "Months 1-3 (monthly)", tests: ["ALT", "total bilirubin", "sodium", "potassium", "magnesium", "calcium", "phosphorus", "lipase"] },
+        { label: "After 3 months, every 3 months or if clinically indicated", tests: ["ALT", "total bilirubin", "sodium", "potassium", "magnesium", "calcium", "phosphorus", "lipase"] },
+        { label: "Every 3 months (stable) for disease progression", tests: ["peripheral blood BCR/ABL QPCR"] },
+        { label: "If clinically indicated", tests: ["HBV viral load", "bone density"] }
+      ]
+    }
+  },
+
+  {
+    key: "LK-LKCMLD",
+    cat: "Myeloid",
+    bcc: true,
+    name: "LKCMLD - daSATinib [CML / Ph+ ALL]",
+    cycle: null,
+    notes: "Chronic phase CML resistant/intolerant to first-line TKI (100 mg once daily); accelerated/blast phase CML or Ph+ ALL resistant/intolerant to first-line TKI (140 mg once daily). Sequential use between second-generation TKIs (daSATinib, nilotinib) for progression is not allowed unless a mutation-specific resistance/sensitivity pattern is demonstrated; sequencing for intolerance is allowed. May combine with busulfan, dexamethasone, hydroxyUREA, interferon, melphalan, or predniSONE. Moderate hepatitis B reactivation risk. Monitor for pleural effusion and pulmonary arterial hypertension.",
+    drugs: [
+      { name: "DASatinib", dose: 100, unit: "mg", basis: "flat", max: null, weightCap: null, route: "PO", days: "Once daily, continuous", reducible: true, note: "Chronic phase dose (100 mg); accelerated/blast phase CML and Ph+ ALL use 140 mg once daily instead (not modeled by the reduction buttons below — select manually). Hold and reduce per ANC/platelet recovery tables: Dose Level -1 80 mg, Dose Level -2 50 mg.", levels: [80, 50] }
+    ],
+    labs: {
+      baseline: ["CBC & Diff", "ALT", "total bilirubin", "creatinine", "urea", "body weight", "bone marrow exam with cytogenetics", "FISH", "RT-PCR for BCR/ABL", "ECG", "HBsAg", "HBsAb", "HBcoreAb"],
+      cycle: ["CBC & Diff", "creatinine", "uric acid", "ALT", "total bilirubin"],
+      conditional: [
+        { label: "Every 3 months (stable) for disease progression", tests: ["peripheral blood BCR/ABL QPCR"] },
+        { label: "If clinically indicated", tests: ["HBV viral load", "chest x-ray"] }
+      ]
+    }
+  },
+
+  {
+    key: "LK-LKCMLN",
+    cat: "Myeloid",
+    bcc: true,
+    name: "LKCMLN - niLOtinib [CML Chronic/Accelerated Phase]",
+    cycle: null,
+    notes: "Chronic phase CML resistant/intolerant to first-line treatment, or progression to/presentation with accelerated phase CML resistant/intolerant to first-line TKI. Excludes blast phase CML/Ph+ ALL and uncorrected hypokalemia/hypomagnesemia. Sequential use between second-generation TKIs (daSATinib, nilotinib) for progression is not allowed unless mutation-specific resistance/sensitivity is demonstrated; sequencing for intolerance is allowed. Take on an empty stomach. Moderate hepatitis B reactivation risk. Monitor QTc.",
+    drugs: [
+      { name: "niLOtinib", dose: 400, unit: "mg", basis: "flat", max: null, weightCap: null, route: "PO", days: "Twice daily, empty stomach, continuous", reducible: false, note: "Dose modification is a frequency reduction (400 mg BID → 400 mg once daily), not a per-dose mg reduction — select manually rather than via the % buttons. Reduce for ANC <1.0 or platelets <50 not recovering within 2 weeks; QTcF 450–480 msec; or clinically significant Grade ≥2 non-hematologic toxicity. May re-escalate to BID if clinically appropriate." }
+    ],
+    labs: {
+      baseline: ["CBC & Diff", "ALT", "alkaline phosphatase", "total bilirubin", "GGT", "creatinine", "urea", "lipase", "body weight", "bone marrow exam with cytogenetics", "FISH", "RT-PCR", "ECG", "HBsAg", "HBsAb", "HBcoreAb"],
+      cycle: ["CBC & Diff", "creatinine", "uric acid", "ALT", "total bilirubin", "lipase", "random glucose"],
+      conditional: [
+        { label: "Every 3 months (stable) for disease progression", tests: ["peripheral blood BCR/ABL QPCR"] },
+        { label: "If clinically indicated", tests: ["HBV viral load"] }
+      ]
+    }
   }
 ]; // end PROTOCOLS
